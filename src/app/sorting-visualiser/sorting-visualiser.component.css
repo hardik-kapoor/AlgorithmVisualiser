@@ -21,9 +21,12 @@
 #txt
 {
     padding:10px;
-    font-size:auto;
+    font-size:14px;
+    font-weight:500;
+    
 }
 
 #txt:hover{
+
     transform: scale(1.2);
 }
