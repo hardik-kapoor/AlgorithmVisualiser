@@ -16,4 +16,14 @@
     color: white;
     text-align: center;
     height:100px;
-  }
+}
+
+#txt
+{
+    padding:10px;
+    font-size:auto;
+}
+
+#txt:hover{
+    transform: scale(1.2);
+}
