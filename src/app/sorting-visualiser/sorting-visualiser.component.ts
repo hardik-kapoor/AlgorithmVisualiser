@@ -10,9 +10,9 @@ export class SortingVisualiserComponent implements OnInit {
   constructor() { }
 
   arr:number[]=[6,4,3,2,6,23,16];
-  isChecking:number[]=[];
-  isSwapping:number[]=[];
-  isDone:number[]=[];
+  isChecking:number[]=[];   //checking these
+  isSwapping:number[]=[];   //swapping these
+  isDone:number[]=[];     //in final position
 
   ngOnInit(): void {
   }
