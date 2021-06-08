@@ -3,6 +3,12 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { SortingVisualiserComponent } from './sorting-visualiser/sorting-visualiser.component';
+import {RouterModule} from '@angular/router';
+
+
+let routes = [
+  {path:'sorting' , component: SortingVisualiserComponent}
+]
 
 @NgModule({
   declarations: [
@@ -10,7 +16,8 @@ import { SortingVisualiserComponent } from './sorting-visualiser/sorting-visuali
     SortingVisualiserComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    RouterModule.forRoot(routes)
   ],
   providers: [],
   bootstrap: [AppComponent]
