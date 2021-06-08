@@ -104,7 +104,7 @@ export class SortingVisualiserComponent implements OnInit {
       this.isChecking.push()
       let i=(lo-1);
 
-      for()
+      //for()
       return ind;
     }
 
@@ -112,10 +112,10 @@ export class SortingVisualiserComponent implements OnInit {
     {
       if(lo<hi)
       {
-        let part=this.partition(lo,hi).resolve(ind);
+        //let part=this.partition(lo,hi).resolve(ind);
         
-        this.quicksort(lo,part-1);
-        this.quicksort(part+1,hi);
+        //this.quicksort(lo,part-1);
+       // this.quicksort(part+1,hi);
       }
     }
   //
