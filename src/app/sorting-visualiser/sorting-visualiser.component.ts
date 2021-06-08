@@ -26,6 +26,28 @@ export class SortingVisualiserComponent implements OnInit {
     this.isDone=[]; 
   }
 
+  shuffleArray()
+  {
+    let currind=this.arr.length;
+    while(0!==currind)
+    {
+      let randind=Math.floor(Math.random()*currind);
+      if(currind===randind)
+        randind--;
+      currind--;
+      [this.arr[currind],this.arr[randind]]=[this.arr[randind],this.arr[currind]];
+    }
+  }
+
+  createRandomArray(len:number){
+    this.arr=[];
+    for(let i=0;i<len;i++)
+    {
+      this.arr.push(i+1);
+    }
+    this.shuffleArray();
+  }
+
   currentColor(ind:number)
   {
     if(this.isChecking.includes(ind))
@@ -60,7 +82,6 @@ export class SortingVisualiserComponent implements OnInit {
         }
         this.isDone.push(this.arr.length-i-1);
       }
-      this.reset();
     }
   //
 
