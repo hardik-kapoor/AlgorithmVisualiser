@@ -9,14 +9,63 @@ export class SortingVisualiserComponent implements OnInit {
 
   constructor() { }
 
+  ngOnInit(): void {
+  }
+
   arr:number[]=[6,4,3,2,6,23,16];
   isChecking:number[]=[];   //checking these
   isSwapping:number[]=[];   //swapping these
   isDone:number[]=[];     //in final position
 
-  
+  //didnt make extra js files.
 
-  ngOnInit(): void {
+  reset()
+  {
+    this.isChecking=[];
+    this.isSwapping=[];
+    this.isDone=[]; 
   }
+
+  currentColor(ind:number)
+  {
+    if(this.isChecking.includes(ind))
+      return {"border-left": '10px solid #7CFC00'};
+    else if(this.isSwapping.includes(ind))
+      return {"border-left": '10px solid #FF4500'};
+    else if(this.isDone.includes(ind))
+      return {"border-left": '10px solid #ADD8E6'};
+    else
+      return {"border-left": '10px solid #2F4F4F'};
+  }
+
+  //fun1
+    async bubbleSort(num:number){
+      this.reset();
+      for(let i=0;i<this.arr.length;i++)
+      {
+        for(let j=0;j<this.arr.length-1-i;j++)
+        {
+          this.isChecking=[];
+          this.isChecking.push(j);
+          this.isChecking.push(j+1);
+          await new Promise(resolve => setTimeout(resolve, 500));
+          if(this.arr[j]>this.arr[j+1])
+          {
+            this.isSwapping.push(j);
+            this.isSwapping.push(j+1);
+            [this.arr[j],this.arr[j+1]]=[this.arr[j+1],this.arr[j]];
+            await new Promise(resolve => setTimeout(resolve, 500));
+            this.isSwapping=[];
+          }
+        }
+        this.isDone.push(this.arr.length-i-1);
+      }
+      this.reset();
+    }
+  //
+
+  //fun2
+  
+  //
 
 }
