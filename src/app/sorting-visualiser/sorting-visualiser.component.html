@@ -1,9 +1,11 @@
 <div *ngFor="let number of arr;index as i">
     <div class="bar"  [style.height]='100*number + "px"' style="height: 100px;" [ngStyle]="currentColor(i)" ></div>
 </div>
-  
+
 <div>
     <button class="btn btn-primary" (click)="bubbleSort()">start</button>
+    <button class="btn btn-primary" (click)="resetarray()">reset</button>
+    
 </div>
 
 
@@ -25,6 +27,7 @@
 
 
 <!-- Footer Part -->
+<<<<<<< HEAD
 <div id="footer" class="card bg-light">
     <div class="row">
       <div id="txt" class = "col-lg-1 text-dark">QuickSort</div>
@@ -36,3 +39,5 @@
       <div id="txt" class = "col-lg-1 text-dark">CountingSort</div>
     </div>
   </div>
+=======
+>>>>>>> c47acdad2e0db4b125aff742bbd3ec9b8594dfd2

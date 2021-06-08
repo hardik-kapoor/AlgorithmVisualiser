@@ -16,8 +16,18 @@ export class SortingVisualiserComponent implements OnInit {
   isChecking:number[]=[];   //checking these
   isSwapping:number[]=[];   //swapping these
   isDone:number[]=[];     //in final position
+  arrfixed:number[]=[...this.arr];
+
+
 
   //didnt make extra js files.
+
+  resetarray()
+  {
+    this.arr=[...this.arrfixed];
+    this.reset();
+  }
+
 
   reset()
   {
