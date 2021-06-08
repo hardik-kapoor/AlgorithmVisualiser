@@ -12,7 +12,7 @@ export class SortingVisualiserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  arr:number[]=[6,4,3,2,6,23,16];
+  arr:number[]=[5,3,2,1,4];
   isChecking:number[]=[];   //checking these
   isSwapping:number[]=[];   //swapping these
   isDone:number[]=[];     //in final position
@@ -50,18 +50,18 @@ export class SortingVisualiserComponent implements OnInit {
 
   currentColor(ind:number)
   {
-    if(this.isChecking.includes(ind))
-      return {"border-left": '10px solid #7CFC00'};
+    if(this.isDone.includes(ind))
+      return {"border-left": '10px solid #ADD8E6'};
     else if(this.isSwapping.includes(ind))
       return {"border-left": '10px solid #FF4500'};
-    else if(this.isDone.includes(ind))
-      return {"border-left": '10px solid #ADD8E6'};
+    else if(this.isChecking.includes(ind))
+      return {"border-left": '10px solid #7CFC00'};
     else
       return {"border-left": '10px solid #2F4F4F'};
   }
 
   //fun1
-    async bubbleSort(num:number){
+    async bubbleSort(){
       this.reset();
       for(let i=0;i<this.arr.length;i++)
       {
@@ -83,6 +83,7 @@ export class SortingVisualiserComponent implements OnInit {
         this.isDone.push(this.arr.length-i-1);
       }
     }
+
   //
 
   //fun2
