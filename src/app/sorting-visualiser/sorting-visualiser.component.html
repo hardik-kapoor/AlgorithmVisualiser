@@ -1,1 +1,7 @@
-<p>sorting-visualiser works!</p>
+<div *ngFor="let number of arr;index as i">
+    <div class="bar"  [style.height]='100*number + "px"' style="height: 100px;" [ngStyle]="mynew(i)" ></div>
+</div>
+  
+<div>
+    <button class="btn btn-primary" (click)="sort(2)">start</button>
+</div>
