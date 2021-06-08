@@ -80,20 +80,24 @@ export class SortingVisualiserComponent implements OnInit {
           this.isChecking=[];
           this.isChecking.push(j);
           this.isChecking.push(j+1);
-          await new Promise(resolve => setTimeout(resolve, 500));
+          await new Promise(resolve => setTimeout(resolve, 250));
           if(this.arr[j]>this.arr[j+1])
           {
             this.isSwapping.push(j);
             this.isSwapping.push(j+1);
             [this.arr[j],this.arr[j+1]]=[this.arr[j+1],this.arr[j]];
-            await new Promise(resolve => setTimeout(resolve, 500));
+            await new Promise(resolve => setTimeout(resolve, 250));
             this.isSwapping=[];
           }
         }
         this.isDone.push(this.arr.length-i-1);
       }
     }
+    
+    async quicksort(lo:number,hi:number)
+    {
 
+    }
   //
 
   //fun2
