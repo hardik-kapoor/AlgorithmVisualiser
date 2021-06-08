@@ -16,6 +16,7 @@ export class SortingVisualiserComponent implements OnInit {
   isChecking:number[]=[];   //checking these
   isSwapping:number[]=[];   //swapping these
   isDone:number[]=[];     //in final position
+  isPart:number[]=[];     //is partition one
   arrfixed:number[]=[...this.arr];
 
 
@@ -34,6 +35,7 @@ export class SortingVisualiserComponent implements OnInit {
     this.isChecking=[];
     this.isSwapping=[];
     this.isDone=[]; 
+    this.isPart=[];
   }
 
   shuffleArray()
@@ -94,9 +96,26 @@ export class SortingVisualiserComponent implements OnInit {
       }
     }
     
+    async partition(lo:number,hi:number)
+    {
+      let ind:number=Math.random()*(hi+1-lo)+lo;
+      this.isSwapping=[];
+      this.isChecking.push()
+      let i=(lo-1);
+
+      for()
+      return ind;
+    }
+
     async quicksort(lo:number,hi:number)
     {
-
+      if(lo<hi)
+      {
+        let part=this.partition(lo,hi).resolve(ind);
+        
+        this.quicksort(lo,part-1);
+        this.quicksort(part+1,hi);
+      }
     }
   //
 
