@@ -1,7 +1,8 @@
 <div *ngFor="let number of arr;index as i">
     <div class="bar"  [style.height]='100*number + "px"' style="height: 100px;" [ngStyle]="currentColor(i)" ></div>
 </div>
-  
+
 <div>
     <button class="btn btn-primary" (click)="bubbleSort()">start</button>
+    <button class="btn btn-primary" (click)="resetarray()">reset</button>
 </div>
