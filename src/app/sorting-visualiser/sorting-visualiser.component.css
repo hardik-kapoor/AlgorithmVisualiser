@@ -22,5 +22,8 @@
 {
     padding:10px;
     font-size:auto;
-    border:1px solid black;
+}
+
+#txt:hover{
+    transform: scale(1.2);
 }
