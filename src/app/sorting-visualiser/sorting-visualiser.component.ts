@@ -14,6 +14,8 @@ export class SortingVisualiserComponent implements OnInit {
   isSwapping:number[]=[];   //swapping these
   isDone:number[]=[];     //in final position
 
+  
+
   ngOnInit(): void {
   }
 
