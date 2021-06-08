@@ -56,6 +56,7 @@ export class SortingVisualiserComponent implements OnInit {
       this.arr.push(i+1);
     }
     this.shuffleArray();
+    this.arrfixed=[...this.arr];
   }
 
   currentColor(ind:number)
