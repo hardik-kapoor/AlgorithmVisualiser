@@ -12,7 +12,7 @@ export class SortingVisualiserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  arr:number[]=[5,3,2,1,4];
+  arr:number[]=[5,2,1,3,4];
   isChecking:number[]=[];   //checking these
   isSwapping:number[]=[];   //swapping these
   isDone:number[]=[];     //in final position
@@ -29,7 +29,7 @@ export class SortingVisualiserComponent implements OnInit {
   shuffleArray()
   {
     let currind=this.arr.length;
-    while(0!==currind)
+    while(currind!==0)
     {
       let randind=Math.floor(Math.random()*currind);
       if(currind===randind)
