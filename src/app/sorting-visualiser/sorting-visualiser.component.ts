@@ -120,6 +120,7 @@ export class SortingVisualiserComponent implements OnInit {
     }
   //
 
+  
   //fun2
   
   //
