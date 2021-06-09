@@ -1,7 +1,6 @@
 .bar{
     display: flex;
     float: left;
-    justify-content: center;
     padding:3px;
 }
 
@@ -20,8 +19,9 @@
 #txt
 {
     padding:10px;
-    font-size:15px;
+    font-size:14px;
     font-weight:400;
+    transition: transform 450ms;
 }
 
 #bt
@@ -29,18 +29,22 @@
     padding:10px;
     font-size:20px;
     font-weight:400;
+    transition: transform 500ms;
+    width: 180px;
+    justify-content: center;
 }
 
 #txt:hover{
 
     transform: scale(1.1);
     background-color: rgb(206, 220, 238);
+    font-weight:500;
 }
 
-#bt-hover{
+#bt:hover{
     transform: scale(1.1);
     background-color: rgb(206, 220, 238);
-
+    font-weight:500;
 }
 
 
