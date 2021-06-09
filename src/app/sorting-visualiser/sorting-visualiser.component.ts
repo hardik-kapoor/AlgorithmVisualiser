@@ -1,3 +1,4 @@
+import { ThrowStmt } from '@angular/compiler';
 import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 import { Component, OnInit } from '@angular/core';
 
@@ -18,6 +19,7 @@ export class SortingVisualiserComponent implements OnInit {
   isChecking:number[]=[];   //checking these
   isSwapping:number[]=[];   //swapping these
   isDone:number[]=[];     //in final position
+  isChild:number[]=[];    //for better visualisation of heap sort
   arrfixed:number[]=[...this.arr];
 
   dur:number=250;         //duration
@@ -81,6 +83,8 @@ export class SortingVisualiserComponent implements OnInit {
       return {"border-left": '10px solid #FF4500'};
     else if(this.isChecking.includes(ind))
       return {"border-left": '10px solid #7CFC00'};
+    else if(this.isChild.includes(ind))
+      return {"border-left": '10px solid #B4933F'};
     else
       return {"border-left": '10px solid #2F4F4F'};
   }
@@ -334,4 +338,70 @@ export class SortingVisualiserComponent implements OnInit {
     }
   }
 
+  async heapify(i:number, n:number)
+  {
+    this.isChecking=[];
+    this.isSwapping=[];
+    this.isChild=[];
+    this.isChecking.push(i);
+    let maxid=i;
+    let lc=2*i+1;
+    let rc=2*i+2;
+    this.isChild.push(lc);
+    this.isChild.push(rc);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    if(lc<n && this.arr[lc]>this.arr[maxid])
+      maxid=lc;
+    if(rc<n && this.arr[rc]>this.arr[maxid])
+      maxid=rc;
+    if(maxid!=i)
+    { 
+      this.isChecking=[];
+      this.isChild=[];
+      this.isSwapping=[];
+      this.isSwapping.push(i);
+      this.isSwapping.push(maxid);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      [this.arr[i],this.arr[maxid]]=[this.arr[maxid],this.arr[i]];
+      await new Promise(resolve => {setTimeout(() => {resolve(this.heapify(maxid,n));}, );});
+    }  
+    this.isChecking=[];
+  }
+
+
+  async heapsort(){
+    let n=this.arr.length;
+    let i=(Math.floor(n/2))-1;
+    while(i>=0)
+    {
+      await new Promise(resolve => {setTimeout(() => {resolve(this.heapify(i,n));}, );});
+      i--;
+    }
+    this.isChecking=[];
+    this.isChild=[];
+    this.isSwapping=[];
+    this.isDone=[];
+    i =n-1;
+    let tlen=n;
+    while(i>0)
+    {
+      this.isSwapping=[];
+      this.isSwapping.push(i);
+      this.isSwapping.push(0);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      this.isSwapping=[];
+      [this.arr[i],this.arr[0]]=[this.arr[0],this.arr[i]];
+      this.isDone.push(i);
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      i--;
+      tlen--;
+      await new Promise(resolve => {setTimeout(() => {resolve(this.heapify(0, tlen));}, );});
+      
+    }
+    this.isDone.push(0);
+
+  }
+
+
+  //
 }
