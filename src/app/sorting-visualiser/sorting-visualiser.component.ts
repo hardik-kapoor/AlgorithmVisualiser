@@ -19,6 +19,7 @@ export class SortingVisualiserComponent implements OnInit {
   isSwapping:number[]=[];   //swapping these
   isDone:number[]=[];     //in final position
   arrfixed:number[]=[...this.arr];
+  whichSort:string="";
 
   dur:number=250;         //duration
   max_val:number=-1;
@@ -28,6 +29,11 @@ export class SortingVisualiserComponent implements OnInit {
 
 
   //didnt make extra js files.
+
+
+  change(now:string){
+    this.whichSort=now;
+  }
 
   resetarray()
   {
@@ -47,6 +53,20 @@ export class SortingVisualiserComponent implements OnInit {
   {
     this.isChecking=[];
     this.isSwapping=[];
+  }
+
+  selectsort()
+  {
+    if(this.whichSort==="quicksort")
+      this.quicksort();
+    else if(this.whichSort==="mergesort")
+      this.mergesort(0,this.arr.length-1);
+    else if(this.whichSort==="insertionsort")
+      this.insertionsort();
+    else if(this.whichSort==="bubblesort")
+      this.bubbleSort();
+    else if(this.whichSort==="selectionsort")
+      this.selectionsort();
   }
 
   shuffleArray()
