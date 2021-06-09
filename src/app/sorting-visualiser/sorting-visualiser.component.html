@@ -1,4 +1,4 @@
-<div *ngFor="let number of arr;index as i">
+<!--<div *ngFor="let number of arr;index as i">
     <div class="bar"  [style.height]='100*number + "px"' style="height: 100px;" [ngStyle]="currentColor(i)" ></div>
 </div>
 
@@ -7,10 +7,24 @@
     <button class="btn btn-primary" (click)="resetarray()">reset</button>
 </div>
 
+-->
 
 
-
-
+<div class="d-flex flex-column flex-fill bg-light">
+    <div class="d-flex flex-row container justify content-center">
+        <div class="col-3"></div>
+        <div class="col-8">
+            <div *ngFor="let number of arr;index as i;l as last;f as first">
+                <div class="bar"  [style.height]='100*number + "px"' [ngStyle]="currentColor(i)" [class.ml-5]="i==f" [class.mr-1]="i==l" ></div>
+            </div>
+        </div>
+        <div class="col-1">
+            <div>
+                <button class="btn btn-primary" (click)="bubbleSort()">start</button>
+                <button class="btn btn-primary" (click)="resetarray()">reset</button>
+            </div>
+        </div>
+</div>
 
 
 
@@ -23,20 +37,20 @@
 <!-- Footer Part -->
 <div id="footer" class="card bg-light">
     <div class="row">
-      <div id="txt" class = "col-lg-1 text-dark">QuickSort</div>
-      <div id="txt" class = "col-lg-1 text-dark">HeapSort</div>
-      <div id="txt" class = "col-lg-1 text-dark">MergeSort</div>
-      <div id="txt" class = "col-lg-1 text-dark">BubbleSort</div>
-      <div id="txt" class = "col-lg-1 text-dark">SelectionSort</div>
-      <div id="txt" class = "col-lg-1 text-dark">InsertionSort</div>
-      <div id="txt" class = "col-lg-1 text-dark">CountingSort</div>
-      <div class="col-lg-2 text-dark"><div id="txt">Animation Speed</div><div class="slidecontainer">
+      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">QuickSort</button></div>
+      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">HeapSort</button></div>
+      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">MergeSort</button></div>
+      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">BubbleSort</button></div>
+      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">SelectionSort</button></div>
+      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">InsertionSort</button></div>
+      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">CountingSort</button></div>
+      <div class="col-2 text-dark"><div id="txt">Animation Speed</div><div class="slidecontainer">
         <input type="range" min="1" max="100" value="0" class="slider" id="myRange">
       </div>
     </div>
-    <div class="col-lg-2 text-dark"><div id="txt">Array Size</div><div class="slidecontainer">
+    <div class="col-2 text-dark"><div id="txt">Array Size</div><div class="slidecontainer">
         <input type="range" min="1" max="100" value="0" class="slider" id="myRange">
       </div>
     </div>
-    
+    </div>
 </div>

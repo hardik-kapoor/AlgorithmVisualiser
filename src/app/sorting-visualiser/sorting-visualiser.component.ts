@@ -12,7 +12,7 @@ export class SortingVisualiserComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  arr:number[]=[5,2,1,3,4];
+  arr:number[]=[5,2,1,3,4,1,1,1,1,1,1,1,1,1,1,1,1];
   isChecking:number[]=[];   //checking these
   isSwapping:number[]=[];   //swapping these
   isDone:number[]=[];     //in final position

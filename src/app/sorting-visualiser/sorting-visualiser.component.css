@@ -1,16 +1,14 @@
 .bar{
-    border-left: 10px solid red;
     display: flex;
     float: left;
-    margin: 10px;
-    margin-left: 100px;
+    justify-content: center;
+    padding: 5px;
 }
 
 
 #footer 
 {
-    display:flex;
-    left: 0;
+    position: fixed;
     bottom: 0;
     width: 100%;
     color: white;
@@ -21,14 +19,22 @@
 #txt
 {
     padding:10px;
-    font-size:14px;
+    font-size:10px;
     font-weight:500;
-    
+    font-size: 1vw;
+}
+
+#bt
+{
+    padding:10px;
+    font-size:10px;
+    font-weight:500;
+    font-size: 1vw;
 }
 
 #txt:hover{
 
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 
