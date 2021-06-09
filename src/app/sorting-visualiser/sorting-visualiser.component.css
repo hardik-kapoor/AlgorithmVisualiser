@@ -35,6 +35,16 @@
     justify-content: center;
 }
 
+#bt2
+{
+    padding:10px;
+    font-size:20px;
+    font-weight:400;
+    transition: transform 500ms;
+    width: 180px;
+    justify-content: center;
+}
+
 #txt:hover{
 
     transform: scale(1.1);
@@ -43,6 +53,13 @@
 }
 
 #bt:hover{
+    transform: scale(1.1);
+    background-color: rgb(206, 220, 238);
+    font-weight:500;
+    
+}
+
+#bt2:hover{
     transform: scale(1.1);
     background-color: rgb(206, 220, 238);
     font-weight:500;

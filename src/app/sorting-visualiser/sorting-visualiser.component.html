@@ -22,18 +22,18 @@
         <div class="col">
                 <br>
                 <div class="row-2">
-                    <button id="bt" class="btn btn-light mb-1 pd-2" (click)="selectsort()"><fa-icon id="icon" [icon]="_start"></fa-icon> Start </button>
+                    <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="selectsort()"><fa-icon id="icon" [icon]="_start"></fa-icon> Start </button>
                 </div>
                 <div class="row-2">
-                    <button id="bt" class="btn btn-light mb-2" (click)="resetarray()"><fa-icon id="icon" [icon]="_reset"></fa-icon> Reset </button>
+                    <button id="bt" class="btn btn-light mb-2 text-dark" (click)="resetarray()"><fa-icon id="icon" [icon]="_reset"></fa-icon> Reset </button>
                 </div>
                 <div class="row-2">
-                    <button id="bt" class="btn btn-light mb-2" (click)="createRandomArray(10)"><fa-icon id="icon" [icon]="_shuffle"></fa-icon> Shuffle </button>
+                    <button id="bt" class="btn btn-light mb-2 text-dark" (click)="createRandomArray(20)"><fa-icon id="icon" [icon]="_shuffle"></fa-icon> Shuffle </button>
                 </div>
-<<<<<<< HEAD
-=======
+                <div class="row-2">
+                    <button id="bt" class="btn btn-light mb-2 text-dark" (click)="createRandomArray(20)"><fa-icon id="icon" [icon]="_chosen"></fa-icon> {{whichSort}} </button>
+                </div>
         
->>>>>>> 3ea93936bd95fa02dc6405c70704281460f47b89
 </div>
 
 
@@ -48,7 +48,7 @@
       <div class = "col-1 text-dark"><button id="txt"  (click)="change('bubblesort')" class="btn btn-light">BubbleSort</button></div>
       <div class = "col-1 text-dark"><button id="txt"  (click)="change('selectionsort')" class="btn btn-light">SelectionSort</button></div>
       <div class = "col-1 text-dark"><button id="txt"  (click)="change('insertionsort')" class="btn btn-light">InsertionSort</button></div>
-      <div class="col text-dark"><div id="txt">Animation Speed</div><div class="slidecontainer">
+      <div class="col text-dark"><div id="txt"><fa-icon id="icon" [icon]="_anim"></fa-icon>Animation Speed</div><div class="slidecontainer">
         <input type="range" min="1" max="100" value="0" class="slider" id="myRange">
       </div>
     </div>
@@ -56,6 +56,6 @@
         <input type="range" min="1" max="100" value="0" class="slider" id="myRange">
       </div>
     </div>
-    <div class="col-2"></div>
+    <div class = "col-2"></div>
     </div>
 </div>

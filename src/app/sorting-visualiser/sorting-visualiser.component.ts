@@ -1,7 +1,7 @@
 import { ThrowStmt } from '@angular/compiler';
 import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 import { Component, OnInit } from '@angular/core';
-import {faPlayCircle , faUndo , faRandom} from '@fortawesome/free-solid-svg-icons';
+import {faPlayCircle , faUndo , faRandom , faTachometerAlt , faSitemap} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sorting-visualiser',
@@ -14,6 +14,8 @@ export class SortingVisualiserComponent implements OnInit {
   _start=faPlayCircle;
   _reset=faUndo;
   _shuffle=faRandom;
+  _anim=faTachometerAlt;
+  _chosen=faSitemap;
 
   //Icons end here
   constructor() { }
@@ -28,7 +30,7 @@ export class SortingVisualiserComponent implements OnInit {
   isDone:number[]=[];     //in final position
   isChild:number[]=[];    //for better visualisation of heap sort
   arrfixed:number[]=[...this.arr];
-  whichSort:string="";
+  whichSort:string="none";
 
   dur:number=250;         //duration
   max_val:number=-1;
