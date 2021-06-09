@@ -56,6 +56,7 @@ export class SortingVisualiserComponent implements OnInit {
     this.isChecking=[];
     this.isSwapping=[];
     this.isDone=[]; 
+    this.isChild=[];
   }
 
   reset2()
@@ -94,6 +95,7 @@ export class SortingVisualiserComponent implements OnInit {
   }
 
   createRandomArray(len:number){
+    this.reset();
     this.arr=[];
     for(let i=0;i<len;i++)
     {
@@ -189,7 +191,7 @@ export class SortingVisualiserComponent implements OnInit {
     {
       if(lo===hi)
       {
-        this.isDone.push(this.part);
+        this.isDone.push(lo);
         return;
       }
       if(lo<hi)
@@ -201,13 +203,9 @@ export class SortingVisualiserComponent implements OnInit {
 
         await new Promise(resolve => {setTimeout(() => {resolve(this.quicks(lo,this.part-1));}, 0);});
         
-        for(let i=lo;i<=this.part+1;i++)
-          this.isDone.push(i);
 
         await new Promise(resolve => {setTimeout(() => {resolve(this.quicks(this.part+1,hi));}, 0);});
 
-        for(let i=this.part+1;i<=hi;i++)
-          this.isDone.push(i);
       }
     }
 
@@ -258,6 +256,8 @@ export class SortingVisualiserComponent implements OnInit {
           this.isChecking=[];
           this.isChecking.push(ind);
           this.isChecking.push(j);
+          this.isSwapping=[];
+          this.isSwapping.push(ind);
           await new Promise(resolve => setTimeout(resolve, this.dur));
           if(this.arr[j]<mn)
           {
@@ -265,13 +265,19 @@ export class SortingVisualiserComponent implements OnInit {
             mn=this.arr[j];
             ind=j;
           }
+          this.isSwapping=[];
+          this.isSwapping.push(ind);
+          await new Promise(resolve => setTimeout(resolve, this.dur));
         }
         this.isSwapping=[];
-        this.isSwapping.push(i);
-        this.isSwapping.push(ind);
+        this.isChild=[];
+        this.isChecking=[];
+        this.isChild.push(i);
+        this.isChild.push(ind);
         await new Promise(resolve => setTimeout(resolve, this.dur));
         [this.arr[i],this.arr[ind]]=[this.arr[ind],this.arr[i]];
         this.isDone.push(i);
+        this.isChild=[];
         await new Promise(resolve => setTimeout(resolve, this.dur));
         this.reset2();
       }
@@ -377,7 +383,7 @@ export class SortingVisualiserComponent implements OnInit {
     let rc=2*i+2;
     this.isChild.push(lc);
     this.isChild.push(rc);
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise(resolve => setTimeout(resolve, this.dur));
     if(lc<n && this.arr[lc]>this.arr[maxid])
       maxid=lc;
     if(rc<n && this.arr[rc]>this.arr[maxid])
@@ -389,7 +395,7 @@ export class SortingVisualiserComponent implements OnInit {
       this.isSwapping=[];
       this.isSwapping.push(i);
       this.isSwapping.push(maxid);
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, this.dur));
       [this.arr[i],this.arr[maxid]]=[this.arr[maxid],this.arr[i]];
       await new Promise(resolve => {setTimeout(() => {resolve(this.heapify(maxid,n));}, );});
     }  
@@ -416,11 +422,11 @@ export class SortingVisualiserComponent implements OnInit {
       this.isSwapping=[];
       this.isSwapping.push(i);
       this.isSwapping.push(0);
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, this.dur));
       this.isSwapping=[];
       [this.arr[i],this.arr[0]]=[this.arr[0],this.arr[i]];
       this.isDone.push(i);
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, this.dur));
       i--;
       tlen--;
       await new Promise(resolve => {setTimeout(() => {resolve(this.heapify(0, tlen));}, );});
