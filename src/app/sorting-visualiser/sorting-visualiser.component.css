@@ -20,22 +20,27 @@
 #txt
 {
     padding:10px;
-    font-size:10px;
-    font-weight:500;
-    font-size: 1vw;
+    font-size:15px;
+    font-weight:400;
 }
 
 #bt
 {
     padding:10px;
-    font-size:10px;
-    font-weight:500;
-    font-size: 1vw;
+    font-size:20px;
+    font-weight:400;
 }
 
 #txt:hover{
 
     transform: scale(1.1);
+    background-color: rgb(206, 220, 238);
+}
+
+#bt-hover{
+    transform: scale(1.1);
+    background-color: rgb(206, 220, 238);
+
 }
 
 
