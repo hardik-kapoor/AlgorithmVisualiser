@@ -30,7 +30,7 @@ let routes = [
     MatSelectModule,
     MatSliderModule,
     MatIconModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent , SortingVisualiserComponent]
