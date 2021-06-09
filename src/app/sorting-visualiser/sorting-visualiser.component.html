@@ -15,7 +15,10 @@
         <div class="col-3"></div>
         <div class="col-8">
             <div *ngFor="let number of arr;index as i;l as last;f as first">
-                <div class="bar"  [style.height]='100*number + "px"' [ngStyle]="currentColor(i)" [class.ml-5]="i==f" [class.mr-1]="i==l" ></div>
+                <div 
+                class="bar"  [style.width]="'10px'" 
+                [style.height]='50*number + "px"' [ngStyle]="currentColor(i)" 
+                [class.ml-5]="i==f" [class.mr-5]="i==l" ></div>
             </div>
         </div>
         <div class="col-1">

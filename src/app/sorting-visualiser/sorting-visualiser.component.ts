@@ -19,7 +19,7 @@ export class SortingVisualiserComponent implements OnInit {
   isPart:number[]=[];     //is partition one
   arrfixed:number[]=[...this.arr];
 
-
+  
 
   //didnt make extra js files.
 
