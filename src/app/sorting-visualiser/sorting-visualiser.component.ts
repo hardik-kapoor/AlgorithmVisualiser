@@ -270,11 +270,14 @@ export class SortingVisualiserComponent implements OnInit {
           await new Promise(resolve => setTimeout(resolve, this.dur));
         }
         this.isSwapping=[];
-        this.isSwapping.push(i);
-        this.isSwapping.push(ind);
+        this.isChild=[];
+        this.isChecking=[];
+        this.isChild.push(i);
+        this.isChild.push(ind);
         await new Promise(resolve => setTimeout(resolve, this.dur));
         [this.arr[i],this.arr[ind]]=[this.arr[ind],this.arr[i]];
         this.isDone.push(i);
+        this.isChild=[];
         await new Promise(resolve => setTimeout(resolve, this.dur));
         this.reset2();
       }
