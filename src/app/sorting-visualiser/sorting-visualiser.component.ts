@@ -30,7 +30,7 @@ export class SortingVisualiserComponent implements OnInit {
   isDone:number[]=[];     //in final position
   isChild:number[]=[];    //for better visualisation of heap sort
   arrfixed:number[]=[...this.arr];
-  whichSort:string="none";
+  whichSort:string="None";
 
   dur:number=250;         //duration
   max_val:number=-1;
