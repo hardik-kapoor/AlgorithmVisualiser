@@ -76,6 +76,8 @@ export class SortingVisualiserComponent implements OnInit {
       this.bubbleSort();
     else if(this.whichSort==="selectionsort")
       this.selectionsort();
+    else if(this.whichSort==="heapsort")
+      this.heapsort();
   }
 
   shuffleArray()
