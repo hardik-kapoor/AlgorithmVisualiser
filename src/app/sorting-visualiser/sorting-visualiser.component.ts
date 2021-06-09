@@ -21,7 +21,7 @@ export class SortingVisualiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.createRandomArray(50);
+    this.createRandomArray( );
   }
 
   arr:number[]=[];
@@ -34,13 +34,23 @@ export class SortingVisualiserComponent implements OnInit {
 
   dur:number=250;         //duration
   max_val:number=-1;
+  size:number = 50;
 
   //temp
   part:number=-1;
 
 
   //didnt make extra js files.
+  setSpeed(event)
+  {
+    this.dur = event.value;
+  }
 
+  setSize(event)
+  {
+    this.size = event.value;
+    this.createRandomArray(); 
+  }
 
   change(now:string){
     this.whichSort=now;
@@ -96,7 +106,8 @@ export class SortingVisualiserComponent implements OnInit {
     }
   }
 
-  createRandomArray(len:number){
+  createRandomArray( ){
+    let len:number = this.size;
     this.reset();
     this.arr=[];
     for(let i=0;i<len;i++)
