@@ -10,6 +10,7 @@ export class SortingVisualiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.createRandomArray(10);
   }
 
   arr:number[]=[5,2,1,3,4,1,1,1,1,1,1,1,1,1,1,1,1];
@@ -19,7 +20,7 @@ export class SortingVisualiserComponent implements OnInit {
   isPart:number[]=[];     //is partition one
   arrfixed:number[]=[...this.arr];
 
-  
+  max_val:number = 0;
 
   //didnt make extra js files.
 
@@ -59,6 +60,7 @@ export class SortingVisualiserComponent implements OnInit {
     }
     this.shuffleArray();
     this.arrfixed=[...this.arr];
+    this.max_val = Math.max(...this.arr);
   }
 
   currentColor(ind:number)
