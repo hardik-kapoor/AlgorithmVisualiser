@@ -56,6 +56,7 @@ export class SortingVisualiserComponent implements OnInit {
     this.isChecking=[];
     this.isSwapping=[];
     this.isDone=[]; 
+    this.isChild=[];
   }
 
   reset2()
