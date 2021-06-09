@@ -10,6 +10,7 @@ export class SortingVisualiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.createRandomArray(20);
   }
 
   arr:number[]=[5,2,1,3,4,1];
@@ -19,6 +20,7 @@ export class SortingVisualiserComponent implements OnInit {
   arrfixed:number[]=[...this.arr];
 
   dur:number=2000;         //duration
+  max_val:number=-1;
 
   //temp
   part:number=-1;
@@ -67,6 +69,7 @@ export class SortingVisualiserComponent implements OnInit {
     }
     this.shuffleArray();
     this.arrfixed=[...this.arr];
+    this.max_val = Math.max(...this.arr);
   }
 
   currentColor(ind:number)

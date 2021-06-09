@@ -9,13 +9,15 @@
 
 -->
 
-
 <div class="d-flex flex-column flex-fill bg-light">
     <div class="d-flex flex-row container justify content-center">
         <div class="col-3"></div>
-        <div class="col-8">
+        <div class="col-8" [style.height]='500+"px"'>
             <div *ngFor="let number of arr;index as i;l as last;f as first">
-                <div class="bar"  [style.height]='100*number + "px"' [ngStyle]="currentColor(i)" [class.ml-5]="i==f" [class.mr-1]="i==l" ></div>
+                <div 
+                class="bar"  [style.width]="'10px'" 
+                [style.height]='(400*number)/max_val + "px"' [ngStyle]="currentColor(i)" 
+                [class.ml-5]="i==f" [class.mr-5]="i==l" ></div>
             </div>
         </div>
         <div class="col-1">
@@ -44,13 +46,14 @@
       <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">SelectionSort</button></div>
       <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">InsertionSort</button></div>
       <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">CountingSort</button></div>
-      <div class="col-2 text-dark"><div id="txt">Animation Speed</div><div class="slidecontainer">
+      <div class="col text-dark"><div id="txt">Animation Speed</div><div class="slidecontainer">
         <input type="range" min="1" max="100" value="0" class="slider" id="myRange">
       </div>
     </div>
-    <div class="col-2 text-dark"><div id="txt">Array Size</div><div class="slidecontainer">
+    <div class="col text-dark"><div id="txt">Array Size</div><div class="slidecontainer">
         <input type="range" min="1" max="100" value="0" class="slider" id="myRange">
       </div>
     </div>
+    <div class="col-2"></div>
     </div>
 </div>
