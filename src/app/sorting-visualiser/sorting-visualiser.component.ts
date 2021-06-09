@@ -18,7 +18,7 @@ export class SortingVisualiserComponent implements OnInit {
   isDone:number[]=[];     //in final position
   arrfixed:number[]=[...this.arr];
 
-  dur:number=500;         //duration
+  dur:number=2000;         //duration
 
   //temp
   part:number=-1;
@@ -38,6 +38,12 @@ export class SortingVisualiserComponent implements OnInit {
     this.isChecking=[];
     this.isSwapping=[];
     this.isDone=[]; 
+  }
+
+  reset2()
+  {
+    this.isChecking=[];
+    this.isSwapping=[];
   }
 
   shuffleArray()
@@ -98,16 +104,16 @@ export class SortingVisualiserComponent implements OnInit {
         this.isDone.push(this.arr.length-i-1);
       }
     }
-    
+
     async partition(lo:number,hi:number)
     {
       let ind:number=Math.floor(Math.random()*(hi+1-lo)+lo);
-
+      
       this.isSwapping=[];
       this.isSwapping.push(ind);
       this.isSwapping.push(hi);
       [this.arr[ind],this.arr[hi]]=[this.arr[hi],this.arr[ind]];
-      //await new Promise(resolve => setTimeout(resolve, this.dur));
+      await new Promise(resolve => setTimeout(resolve, this.dur));
       this.isSwapping=[];
 
       let i:number=lo;
@@ -116,6 +122,7 @@ export class SortingVisualiserComponent implements OnInit {
         this.isChecking=[];
         this.isChecking.push(j);
         this.isChecking.push(hi);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
         if(this.arr[j]<=this.arr[hi])
         {
           this.isSwapping=[];
@@ -123,15 +130,16 @@ export class SortingVisualiserComponent implements OnInit {
           this.isSwapping.push(i);
           [this.arr[i],this.arr[j]]=[this.arr[j],this.arr[i]];
           i++;
-          //await new Promise(resolve => setTimeout(resolve, this.dur));
+          await new Promise(resolve => setTimeout(resolve, this.dur));
         }
       }
       this.isSwapping=[];
       this.isSwapping.push(i);
       this.isSwapping.push(hi);
       [this.arr[i],this.arr[hi]]=[this.arr[hi],this.arr[i]];
-      //await new Promise(resolve => setTimeout(resolve, this.dur));
+      await new Promise(resolve => setTimeout(resolve, this.dur));
       this.part=i;
+      this.reset2();
     }
 
     async quicksort(lo:number,hi:number)
@@ -143,18 +151,18 @@ export class SortingVisualiserComponent implements OnInit {
       }
       if(lo<hi)
       {
-        this.partition(lo,hi);
+        //this.partition(lo,hi);
+        await new Promise(resolve => {setTimeout(() => {resolve(this.partition(lo,hi));}, this.dur);});
+
         this.isDone.push(this.part);
 
-        this.reset();
         this.quicksort(lo,this.part-1);
 
-        this.reset();
         this.quicksort(this.part+1,hi);
       }
     }
 
-    quicks()
+    async quicks()
     {
       this.reset();
       this.quicksort(0,this.arr.length-1);
