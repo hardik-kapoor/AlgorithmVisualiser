@@ -1,3 +1,4 @@
+import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -83,6 +84,11 @@ export class SortingVisualiserComponent implements OnInit {
     else
       return {"border-left": '10px solid #2F4F4F'};
   }
+
+
+
+
+
 
   //fun1
     async bubbleSort(){
@@ -242,7 +248,89 @@ export class SortingVisualiserComponent implements OnInit {
 
 
   //fun2
-  
-  //
+  async mergesort(lo:number, hi:number)
+  {
+    console.log(lo,hi);
+    
+    if(lo===hi)
+      return ;
+    let mid:number=Math.floor((lo+hi)/2);
+    await new Promise(resolve => {setTimeout(() => {resolve(this.mergesort(lo,mid));}, 100);});
+    await new Promise(resolve => {setTimeout(() => {resolve(this.mergesort(mid+1,hi ));}, 100);});
+
+    let pt1=lo;
+    let pt2=mid+1,cnt=0;
+    this.isChecking=[];
+    this.isSwapping=[];
+    this.isDone=[];
+    while(pt1<=mid && pt2<=hi)
+    {
+      
+      this.isChecking=[];
+      this.isSwapping=[];
+      this.isChecking.push(pt1);
+      this.isChecking.push(pt2);
+
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      if(this.arr[pt1]<=this.arr[pt2])
+      {
+        this.isChecking=[];
+        this.isSwapping=[];
+        this.isSwapping.push(pt1);
+        this.isChecking.push(pt2);    
+        pt1++;
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        if(lo==0&&hi==this.arr.length-1)
+        {
+          this.isDone.push(pt1-1);
+          this.isSwapping=[];
+          this.isChecking=[];
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+      }
+      else
+      {
+        this.isChecking=[];
+        this.isSwapping=[];
+        this.isChecking.push(pt1);
+        this.isSwapping.push(pt2);
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        let id=pt2;
+        let val=this.arr[pt2];
+        while(id!=pt1)
+        {
+          this.arr[id]=this.arr[id-1];
+          id--;
+        }
+      
+        this.arr[id]=val;
+
+        pt1++;
+        pt2++;
+        mid++;
+        if(lo===0&&hi===this.arr.length-1)
+        {
+          this.isDone.push(pt1-1);
+          this.isSwapping=[];
+          this.isChecking=[];
+          await new Promise(resolve => setTimeout(resolve, 1000));
+        }        
+      }
+      this.isSwapping=[];
+      this.isChecking=[];
+      
+      
+    }
+    if(lo===0&& this.arr.length-1===hi)
+    {    
+      let i:number=0;
+      while(i<=this.arr.length-1)
+      {
+        if(!this.isDone.includes(i))
+          this.isDone.push(i);
+        i++;
+      }
+    }
+  }
 
 }
