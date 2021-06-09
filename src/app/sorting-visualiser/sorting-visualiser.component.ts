@@ -238,7 +238,6 @@ export class SortingVisualiserComponent implements OnInit {
       }
       this.isDone.push(this.arr.length-1);
     }
-
   //
 
 
