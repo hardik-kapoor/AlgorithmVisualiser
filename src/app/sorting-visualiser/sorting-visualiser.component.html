@@ -39,6 +39,8 @@
 
 <!-- Footer Part -->
 <div id="footer" class="card bg-light">
+
+    
     <div class="row">
       <div class = "col-1 text-dark"><button id="txt"  (click)="change('QuickSort')" class="btn btn-light">QuickSort</button></div>
       <div class = "col-1 text-dark"><button id="txt"  (click)="change('HeapSort')" class="btn btn-light">HeapSort</button></div>
@@ -46,16 +48,17 @@
       <div class = "col-1 text-dark"><button id="txt"  (click)="change('Bubblesort')" class="btn btn-light">BubbleSort</button></div>
       <div class = "col-1 text-dark"><button id="txt"  (click)="change('Selectionsort')" class="btn btn-light">SelectionSort</button></div>
       <div class = "col-1 text-dark"><button id="txt"  (click)="change('Insertionsort')" class="btn btn-light">InsertionSort</button></div>
-      <div class="col text-dark"><div id="txt">Animation Speed</div><mat-slider class="w-75 h-75" min="50" max="750" step="1" 
-      (input)="setSpeed($event)" color="primary" [value]="250">
-      </mat-slider>
+
+      <div class="col text-dark">
+          <div id="txt">Animation Speed</div>
+          <mat-slider class="w-100 h-75" min="50" max="750" step="1" (input)="setSpeed($event)" color="primary" [value]="250"></mat-slider>
+        </div>
+
+    <div class="col text-dark">
+        <div id="txt">Array Size</div>
+        <mat-slider class="w-100 h-75" min="10" max="60" step="1" (input)="setSize($event)" color="primary" [value]="50"></mat-slider>
     </div>
-    <div class="col text-dark"><div id="txt">Array Size</div><mat-slider class="w-75 h-75" min="10" max="60" step="1" 
-    (input)="setSize($event)" color="primary" [value]="50">
-    </mat-slider>
-    </div>
-    <div class = "col-2">
-        
-    </div>
+
+    <div class = "col-2 text-dark"> Helu Developers TM <br> npm install <a href="https://www.erome.com/a/lguZfpad">@angular/gorifuddi</a></div>
     </div>
 </div>
