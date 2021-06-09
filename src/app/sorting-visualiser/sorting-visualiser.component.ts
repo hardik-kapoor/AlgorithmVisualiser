@@ -32,7 +32,7 @@ export class SortingVisualiserComponent implements OnInit {
   arrfixed:number[]=[...this.arr];
   whichSort:string="None";
 
-  dur:number=250;         //duration
+  dur:number=150;         //duration
   max_val:number=-1;
   size:number = 50;
 

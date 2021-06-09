@@ -7,7 +7,7 @@
 #graph
 {
     display: flex;
-    justify-content: center;
+    justify-content:center;
     padding:2px;
 }
 
@@ -81,26 +81,3 @@
     font-weight:500;
 }
 
-
-.slider {
-    -webkit-appearance: none;
-    width: 80%;
-    height: 10px;
-    border-radius: 5px;  
-    background: #d3d3d3;
-    outline: none;
-    opacity: 0.7;
-    -webkit-transition: .2s;
-    transition: opacity .2s;
-  }
-  
-  .slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    border-radius: 60%; 
-    background: #4c43c7;
-    cursor: pointer;
-  }
-  
