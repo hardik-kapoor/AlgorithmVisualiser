@@ -11,15 +11,20 @@ export class SortingVisualiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.createRandomArray(20);
   }
 
-  arr:number[]=[5,2,1,5,3,2,4,5,6,3,5,1];
+  arr:number[]=[5,2,1,3,4,1];
   isChecking:number[]=[];   //checking these
   isSwapping:number[]=[];   //swapping these
   isDone:number[]=[];     //in final position
-  isPart:number[]=[];     //is partition one
   arrfixed:number[]=[...this.arr];
 
+  dur:number=250;         //duration
+  max_val:number=-1;
+
+  //temp
+  part:number=-1;
 
 
   //didnt make extra js files.
@@ -36,7 +41,12 @@ export class SortingVisualiserComponent implements OnInit {
     this.isChecking=[];
     this.isSwapping=[];
     this.isDone=[]; 
-    this.isPart=[];
+  }
+
+  reset2()
+  {
+    this.isChecking=[];
+    this.isSwapping=[];
   }
 
   shuffleArray()
@@ -60,6 +70,7 @@ export class SortingVisualiserComponent implements OnInit {
     }
     this.shuffleArray();
     this.arrfixed=[...this.arr];
+    this.max_val = Math.max(...this.arr);
   }
 
   currentColor(ind:number)
@@ -89,44 +100,154 @@ export class SortingVisualiserComponent implements OnInit {
           this.isChecking=[];
           this.isChecking.push(j);
           this.isChecking.push(j+1);
-          await new Promise(resolve => setTimeout(resolve, 250));
+          await new Promise(resolve => setTimeout(resolve, this.dur));
           if(this.arr[j]>this.arr[j+1])
           {
             this.isSwapping.push(j);
             this.isSwapping.push(j+1);
             [this.arr[j],this.arr[j+1]]=[this.arr[j+1],this.arr[j]];
-            await new Promise(resolve => setTimeout(resolve, 250));
+            await new Promise(resolve => setTimeout(resolve, this.dur));
             this.isSwapping=[];
           }
         }
         this.isDone.push(this.arr.length-i-1);
       }
     }
-    
+
     async partition(lo:number,hi:number)
     {
-      let ind:number=Math.random()*(hi+1-lo)+lo;
+      let ind:number=Math.floor(Math.random()*(hi+1-lo)+lo);
+      
       this.isSwapping=[];
-      this.isChecking.push()
-      let i=(lo-1);
+      this.isSwapping.push(ind);
+      this.isSwapping.push(hi);
+      [this.arr[ind],this.arr[hi]]=[this.arr[hi],this.arr[ind]];
+      await new Promise(resolve => setTimeout(resolve, this.dur));
+      this.isSwapping=[];
 
-      //for()
-      return ind;
+      let i:number=lo;
+      for(let j=lo;j<hi;j++)
+      {
+        this.isChecking=[];
+        this.isChecking.push(j);
+        this.isChecking.push(hi);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        if(this.arr[j]<=this.arr[hi])
+        {
+          this.isSwapping=[];
+          this.isSwapping.push(j);
+          this.isSwapping.push(i);
+          [this.arr[i],this.arr[j]]=[this.arr[j],this.arr[i]];
+          i++;
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+          this.isSwapping=[];
+        }
+      }
+      this.isSwapping=[];
+      this.isSwapping.push(i);
+      this.isSwapping.push(hi);
+      [this.arr[i],this.arr[hi]]=[this.arr[hi],this.arr[i]];
+      await new Promise(resolve => setTimeout(resolve, this.dur));
+      this.part=i;
+      this.reset2();
     }
 
     async quicksort(lo:number,hi:number)
     {
+      if(lo===hi)
+      {
+        this.isDone.push(this.part);
+        return;
+      }
       if(lo<hi)
       {
-        //let part=this.partition(lo,hi).resolve(ind);
+        //this.partition(lo,hi);
+        await new Promise(resolve => {setTimeout(() => {resolve(this.partition(lo,hi));}, 0);});
+
+        this.isDone.push(this.part);
+
+        await new Promise(resolve => {setTimeout(() => {resolve(this.quicksort(lo,this.part-1));}, 0);});
         
-        //this.quicksort(lo,part-1);
-       // this.quicksort(part+1,hi);
+        for(let i=lo;i<=this.part+1;i++)
+          this.isDone.push(i);
+
+        await new Promise(resolve => {setTimeout(() => {resolve(this.quicksort(this.part+1,hi));}, 0);});
+
+        for(let i=this.part+1;i<=hi;i++)
+          this.isDone.push(i);
       }
     }
+
+    async quicks()
+    {
+      this.reset();
+      this.quicksort(0,this.arr.length-1);
+    }
+    
+    async insertionsort(){
+      this.reset();
+      for(let i=1;i<this.arr.length;i++)
+      {
+        for(let j=i-1;j>=0;j--)
+        {
+          this.isChecking=[];
+          this.isChecking.push(j+1);
+          this.isChecking.push(j);
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+          if(this.arr[j]>this.arr[j+1])
+          {
+            this.isChecking=[];
+            this.isSwapping=[];
+            this.isSwapping.push(j);
+            this.isSwapping.push(j+1);
+            [this.arr[j],this.arr[j+1]]=[this.arr[j+1],this.arr[j]];
+            await new Promise(resolve => setTimeout(resolve, this.dur));
+            this.isChecking=[];
+            this.isSwapping=[];
+          }
+          else{
+            break;
+          }
+        }
+      }
+      for(let i=0;i<this.arr.length;i++)
+        this.isDone.push(i);
+    }
+
+    async selectionsort()
+    {
+      this.reset();
+      for(let i=0;i<this.arr.length-1;i++)
+      {
+        let mn=this.arr[i],ind=i;
+        for(let j=i+1;j<this.arr.length;j++)
+        {
+          this.isChecking=[];
+          this.isChecking.push(ind);
+          this.isChecking.push(j);
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+          if(this.arr[j]<mn)
+          {
+            this.isChecking=[];
+            mn=this.arr[j];
+            ind=j;
+          }
+        }
+        this.isSwapping=[];
+        this.isSwapping.push(i);
+        this.isSwapping.push(ind);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        [this.arr[i],this.arr[ind]]=[this.arr[ind],this.arr[i]];
+        this.isDone.push(i);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        this.reset2();
+      }
+      this.isDone.push(this.arr.length-1);
+    }
+
   //
 
-  
+
   //fun2
   async mergesort(lo:number, hi:number)
   {
