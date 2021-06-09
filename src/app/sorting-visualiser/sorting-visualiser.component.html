@@ -8,7 +8,6 @@
 </div>
 
 -->
-
 <div class="d-flex flex-column flex-fill bg-light">
     <div class="d-flex flex-row container justify content-center">
         <div class="col-3"></div>
@@ -22,8 +21,9 @@
         </div>
         <div class="col-1">
             <div>
-                <button class="btn btn-primary" (click)="mergesort(0,arr.length-1)">start</button>
-                <button class="btn btn-primary" (click)="resetarray()">reset</button>
+                <br>
+                <button id="bt" class="btn btn-light mb-2" (click)="mergesort(0,arr.length-1)"><fa-icon id="icon" [icon]="_start"></fa-icon> Start </button>
+                <button id="bt" class="btn btn-light mb-2" (click)="resetarray()"><fa-icon id="icon" [icon]="_reset"></fa-icon> Reset </button>
             </div>
         </div>
 </div>

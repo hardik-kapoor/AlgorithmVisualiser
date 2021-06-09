@@ -1,5 +1,6 @@
 import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 import { Component, OnInit } from '@angular/core';
+import {faPlayCircle , faUndo} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sorting-visualiser',
@@ -8,6 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SortingVisualiserComponent implements OnInit {
 
+  //Icons start here
+  _start=faPlayCircle;
+  _reset=faUndo;
+
+
+  //Icons end here
   constructor() { }
 
   ngOnInit(): void {
