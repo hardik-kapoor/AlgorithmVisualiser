@@ -208,6 +208,37 @@ export class SortingVisualiserComponent implements OnInit {
         this.isDone.push(i);
     }
 
+    async selectionsort()
+    {
+      this.reset();
+      for(let i=0;i<this.arr.length-1;i++)
+      {
+        let mn=this.arr[i],ind=i;
+        for(let j=i+1;j<this.arr.length;j++)
+        {
+          this.isChecking=[];
+          this.isChecking.push(ind);
+          this.isChecking.push(j);
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+          if(this.arr[j]<mn)
+          {
+            this.isChecking=[];
+            mn=this.arr[j];
+            ind=j;
+          }
+        }
+        this.isSwapping=[];
+        this.isSwapping.push(i);
+        this.isSwapping.push(ind);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        [this.arr[i],this.arr[ind]]=[this.arr[ind],this.arr[i]];
+        this.isDone.push(i);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        this.reset2();
+      }
+      this.isDone.push(this.arr.length-1);
+    }
+
   //
 
 
