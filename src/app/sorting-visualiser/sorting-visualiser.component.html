@@ -30,28 +30,30 @@
                 <div class="row-2">
                     <button id="bt" class="btn btn-light mb-2" (click)="resetarray()"><fa-icon id="icon" [icon]="_shuffle"></fa-icon> Shuffle </button>
                 </div>
+        <div class="col-1">
+            <div>
+                <button class="btn btn-primary" (click)="selectsort()">start</button>
+                <button class="btn btn-primary" (click)="resetarray()">reset</button>
             </div>
         </div>
 </div>
 
-
-
-
-
-
-
+<div>
+    <h3 class="text-dark display-4 text-center">
+        Showing: {{whichSort}}
+    </h3>
+</div>
 
 
 <!-- Footer Part -->
 <div id="footer" class="card bg-light">
     <div class="row">
-      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">QuickSort</button></div>
-      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">HeapSort</button></div>
-      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">MergeSort</button></div>
-      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">BubbleSort</button></div>
-      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">SelectionSort</button></div>
-      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">InsertionSort</button></div>
-      <div class = "col-1 text-dark"><button id="txt"  class="btn btn-light">CountingSort</button></div>
+      <div class = "col-1 text-dark"><button id="txt"  (click)="change('quicksort')" class="btn btn-light">QuickSort</button></div>
+      <div class = "col-1 text-dark"><button id="txt"  (click)="change('heapsort')" class="btn btn-light">HeapSort</button></div>
+      <div class = "col-1 text-dark"><button id="txt"  (click)="change('mergesort')" class="btn btn-light">MergeSort</button></div>
+      <div class = "col-1 text-dark"><button id="txt"  (click)="change('bubblesort')" class="btn btn-light">BubbleSort</button></div>
+      <div class = "col-1 text-dark"><button id="txt"  (click)="change('selectionsort')" class="btn btn-light">SelectionSort</button></div>
+      <div class = "col-1 text-dark"><button id="txt"  (click)="change('insertionsort')" class="btn btn-light">InsertionSort</button></div>
       <div class="col text-dark"><div id="txt">Animation Speed</div><div class="slidecontainer">
         <input type="range" min="1" max="100" value="0" class="slider" id="myRange">
       </div>

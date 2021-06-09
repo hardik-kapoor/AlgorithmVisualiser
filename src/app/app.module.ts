@@ -10,7 +10,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select'; 
 import { MatSliderModule } from '@angular/material/slider';
 import {MatIconModule} from '@angular/material/icon';
-import {FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 let routes = [
   {path:'sorting' , component: SortingVisualiserComponent}
@@ -30,7 +30,7 @@ let routes = [
     MatSelectModule,
     MatSliderModule,
     MatIconModule,
-    FontAwesomeModule
+    FontAwesomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent , SortingVisualiserComponent]
