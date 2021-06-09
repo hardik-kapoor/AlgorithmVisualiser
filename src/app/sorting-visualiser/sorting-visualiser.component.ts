@@ -256,6 +256,8 @@ export class SortingVisualiserComponent implements OnInit {
           this.isChecking=[];
           this.isChecking.push(ind);
           this.isChecking.push(j);
+          this.isSwapping=[];
+          this.isSwapping.push(ind);
           await new Promise(resolve => setTimeout(resolve, this.dur));
           if(this.arr[j]<mn)
           {
@@ -263,6 +265,9 @@ export class SortingVisualiserComponent implements OnInit {
             mn=this.arr[j];
             ind=j;
           }
+          this.isSwapping=[];
+          this.isSwapping.push(ind);
+          await new Promise(resolve => setTimeout(resolve, this.dur));
         }
         this.isSwapping=[];
         this.isSwapping.push(i);
