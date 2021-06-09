@@ -191,7 +191,7 @@ export class SortingVisualiserComponent implements OnInit {
     {
       if(lo===hi)
       {
-        this.isDone.push(this.part);
+        this.isDone.push(lo);
         return;
       }
       if(lo<hi)
@@ -203,13 +203,9 @@ export class SortingVisualiserComponent implements OnInit {
 
         await new Promise(resolve => {setTimeout(() => {resolve(this.quicks(lo,this.part-1));}, 0);});
         
-        for(let i=lo;i<=this.part+1;i++)
-          this.isDone.push(i);
 
         await new Promise(resolve => {setTimeout(() => {resolve(this.quicks(this.part+1,hi));}, 0);});
 
-        for(let i=this.part+1;i<=hi;i++)
-          this.isDone.push(i);
       }
     }
 
