@@ -1,6 +1,7 @@
 import { ThrowStmt } from '@angular/compiler';
 import { isGeneratedFile } from '@angular/compiler/src/aot/util';
 import { Component, OnInit } from '@angular/core';
+import {faPlayCircle , faUndo} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-sorting-visualiser',
@@ -9,6 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SortingVisualiserComponent implements OnInit {
 
+  //Icons start here
+  _start=faPlayCircle;
+  _reset=faUndo;
+
+
+  //Icons end here
   constructor() { }
 
   ngOnInit(): void {
@@ -156,7 +163,7 @@ export class SortingVisualiserComponent implements OnInit {
       this.reset2();
     }
 
-    async quicksort(lo:number,hi:number)
+    async quicks(lo:number,hi:number)
     {
       if(lo===hi)
       {
@@ -170,22 +177,22 @@ export class SortingVisualiserComponent implements OnInit {
 
         this.isDone.push(this.part);
 
-        await new Promise(resolve => {setTimeout(() => {resolve(this.quicksort(lo,this.part-1));}, 0);});
+        await new Promise(resolve => {setTimeout(() => {resolve(this.quicks(lo,this.part-1));}, 0);});
         
         for(let i=lo;i<=this.part+1;i++)
           this.isDone.push(i);
 
-        await new Promise(resolve => {setTimeout(() => {resolve(this.quicksort(this.part+1,hi));}, 0);});
+        await new Promise(resolve => {setTimeout(() => {resolve(this.quicks(this.part+1,hi));}, 0);});
 
         for(let i=this.part+1;i<=hi;i++)
           this.isDone.push(i);
       }
     }
 
-    async quicks()
+    async quicksort()
     {
       this.reset();
-      this.quicksort(0,this.arr.length-1);
+      this.quicks(0,this.arr.length-1);
     }
     
     async insertionsort(){
@@ -248,7 +255,6 @@ export class SortingVisualiserComponent implements OnInit {
       }
       this.isDone.push(this.arr.length-1);
     }
-
   //
 
 
@@ -260,8 +266,8 @@ export class SortingVisualiserComponent implements OnInit {
     if(lo===hi)
       return ;
     let mid:number=Math.floor((lo+hi)/2);
-    await new Promise(resolve => {setTimeout(() => {resolve(this.mergesort(lo,mid));}, 100);});
-    await new Promise(resolve => {setTimeout(() => {resolve(this.mergesort(mid+1,hi ));}, 100);});
+    await new Promise(resolve => {setTimeout(() => {resolve(this.mergesort(lo,mid));}, 0);});
+    await new Promise(resolve => {setTimeout(() => {resolve(this.mergesort(mid+1,hi ));}, 0);});
 
     let pt1=lo;
     let pt2=mid+1,cnt=0;
@@ -276,7 +282,7 @@ export class SortingVisualiserComponent implements OnInit {
       this.isChecking.push(pt1);
       this.isChecking.push(pt2);
 
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, this.dur));
       if(this.arr[pt1]<=this.arr[pt2])
       {
         this.isChecking=[];
@@ -284,13 +290,13 @@ export class SortingVisualiserComponent implements OnInit {
         this.isSwapping.push(pt1);
         this.isChecking.push(pt2);    
         pt1++;
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, this.dur));
         if(lo==0&&hi==this.arr.length-1)
         {
           this.isDone.push(pt1-1);
           this.isSwapping=[];
           this.isChecking=[];
-          await new Promise(resolve => setTimeout(resolve, 1000));
+          await new Promise(resolve => setTimeout(resolve, this.dur));
         }
       }
       else
@@ -299,7 +305,7 @@ export class SortingVisualiserComponent implements OnInit {
         this.isSwapping=[];
         this.isChecking.push(pt1);
         this.isSwapping.push(pt2);
-        await new Promise(resolve => setTimeout(resolve, 1000));
+        await new Promise(resolve => setTimeout(resolve, this.dur));
         let id=pt2;
         let val=this.arr[pt2];
         while(id!=pt1)
@@ -318,7 +324,7 @@ export class SortingVisualiserComponent implements OnInit {
           this.isDone.push(pt1-1);
           this.isSwapping=[];
           this.isChecking=[];
-          await new Promise(resolve => setTimeout(resolve, 1000));
+          await new Promise(resolve => setTimeout(resolve, this.dur));
         }        
       }
       this.isSwapping=[];
