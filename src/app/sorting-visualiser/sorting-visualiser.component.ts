@@ -94,6 +94,7 @@ export class SortingVisualiserComponent implements OnInit {
   }
 
   createRandomArray(len:number){
+    this.reset();
     this.arr=[];
     for(let i=0;i<len;i++)
     {
