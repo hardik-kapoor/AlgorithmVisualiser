@@ -21,10 +21,10 @@ export class SortingVisualiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.createRandomArray(20);
+    this.createRandomArray(50);
   }
 
-  arr:number[]=[5,2,1,3,4,1];
+  arr:number[]=[];
   isChecking:number[]=[];   //checking these
   isSwapping:number[]=[];   //swapping these
   isDone:number[]=[];     //in final position
@@ -69,17 +69,17 @@ export class SortingVisualiserComponent implements OnInit {
 
   selectsort()
   {
-    if(this.whichSort==="quicksort")
+    if(this.whichSort==="Quicksort")
       this.quicksort();
-    else if(this.whichSort==="mergesort")
+    else if(this.whichSort==="Mergesort")
       this.mergesort(0,this.arr.length-1);
-    else if(this.whichSort==="insertionsort")
+    else if(this.whichSort==="Insertionsort")
       this.insertionsort();
-    else if(this.whichSort==="bubblesort")
+    else if(this.whichSort==="Bubblesort")
       this.bubbleSort();
-    else if(this.whichSort==="selectionsort")
+    else if(this.whichSort==="Selectionsort")
       this.selectionsort();
-    else if(this.whichSort==="heapsort")
+    else if(this.whichSort==="Heapsort")
       this.heapsort();
   }
 
