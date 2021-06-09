@@ -19,7 +19,7 @@ export class SortingVisualiserComponent implements OnInit {
   isDone:number[]=[];     //in final position
   arrfixed:number[]=[...this.arr];
 
-  dur:number=2000;         //duration
+  dur:number=250;         //duration
   max_val:number=-1;
 
   //temp
@@ -134,6 +134,7 @@ export class SortingVisualiserComponent implements OnInit {
           [this.arr[i],this.arr[j]]=[this.arr[j],this.arr[i]];
           i++;
           await new Promise(resolve => setTimeout(resolve, this.dur));
+          this.isSwapping=[];
         }
       }
       this.isSwapping=[];
@@ -155,13 +156,19 @@ export class SortingVisualiserComponent implements OnInit {
       if(lo<hi)
       {
         //this.partition(lo,hi);
-        await new Promise(resolve => {setTimeout(() => {resolve(this.partition(lo,hi));}, this.dur);});
+        await new Promise(resolve => {setTimeout(() => {resolve(this.partition(lo,hi));}, 0);});
 
         this.isDone.push(this.part);
 
-        this.quicksort(lo,this.part-1);
+        await new Promise(resolve => {setTimeout(() => {resolve(this.quicksort(lo,this.part-1));}, 0);});
+        
+        for(let i=lo;i<=this.part+1;i++)
+          this.isDone.push(i);
 
-        this.quicksort(this.part+1,hi);
+        await new Promise(resolve => {setTimeout(() => {resolve(this.quicksort(this.part+1,hi));}, 0);});
+
+        for(let i=this.part+1;i<=hi;i++)
+          this.isDone.push(i);
       }
     }
 
@@ -170,6 +177,37 @@ export class SortingVisualiserComponent implements OnInit {
       this.reset();
       this.quicksort(0,this.arr.length-1);
     }
+    
+    async insertionsort(){
+      this.reset();
+      for(let i=1;i<this.arr.length;i++)
+      {
+        for(let j=i-1;j>=0;j--)
+        {
+          this.isChecking=[];
+          this.isChecking.push(j+1);
+          this.isChecking.push(j);
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+          if(this.arr[j]>this.arr[j+1])
+          {
+            this.isChecking=[];
+            this.isSwapping=[];
+            this.isSwapping.push(j);
+            this.isSwapping.push(j+1);
+            [this.arr[j],this.arr[j+1]]=[this.arr[j+1],this.arr[j]];
+            await new Promise(resolve => setTimeout(resolve, this.dur));
+            this.isChecking=[];
+            this.isSwapping=[];
+          }
+          else{
+            break;
+          }
+        }
+      }
+      for(let i=0;i<this.arr.length;i++)
+        this.isDone.push(i);
+    }
+
   //
 
 
