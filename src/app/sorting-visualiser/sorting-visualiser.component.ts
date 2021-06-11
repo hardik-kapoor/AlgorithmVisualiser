@@ -134,10 +134,6 @@ export class SortingVisualiserComponent implements OnInit {
   }
 
 
-
-
-
-
   //fun1
     async bubbleSort(){
       this.reset();

@@ -1,7 +1,7 @@
 
 <div class="bg-light">
     <div class="row">
-        <div id="txt2" class="col-2 mx-3 pd-2">
+        <div id="txt2" class="col-2 mx-2 pd-2">
             <fa-icon id="icon" [icon]="_chosen"></fa-icon> {{whichSort}}
         </div>
         <div id="graph" class="col" [style.height]='500+"px"'>
@@ -10,10 +10,8 @@
                 <div id="graph">
                 <div *ngFor="let number of arr;index as i;last as l;first as f">
                     <div 
-                    class="bar" 
-                    [style.height]='(400*number)/max_val + "px"' [ngStyle]="currentColor(i)">
-                    <div *ngIf = "this.size < 25" id="bar-txt">{{arr[i]}}</div>
-                </div>
+                    class="bar"  [style.width]="'10px'" 
+                    [style.height]='(400*number)/max_val + "px"' [ngStyle]="currentColor(i)"></div>
                 </div>
                 </div>
             </div>
@@ -53,12 +51,12 @@
 
       <div class="col text-dark">
           <div id="txt">Animation Speed</div>
-          <mat-slider class="w-100 h-75" min="5" max="600" step="1" (input)="setSpeed($event)" class="ng-deep w-100 h-75" [value]="175"></mat-slider>
+          <mat-slider class="w-100 h-75" min="5" max="500" step="1" (input)="setSpeed($event)" color="primary" [value]="150"></mat-slider>
         </div>
 
     <div class="col text-dark">
         <div id="txt">Array Size</div>
-        <mat-slider min="10" max="70" step="1" (input)="setSize($event)" class="ng-deep w-100 h-75" [value]="20"></mat-slider>
+        <mat-slider class="w-100 h-75" min="10" max="60" step="1" (input)="setSize($event)" color="primary" [value]="50"></mat-slider>
     </div>
 
     <div class = "col-2 text-dark"> Helu Developers TM <br> npm install <a href="https://www.erome.com/a/lguZfpad">@angular/gorifuddi</a></div>
