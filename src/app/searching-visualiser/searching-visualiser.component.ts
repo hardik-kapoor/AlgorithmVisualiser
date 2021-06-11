@@ -11,6 +11,7 @@ export class SearchingVisualiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    this.createRandomArray(20,0);
   }
 
   arr:number[]=[];
@@ -20,6 +21,7 @@ export class SearchingVisualiserComponent implements OnInit {
   isFound:number[]=[];
   isChecking:number[]=[];
   isChecked:number[]=[];
+
 
   reset()
   {
@@ -50,6 +52,8 @@ export class SearchingVisualiserComponent implements OnInit {
     }
     if(isSortReq)
       this.arr.sort((a,b)=>{return a-b});
+    
+      this.max_val = Math.max(...this.arr);
   }
 
   //fun1
