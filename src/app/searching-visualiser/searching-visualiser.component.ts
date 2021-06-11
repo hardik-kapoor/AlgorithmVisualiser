@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {faPlayCircle , faUndo , faRandom , faTachometerAlt , faSitemap} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -13,6 +14,15 @@ export class SearchingVisualiserComponent implements OnInit {
   ngOnInit(): void {
     this.createRandomArray(this.size,this.sortflag);
   }
+
+    //Icons start here
+    _start=faPlayCircle;
+    _reset=faUndo;
+    _shuffle=faRandom;
+    _anim=faTachometerAlt;
+    _chosen=faSitemap;
+  
+    //Icons end here
 
   arr:number[]=[];          //array
   max_val:number=-1;        //maximum val
