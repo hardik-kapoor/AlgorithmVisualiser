@@ -15,6 +15,7 @@
     display: flex;
     justify-content:center;
     padding:2px;
+    
 }
 
 #bar-txt{
@@ -94,6 +95,7 @@
 #bt2:hover{
     transform: scale(1.1);
     background-color: rgb(206, 220, 238);
+    
     font-weight:500;
 }
 
@@ -103,3 +105,4 @@
 ::ng-deep .mat-accent .mat-slider-thumb-label {
     background-color: black;
 } 
+
