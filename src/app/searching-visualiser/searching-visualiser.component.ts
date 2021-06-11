@@ -11,6 +11,7 @@ export class SearchingVisualiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+  
   }
 
   arr:number[]=[];
@@ -44,4 +45,5 @@ export class SearchingVisualiserComponent implements OnInit {
     if(isSortReq)
       this.arr.sort((a,b)=>{return a-b});
   }
+
 }
