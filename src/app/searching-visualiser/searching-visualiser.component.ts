@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 
-
 @Component({
   selector: 'app-searching-visualiser',
   templateUrl: './searching-visualiser.component.html',
