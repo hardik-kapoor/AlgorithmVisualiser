@@ -75,11 +75,11 @@ export class SearchingVisualiserComponent implements OnInit {
   currentColor(ind:number)
   {
     if(this.isFound.includes(ind))
-      return {"background-color": '#ADD8E6', "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": '#343a40'};
+      return {"background-color":'#76ba1b' , "width": String(Math.min(33,(650/this.arr.length)))+"px", "color": 'white'};
     else if(this.isChecking.includes(ind))
       return {"background-color":'#dc3545' , "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": 'white'};
     else if(this.isChecked.includes(ind))
-      return {"background-color":'#76ba1b' , "width": String(Math.min(33,(650/this.arr.length)))+"px", "color": 'white'};
+      return {"background-color": '#ADD8E6', "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": '#343a40'};
     else
       return {"background-color": '#343a40' , "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": 'white'};
   }
