@@ -21,6 +21,13 @@ export class SearchingVisualiserComponent implements OnInit {
   isChecking:number[]=[];
   isChecked:number[]=[];
 
+  reset()
+  {
+    this.isFound=[];
+    this.isChecked=[];
+    this.isChecking=[];
+  }
+
   currentColor(ind:number)
   {
     if(this.isFound.includes(ind))
@@ -46,6 +53,12 @@ export class SearchingVisualiserComponent implements OnInit {
   }
 
   //fun1
+    async linearSearch(num:number)
+    {
+      for(let i=0;i<this.arr.length;i++)
+      {
+      }
+    }
   //
   
 
