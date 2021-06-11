@@ -34,7 +34,7 @@ export class SortingVisualiserComponent implements OnInit {
 
   dur:number=150;         //duration
   max_val:number=-1;
-  size:number = 50;
+  size:number = 20;
 
   //temp
   part:number=-1;
@@ -122,15 +122,15 @@ export class SortingVisualiserComponent implements OnInit {
   currentColor(ind:number)
   {
     if(this.isDone.includes(ind))
-      return {"border-left": '10px solid #ADD8E6'};
+      return {"background-color": '#ADD8E6', "width": String(Math.min(33,(600/this.size)))+"px"};
     else if(this.isSwapping.includes(ind))
-      return {"border-left": '10px solid #FF4500'};
+      return {"background-color":'#dc3545' , "width": String(Math.min(33,(600/this.size)))+"px"};
     else if(this.isChecking.includes(ind))
-      return {"border-left": '10px solid #7CFC00'};
+      return {"background-color":'#76ba1b' , "width": String(Math.min(33,(600/this.size)))+"px"};
     else if(this.isChild.includes(ind))
-      return {"border-left": '10px solid #B4933F'};
+      return {"background-color": '#B4933F' , "width": String(Math.min(33,(600/this.size)))+"px"};
     else
-      return {"border-left": '10px solid #2F4F4F'};
+      return {"background-color": '#343a40' , "width": String(Math.min(33,(600/this.size)))+"px" };
   }
 
 

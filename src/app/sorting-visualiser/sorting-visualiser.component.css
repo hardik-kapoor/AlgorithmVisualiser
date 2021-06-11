@@ -1,7 +1,7 @@
 .bar{
     float: left;
-    padding:3px;
-    
+    margin-left:2px;
+    margin-right:2px;
 }
 
 #graph
@@ -9,6 +9,13 @@
     display: flex;
     justify-content:center;
     padding:2px;
+}
+
+#bar-txt{
+    font-size: 12px;
+    color: white;
+    margin-left:5px;
+    margin-right:2px;
 }
 
 
@@ -81,3 +88,9 @@
     font-weight:500;
 }
 
+::ng-deep .mat-accent .mat-slider-thumb {
+    background-color: black;
+} 
+::ng-deep .mat-accent .mat-slider-thumb-label {
+    background-color: black;
+} 
