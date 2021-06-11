@@ -26,51 +26,49 @@
 
 #footer 
 {
-    position: fixed;
-    bottom: 0;
-    left:0;
+    position:fixed;
+    bottom:0;
     width: 100%;
     color: white;
     text-align: center;
-    height:100px;
+    height:15%;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
 }
 
+
+
 #txt
 {
-    padding:10px;
-    font-size:14px;
+    padding:0.7em;
+    font-size:0.8em;
     font-weight:400;
     transition: transform 450ms;
 }
 
+#main{
+    width: 100%;
+    justify-content:center;
+}
+
 #txt2
 {
-    padding:10px;
-    font-size:20px;
+    padding:0.7em;
+    font-size:1.2em;
     font-weight: 400;
     transition: transform 450ms;
 }
 
 #bt
 {
-    padding:10px;
-    font-size:20px;
+    padding:0.4em;
+    font-size:1.2em;
     font-weight:400;
     transition: transform 500ms;
-    width: 180px;
+    width: 8em;
     justify-content: center;
 }
 
-#bt2
-{
-    padding:10px;
-    font-size:20px;
-    font-weight:400;
-    transition: transform 500ms;
-    width: 180px;
-    justify-content: center;
-}
+
 
 #txt:hover{
 

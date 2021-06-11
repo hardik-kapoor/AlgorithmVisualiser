@@ -1,10 +1,10 @@
 
 <div class="bg-light">
-    <div class="row">
-        <div id="txt2" class="col-2 mx-2 pd-2">
+    <div id = "main" class="row">
+        <div id="txt2" class="col-2">
             <fa-icon id="icon" [icon]="_chosen"></fa-icon> {{whichSort}}
         </div>
-        <div id="graph" class="col" [style.height]='500+"px"'>
+        <div id="graph" class="col-8" style="height:500px">
             <div class="row">
                 <div id="graph">
                 <div *ngFor="let number of arr;index as i;last as l;first as f">

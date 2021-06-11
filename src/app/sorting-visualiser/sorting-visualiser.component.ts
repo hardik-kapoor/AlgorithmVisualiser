@@ -122,15 +122,15 @@ export class SortingVisualiserComponent implements OnInit {
   currentColor(ind:number)
   {
     if(this.isDone.includes(ind))
-      return {"background-color": '#ADD8E6', "width": String(Math.min(33,(500/this.size)))+"px" , "color": '#343a40'};
+      return {"background-color": '#ADD8E6', "width": String(Math.min(33,(600/this.size)))+"px" , "color": '#343a40'};
     else if(this.isSwapping.includes(ind))
-      return {"background-color":'#dc3545' , "width": String(Math.min(33,(500/this.size)))+"px" , "color": 'white'};
+      return {"background-color":'#dc3545' , "width": String(Math.min(33,(600/this.size)))+"px" , "color": 'white'};
     else if(this.isChecking.includes(ind))
-      return {"background-color":'#76ba1b' , "width": String(Math.min(33,(500/this.size)))+"px", "color": 'white'};
+      return {"background-color":'#76ba1b' , "width": String(Math.min(33,(600/this.size)))+"px", "color": 'white'};
     else if(this.isChild.includes(ind))
-      return {"background-color": '#B4933F' , "width": String(Math.min(33,(500/this.size)))+"px", "color": 'white'};
+      return {"background-color": '#B4933F' , "width": String(Math.min(33,(600/this.size)))+"px", "color": 'white'};
     else
-      return {"background-color": '#343a40' , "width": String(Math.min(33,(500/this.size)))+"px" , "color": 'white'};
+      return {"background-color": '#343a40' , "width": String(Math.min(33,(600/this.size)))+"px" , "color": 'white'};
   }
 
 
