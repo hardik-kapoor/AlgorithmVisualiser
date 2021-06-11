@@ -32,6 +32,7 @@ export class SearchingVisualiserComponent implements OnInit {
   isChecked:number[]=[];    //is checked
   num:number=-1;    //number to be found
   size:number = 20;
+  arrHash:number[]=[];
   whichSort:string="Linear Search";
 
   whichOne(){
