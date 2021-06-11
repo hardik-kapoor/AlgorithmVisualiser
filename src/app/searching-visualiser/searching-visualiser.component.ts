@@ -11,16 +11,16 @@ export class SearchingVisualiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.createRandomArray(20,0);
+    this.createRandomArray(20,1);
   }
 
-  arr:number[]=[];
-  max_val:number=-1;
-  dur:number=0;
-  size:number=this.arr.length;
-  isFound:number[]=[];
-  isChecking:number[]=[];
-  isChecked:number[]=[];
+  arr:number[]=[];          //array
+  max_val:number=-1;        //maximum val
+  dur:number=250;             //duration
+  isFound:number[]=[];      //is found
+  isChecking:number[]=[];   //is checking
+  isChecked:number[]=[];    //is checked
+  num:number=-1;    //number to be found
 
 
   reset()
@@ -33,13 +33,13 @@ export class SearchingVisualiserComponent implements OnInit {
   currentColor(ind:number)
   {
     if(this.isFound.includes(ind))
-      return {"background-color": '#ADD8E6', "width": String(Math.min(33,(650/this.size)))+"px" , "color": '#343a40'};
+      return {"background-color": '#ADD8E6', "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": '#343a40'};
     else if(this.isChecking.includes(ind))
-      return {"background-color":'#dc3545' , "width": String(Math.min(33,(650/this.size)))+"px" , "color": 'white'};
+      return {"background-color":'#dc3545' , "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": 'white'};
     else if(this.isChecked.includes(ind))
-      return {"background-color":'#76ba1b' , "width": String(Math.min(33,(650/this.size)))+"px", "color": 'white'};
+      return {"background-color":'#76ba1b' , "width": String(Math.min(33,(650/this.arr.length)))+"px", "color": 'white'};
     else
-      return {"background-color": '#343a40' , "width": String(Math.min(33,(650/this.size)))+"px" , "color": 'white'};
+      return {"background-color": '#343a40' , "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": 'white'};
   }
 
   createRandomArray(length,isSortReq)
@@ -50,19 +50,65 @@ export class SearchingVisualiserComponent implements OnInit {
     {
       this.arr.push(Math.floor(Math.random()*(mxval-mnval+1)+mnval));
     }
+    this.num=Math.floor(Math.random()*(this.arr.length-1));
+    this.num=this.arr[this.num];
     if(isSortReq)
       this.arr.sort((a,b)=>{return a-b});
-    
-      this.max_val = Math.max(...this.arr);
+    this.max_val = Math.max(...this.arr);
   }
 
   //fun1
-    async linearSearch(num:number)
+    async linearSearch()
     {
+      this.reset();
       for(let i=0;i<this.arr.length;i++)
       {
+        this.isChecking.push(i);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        if(this.arr[i]===this.num)
+        {
+          this.isFound.push(i);
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+          break;
+        }
+        this.isChecked.push(i);
+        this.isChecking=[];
+        await new Promise(resolve => setTimeout(resolve, this.dur));
       }
     }
+
+    async jumpSearch()
+    {
+      this.reset();
+      let jump=Math.floor(Math.sqrt(this.arr.length));
+      let mx=this.arr.length-1;
+      for(let i=0;i<this.arr.length;i+=jump)
+      {
+        this.isChecking=[];
+        this.isChecking.push(i);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        this.isChecking=[];
+        this.isChecked.push(i);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        if(this.arr[i]>=this.num)
+        {
+          mx=i;
+          break;
+        }
+      }
+      for(let i=mx;i>=Math.max(mx-jump,0);i--)
+      {
+        this.isChecked.push(i);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        if(this.arr[i]===this.num)
+        {
+          this.isFound.push(i);
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+          break;
+        }
+      }
+    }
+
   //
   
 
@@ -93,6 +139,41 @@ export class SearchingVisualiserComponent implements OnInit {
       }
     }
 
+    async exponentialSearch(num:number)
+    {
+      this.isChecking=[];
+      this.isChecked=[];
+      this.isChecking.push(0);
+      await new Promise(resolve => setTimeout(resolve, this.dur));
+      if(this.arr[0]==num)
+      {
+        this.isChecking=[];
+        this.isFound.push(0);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+      }
+      else
+      {
+        this.isChecking=[];
+        this.isChecked.push(0);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        let i:number=1; 
+        while(i<this.arr.length&&this.arr[i]<num)
+        {
+          this.isChecking=[];
+          this.isChecking.push(i);
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+          this.isChecking=[];
+          this.isChecked.push(i);
+          i=i*2;
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+        }
+        let lo:number=Math.floor(i/2);
+        let hi:number=Math.min(i,this.arr.length-1);
+        this.reset();
+        await new Promise(resolve => {setTimeout(() => {resolve(this.binarySearch(lo,hi,num));}, );});
+        
+      }
+    }   
 
 
   //
