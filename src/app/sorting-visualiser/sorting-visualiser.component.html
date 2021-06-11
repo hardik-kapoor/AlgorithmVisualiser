@@ -10,7 +10,7 @@
                 <div *ngFor="let number of arr;index as i;last as l;first as f">
                     <div 
                     class="bar" 
-                    [style.height]='(80*number)/max_val + "%"' [ngStyle]="currentColor(i)">
+                    [style.height]='(75*number)/max_val + "%"' [ngStyle]="currentColor(i)">
                     <div *ngIf = "this.size < 25" id="bar-txt">{{arr[i]}}</div>
                 </div>
                 </div>
@@ -27,9 +27,6 @@
                 </div>
                 <div class="row-2">
                     <button id="bt" class="btn btn-light mb-2 text-dark" (click)="createRandomArray()"><fa-icon id="icon" [icon]="_shuffle"></fa-icon> Shuffle </button>
-                </div>
-                <div class="row-2">
-                    <button id="bt" class="btn btn-light mb-2 text-dark"><fa-icon id="icon" [icon]="_chosen"></fa-icon> {{whichSort}} </button>
                 </div>
         
         </div>
