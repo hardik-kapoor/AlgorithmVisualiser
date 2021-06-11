@@ -64,5 +64,33 @@ export class SearchingVisualiserComponent implements OnInit {
   
 
   //fun2
+    async binarySearch(lo:number, hi:number, num:number)
+    {
+      let mid:number=Math.floor((lo+hi)/2);
+      this.isChecking=[];
+      this.isChecking.push(mid);
+      await new Promise(resolve => setTimeout(resolve, this.dur));
+      if(this.arr[mid]==num)
+      {
+        this.isChecking=[];
+        this.isFound.push(mid);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+      }
+      else if(this.arr[mid]>num)
+      {
+        this.isChecking=[];
+        this.isChecked.push(mid);
+        await new Promise(resolve => {setTimeout(() => {resolve(this.binarySearch(lo,mid-1,num));}, );});
+      }
+      else
+      {
+        this.isChecking=[];
+        this.isChecked.push(mid);
+        await new Promise(resolve => {setTimeout(() => {resolve(this.binarySearch(mid+1,hi,num));}, );});
+      }
+    }
+
+
+
   //
 }
