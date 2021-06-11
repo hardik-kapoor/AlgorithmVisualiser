@@ -48,6 +48,7 @@ export class SearchingVisualiserComponent implements OnInit {
 
   change(whichNow:string)
   {
+    this.reset();
     this.whichSort=whichNow;
     if(this.whichSort!=="Linear Search")
     {
