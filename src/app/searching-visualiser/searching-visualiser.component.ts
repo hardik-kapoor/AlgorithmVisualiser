@@ -137,6 +137,40 @@ export class SearchingVisualiserComponent implements OnInit {
       }
     }
 
+    async exponentialSearch(num:number)
+    {
+      this.isChecking=[];
+      this.isChecked=[];
+      this.isChecking.push(0);
+      await new Promise(resolve => setTimeout(resolve, this.dur));
+      if(this.arr[0]==num)
+      {
+        this.isChecking=[];
+        this.isFound.push(0);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+      }
+      else
+      {
+        this.isChecking=[];
+        this.isChecked.push(0);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        let i:number=1;
+        while(i<this.arr.length&&this.arr[i]>=num)
+        {
+          this.isChecking=[];
+          this.isChecking.push(i);
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+          this.isChecking=[];
+          this.isChecked.push(i);
+          i=i*2;
+        }
+        let lo:number=Math.floor(i/2);
+        let hi:number=Math.min(i,this.arr.length-1);
+        this.reset();
+        await new Promise(resolve => {setTimeout(() => {resolve(this.binarySearch(lo,hi,num));}, );});
+        
+      }
+    }   
 
 
   //
