@@ -40,7 +40,7 @@
 #txt
 {
     padding:0.7em;
-    font-size:0.8em;
+    font-size:0.9em;
     font-weight:400;
     transition: transform 450ms;
 }
@@ -48,14 +48,16 @@
 #main{
     width: 100%;
     justify-content:center;
+    position:fixed;
 }
 
 #txt2
 {
     padding:0.7em;
-    font-size:1.2em;
+    font-size:100%;
     font-weight: 400;
     transition: transform 450ms;
+    margin-left:5px;
 }
 
 #bt
