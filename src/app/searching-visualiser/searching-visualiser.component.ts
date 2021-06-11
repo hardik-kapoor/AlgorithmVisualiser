@@ -11,7 +11,7 @@ export class SearchingVisualiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.createRandomArray(20,1);
+    this.createRandomArray(this.size,this.sortflag);
   }
 
   arr:number[]=[];          //array
@@ -21,13 +21,25 @@ export class SearchingVisualiserComponent implements OnInit {
   isChecking:number[]=[];   //is checking
   isChecked:number[]=[];    //is checked
   num:number=-1;    //number to be found
-
+  size:number = 20;
+  sortflag:number = 1;
 
   reset()
   {
     this.isFound=[];
     this.isChecked=[];
     this.isChecking=[];
+  }
+
+  setSpeed(event)
+  {
+    this.dur = 605 - event.value;
+  }
+
+  setSize(event)
+  {
+    this.size = event.value;
+    this.createRandomArray(this.size , this.sortflag);
   }
 
   currentColor(ind:number)
@@ -45,7 +57,7 @@ export class SearchingVisualiserComponent implements OnInit {
   createRandomArray(length,isSortReq)
   {
     this.arr=[];
-    let mnval=10,mxval=500;
+    let mnval=25,mxval=500;
     for(let i=0;i<length;i++)
     {
       this.arr.push(Math.floor(Math.random()*(mxval-mnval+1)+mnval));

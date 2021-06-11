@@ -69,12 +69,12 @@
         
       <div class="col text-dark">
           <div id="txt">Animation Speed</div>
-          <mat-slider class="ng-deep w-100 h-75" min="5" max="600" step="1"  [value]="150"></mat-slider>
+          <mat-slider class="ng-deep w-100 h-75" min="5" max="600" step="1"  (input)="setSpeed($event)" [value]="150"></mat-slider>
         </div>
         
     <div class="col text-dark">
         <div id="txt">Array Size</div>
-        <mat-slider class="ng-deep w-100 h-75" min="10" max="60" step="1"  [value]="20"></mat-slider>
+        <mat-slider class="ng-deep w-100 h-75" min="10" max="60" step="1"  (input)="setSize($event)" [value]="20"></mat-slider>
     </div>
 
     <div class = "col-2 text-dark"> Helu Developers TM <br> npm install <a href="https://www.erome.com/a/lguZfpad">@angular/gorifuddi</a></div>
