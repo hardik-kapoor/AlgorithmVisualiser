@@ -13,8 +13,11 @@ import {MatIconModule} from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchingVisualiserComponent } from './searching-visualiser/searching-visualiser.component';
 import { GraphAlgoComponent } from './graph-algo/graph-algo.component';
+import { HomePageComponent } from './home-page/home-page.component';
 
 let routes = [
+  {path:'',redirectTo:'home',pathMatch:'full'},
+  {path:'home',component:HomePageComponent},
   {path:'sorting' , component: SortingVisualiserComponent},
   {path:'searching', component: SearchingVisualiserComponent},
   {path:'graphalgorithms',component:GraphAlgoComponent}
@@ -25,7 +28,8 @@ let routes = [
     AppComponent,
     SortingVisualiserComponent,
     SearchingVisualiserComponent,
-    GraphAlgoComponent
+    GraphAlgoComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
