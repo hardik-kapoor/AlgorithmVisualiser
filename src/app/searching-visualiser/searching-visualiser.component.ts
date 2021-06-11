@@ -10,11 +10,7 @@ export class SearchingVisualiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-<<<<<<< HEAD
-    this.createRandomArray(20,0);
-=======
   
->>>>>>> c71df2c82551cf048fe81695d5a5d1f6b204abea
   }
 
   arr:number[]=[];
