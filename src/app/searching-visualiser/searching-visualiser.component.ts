@@ -53,6 +53,8 @@ export class SearchingVisualiserComponent implements OnInit {
     {
       this.arr.sort((a,b)=>{return a-b});
     }
+    else
+      this.arr=[...this.arrHash];
   }
 
   reset()
@@ -95,6 +97,7 @@ export class SearchingVisualiserComponent implements OnInit {
     }
     this.num=Math.floor(Math.random()*(this.arr.length-1));
     this.num=this.arr[this.num];
+    this.arrHash=[...this.arr];
     if(this.whichSort!=="Linear Search")
       this.arr.sort((a,b)=>{return a-b});
     this.max_val = Math.max(...this.arr);
