@@ -1,3 +1,28 @@
+.bar{
+    float: left;
+    margin-left:1px;
+    margin-right:1px;
+    border:2px solid #343a40;
+    transition: transform 200ms;
+}
+
+.bar:hover{
+    transform : translateY(7px);
+}
+
+#graph
+{
+    display: flex;
+    justify-content:center;
+    padding:2px;
+}
+
+#bar-txt{
+    font-size: 12px;
+    margin-left:5px;
+    margin-right:2px;
+}
+
 #footer 
 {
     position: fixed;

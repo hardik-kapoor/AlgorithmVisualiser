@@ -46,4 +46,10 @@ export class SearchingVisualiserComponent implements OnInit {
       this.arr.sort((a,b)=>{return a-b});
   }
 
+  //fun1
+  //
+  
+
+  //fun2
+  //
 }
