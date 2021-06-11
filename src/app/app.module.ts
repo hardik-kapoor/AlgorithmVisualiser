@@ -11,6 +11,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatIconModule} from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { SearchingVisualiserComponent } from './searching-visualiser/searching-visualiser.component';
 
 let routes = [
   {path:'sorting' , component: SortingVisualiserComponent}
@@ -19,7 +20,8 @@ let routes = [
 @NgModule({
   declarations: [
     AppComponent,
-    SortingVisualiserComponent
+    SortingVisualiserComponent,
+    SearchingVisualiserComponent
   ],
   imports: [
     BrowserModule,
