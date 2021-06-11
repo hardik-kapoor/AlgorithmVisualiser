@@ -12,7 +12,7 @@ export class SearchingVisualiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.createRandomArray(this.size);
+    this.createRandomArray();
   }
 
     //Icons start here
@@ -69,7 +69,7 @@ export class SearchingVisualiserComponent implements OnInit {
   setSize(event)
   {
     this.size = event.value;
-    this.createRandomArray(this.size);
+    this.createRandomArray();
   }
 
   currentColor(ind:number)
@@ -84,11 +84,11 @@ export class SearchingVisualiserComponent implements OnInit {
       return {"background-color": '#343a40' , "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": 'white'};
   }
 
-  createRandomArray(length)
+  createRandomArray()
   {
     this.arr=[];
     let mnval=25,mxval=500;
-    for(let i=0;i<length;i++)
+    for(let i=0;i<this.size;i++)
     {
       this.arr.push(Math.floor(Math.random()*(mxval-mnval+1)+mnval));
     }
