@@ -2,6 +2,7 @@
     float: left;
     margin-left:2px;
     margin-right:2px;
+    border:2px solid #343a40;
 }
 
 #graph
@@ -13,7 +14,6 @@
 
 #bar-txt{
     font-size: 12px;
-    color: white;
     margin-left:5px;
     margin-right:2px;
 }
