@@ -50,7 +50,7 @@ export class SearchingVisualiserComponent implements OnInit {
     this.whichSort=whichNow;
     if(this.whichSort!=="Linear Search")
     {
-      this.createRandomArray(this.size);
+      this.arr.sort((a,b)=>{return a-b});
     }
   }
 
