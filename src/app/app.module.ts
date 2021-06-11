@@ -14,7 +14,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchingVisualiserComponent } from './searching-visualiser/searching-visualiser.component';
 
 let routes = [
-  {path:'sorting' , component: SortingVisualiserComponent}
+  {path:'sorting' , component: SortingVisualiserComponent},
+  {path:'searching', component: SearchingVisualiserComponent}
 ]
 
 @NgModule({
