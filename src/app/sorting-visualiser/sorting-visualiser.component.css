@@ -3,6 +3,11 @@
     margin-left:2px;
     margin-right:2px;
     border:2px solid #343a40;
+    transition: transform 200ms;
+}
+
+.bar:hover{
+    transform : translateY(7px);
 }
 
 #graph
