@@ -57,7 +57,7 @@
                     <button id="bt" class="btn btn-light mb-2 text-dark" (click)="reset()"><fa-icon id="icon" [icon]="_reset"></fa-icon> Reset </button>
                 </div>
                 <div class="row-2">
-                    <button id="bt" class="btn btn-light mb-2 text-dark" (click)="createRandomArray(this.size)"><fa-icon id="icon" [icon]="_shuffle"></fa-icon> Shuffle </button>
+                    <button id="bt" class="btn btn-light mb-2 text-dark" (click)="createRandomArray()"><fa-icon id="icon" [icon]="_shuffle"></fa-icon> Shuffle </button>
                 </div>
         
         </div>
@@ -92,6 +92,5 @@
         <mat-slider class="ng-deep w-100 h-75" min="10" max="60" step="1"  (input)="setSize($event)" [value]="20"></mat-slider>
     </div>
 
-    <div class = "col-2 text-dark"> Helu Developers TM <br> npm install <a href="https://www.erome.com/a/lguZfpad">@angular/gorifuddi</a></div>
     </div>
 </div>

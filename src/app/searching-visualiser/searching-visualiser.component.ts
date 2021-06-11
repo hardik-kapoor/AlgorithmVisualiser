@@ -12,7 +12,7 @@ export class SearchingVisualiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.createRandomArray(this.size);
+    this.createRandomArray();
   }
 
     //Icons start here
@@ -32,6 +32,7 @@ export class SearchingVisualiserComponent implements OnInit {
   isChecked:number[]=[];    //is checked
   num:number=-1;    //number to be found
   size:number = 20;
+  arrHash:number[]=[];
   whichSort:string="Linear Search";
 
   whichOne(){
@@ -69,26 +70,26 @@ export class SearchingVisualiserComponent implements OnInit {
   setSize(event)
   {
     this.size = event.value;
-    this.createRandomArray(this.size);
+    this.createRandomArray();
   }
 
   currentColor(ind:number)
   {
     if(this.isFound.includes(ind))
-      return {"background-color":'#76ba1b' , "width": String(Math.min(33,(650/this.arr.length)))+"px", "color": 'white'};
-    else if(this.isChecking.includes(ind))
-      return {"background-color":'#dc3545' , "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": 'white'};
-    else if(this.isChecked.includes(ind)) //
       return {"background-color": '#ADD8E6', "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": '#343a40'};
+    else if(this.isChecking.includes(ind))
+      return {"background-color":'#76ba1b' , "width": String(Math.min(33,(650/this.arr.length)))+"px", "color": 'white'};
+    else if(this.isChecked.includes(ind))
+      return {"background-color":'#dc3545' , "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": 'white'};
     else
       return {"background-color": '#343a40' , "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": 'white'};
   }
 
-  createRandomArray(length)
+  createRandomArray()
   {
     this.arr=[];
     let mnval=25,mxval=500;
-    for(let i=0;i<length;i++)
+    for(let i=0;i<this.size;i++)
     {
       this.arr.push(Math.floor(Math.random()*(mxval-mnval+1)+mnval));
     }
