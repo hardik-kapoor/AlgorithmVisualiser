@@ -48,6 +48,7 @@
 #main{
     width: 100%;
     justify-content:center;
+    position:fixed;
 }
 
 #txt2
@@ -56,6 +57,7 @@
     font-size:100%;
     font-weight: 400;
     transition: transform 450ms;
+    margin-left:5px;
 }
 
 #bt
