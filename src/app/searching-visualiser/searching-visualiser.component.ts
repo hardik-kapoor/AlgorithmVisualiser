@@ -156,8 +156,8 @@ export class SearchingVisualiserComponent implements OnInit {
         this.isChecking=[];
         this.isChecked.push(0);
         await new Promise(resolve => setTimeout(resolve, this.dur));
-        let i:number=1;
-        while(i<this.arr.length&&this.arr[i]>=num)
+        let i:number=1; 
+        while(i<this.arr.length&&this.arr[i]<num)
         {
           this.isChecking=[];
           this.isChecking.push(i);
@@ -165,6 +165,7 @@ export class SearchingVisualiserComponent implements OnInit {
           this.isChecking=[];
           this.isChecked.push(i);
           i=i*2;
+          await new Promise(resolve => setTimeout(resolve, this.dur));
         }
         let lo:number=Math.floor(i/2);
         let hi:number=Math.min(i,this.arr.length-1);
