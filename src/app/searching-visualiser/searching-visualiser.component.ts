@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {faPlayCircle , faUndo , faRandom , faTachometerAlt , faSitemap} from '@fortawesome/free-solid-svg-icons';
+import {faPlayCircle , faUndo , faRandom , faTachometerAlt , faSitemap , faSearch} from '@fortawesome/free-solid-svg-icons';
 
 
 @Component({
@@ -21,6 +21,7 @@ export class SearchingVisualiserComponent implements OnInit {
     _shuffle=faRandom;
     _anim=faTachometerAlt;
     _chosen=faSitemap;
+    _search=faSearch;
   
     //Icons end here
 
