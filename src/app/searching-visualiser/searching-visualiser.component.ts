@@ -16,7 +16,7 @@ export class SearchingVisualiserComponent implements OnInit {
 
   arr:number[]=[];          //array
   max_val:number=-1;        //maximum val
-  dur:number=250;             //duration
+  dur:number=500;             //duration
   isFound:number[]=[];      //is found
   isChecking:number[]=[];   //is checking
   isChecked:number[]=[];    //is checked
@@ -156,8 +156,8 @@ export class SearchingVisualiserComponent implements OnInit {
         this.isChecking=[];
         this.isChecked.push(0);
         await new Promise(resolve => setTimeout(resolve, this.dur));
-        let i:number=1;
-        while(i<this.arr.length && this.arr[i]<=num)
+        let i:number=1; 
+        while(i<this.arr.length&&this.arr[i]<=num)
         {
           
           this.isChecking=[];
@@ -166,10 +166,13 @@ export class SearchingVisualiserComponent implements OnInit {
           this.isChecking=[];
           this.isChecked.push(i);
           i=i*2;
+          await new Promise(resolve => setTimeout(resolve, this.dur));
         }
         let lo:number=Math.floor(i/2);
         let hi:number=Math.min(i,this.arr.length-1);
-        this.reset();
+        this.isChecked.push(hi);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        this.isChecking=[];
         await new Promise(resolve => {setTimeout(() => {resolve(this.binarySearch(lo,hi,num));}, );});
         
       }
