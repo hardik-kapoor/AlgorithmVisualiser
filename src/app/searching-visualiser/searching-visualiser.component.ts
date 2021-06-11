@@ -120,6 +120,9 @@ export class SearchingVisualiserComponent implements OnInit {
       }
       for(let i=mx;i>=Math.max(mx-jump,0);i--)
       {
+        this.isChecking=[];
+        this.isChecking.push(i);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
         this.isChecked.push(i);
         await new Promise(resolve => setTimeout(resolve, this.dur));
         if(this.arr[i]===this.num)
