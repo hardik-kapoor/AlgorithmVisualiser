@@ -47,12 +47,12 @@
       <div class = "col-1 text-dark"><button id="txt"  (click)="change('Selectionsort')" class="btn btn-light">SelectionSort</button></div>
       <div class = "col-1 text-dark"><button id="txt"  (click)="change('Insertionsort')" class="btn btn-light">InsertionSort</button></div>
 
-      <div class="col text-dark">
+      <div class="col-2 text-dark">
           <div id="txt">Animation Speed</div>
           <mat-slider class="ng-deep w-100 h-75" min="5" max="600" step="1" (input)="setSpeed($event)" [value]="150"></mat-slider>
         </div>
 
-    <div class="col text-dark">
+    <div class="col-2 text-dark">
         <div id="txt">Array Size</div>
         <mat-slider class="ng-deep w-100 h-75" min="10" max="60" step="1" (input)="setSize($event)"  [value]="20"></mat-slider>
     </div>
