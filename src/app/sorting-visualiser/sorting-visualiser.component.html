@@ -1,7 +1,7 @@
 
 <div class="bg-light">
     <div id = "main" class="row">
-        <div id="txt2" class="col">
+        <div id="left-bt" class="col">
             <fa-icon id="icon" [icon]="_chosen"></fa-icon> {{whichSort}}
         </div>
         <div id="graph" class="col-8" style="height:500px">
@@ -17,7 +17,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-2">
+        <div id="right-bt" class="col-2">
                 <br>
                 <div class="row-2">
                     <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="selectsort()"><fa-icon id="icon" [icon]="_start"></fa-icon> Start </button>
@@ -54,7 +54,7 @@
 
     <div class="col-2 text-dark">
         <div id="txt">Array Size</div>
-        <mat-slider class="ng-deep w-100 h-75" min="10" max="60" step="1" (input)="setSize($event)"  [value]="20"></mat-slider>
+        <mat-slider class="ng-deep w-100 h-75" min="10" max="100" step="1" (input)="setSize($event)"  [value]="20"></mat-slider>
     </div>
     <div class="col-1"></div>
 
