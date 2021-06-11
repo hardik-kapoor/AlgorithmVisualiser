@@ -12,17 +12,20 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatIconModule} from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchingVisualiserComponent } from './searching-visualiser/searching-visualiser.component';
+import { GraphAlgoComponent } from './graph-algo/graph-algo.component';
 
 let routes = [
   {path:'sorting' , component: SortingVisualiserComponent},
-  {path:'searching', component: SearchingVisualiserComponent}
+  {path:'searching', component: SearchingVisualiserComponent},
+  {path:'graphalgorithms',component:GraphAlgoComponent}
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
     SortingVisualiserComponent,
-    SearchingVisualiserComponent
+    SearchingVisualiserComponent,
+    GraphAlgoComponent
   ],
   imports: [
     BrowserModule,
