@@ -157,8 +157,9 @@ export class SearchingVisualiserComponent implements OnInit {
         this.isChecked.push(0);
         await new Promise(resolve => setTimeout(resolve, this.dur));
         let i:number=1;
-        while(i<this.arr.length&&this.arr[i]>=num)
+        while(i<this.arr.length && this.arr[i]<=num)
         {
+          
           this.isChecking=[];
           this.isChecking.push(i);
           await new Promise(resolve => setTimeout(resolve, this.dur));
