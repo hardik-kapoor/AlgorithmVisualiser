@@ -28,7 +28,12 @@
 <div class="bg-light">
     <div id = "main" class="row">
         <div id="txt2" class="col">
-            <fa-icon id="icon" [icon]="_chosen"></fa-icon> {{this.num}}
+            <div class="row-2">
+                <fa-icon id="icon" [icon]="_chosen"></fa-icon> {{this.whichSort}}
+            </div>
+            <div class="row-2">
+                <fa-icon id="icon" [icon]="_chosen"></fa-icon> {{this.num}}
+            </div>
         </div>
         <div id="graph" class="col-8" style="height:500px">
             <div class="row">
@@ -46,13 +51,13 @@
         <div class="col-2">
                 <br>
                 <div class="row-2">
-                    <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="jumpSearch()" ><fa-icon id="icon" [icon]="_start"></fa-icon> Start </button>
+                    <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="whichOne()" ><fa-icon id="icon" [icon]="_start"></fa-icon> Start </button>
                 </div>
                 <div class="row-2">
-                    <button id="bt" class="btn btn-light mb-2 text-dark" ><fa-icon id="icon" [icon]="_reset"></fa-icon> Reset </button>
+                    <button id="bt" class="btn btn-light mb-2 text-dark" (click)="reset()"><fa-icon id="icon" [icon]="_reset"></fa-icon> Reset </button>
                 </div>
                 <div class="row-2">
-                    <button id="bt" class="btn btn-light mb-2 text-dark"><fa-icon id="icon" [icon]="_shuffle"></fa-icon> Shuffle </button>
+                    <button id="bt" class="btn btn-light mb-2 text-dark" (click)="createRandomArray(this.size)"><fa-icon id="icon" [icon]="_shuffle"></fa-icon> Shuffle </button>
                 </div>
         
         </div>
@@ -72,10 +77,10 @@
 
     
     <div class="row">
-      <div class = "col text-dark"><button id="txt"   class="btn btn-light">Linear Search</button></div>
-      <div class = "col text-dark"><button id="txt"   class="btn btn-light">Binary Search</button></div>
-      <div class = "col text-dark"><button id="txt"   class="btn btn-light">Jump Search</button></div>
-      <div class = "col text-dark"><button id="txt"   class="btn btn-light">Exponential Search</button></div>
+      <div class = "col text-dark"><button id="txt"  (click)='change("Linear Search")' class="btn btn-light">Linear Search</button></div>
+      <div class = "col text-dark"><button id="txt"  (click)='change("Binary Search")' class="btn btn-light">Binary Search</button></div>
+      <div class = "col text-dark"><button id="txt"  (click)='change("Jump Search")' class="btn btn-light">Jump Search</button></div>
+      <div class = "col text-dark"><button id="txt"  (click)='change("Exponential Search")' class="btn btn-light">Exponential Search</button></div>
         
       <div class="col text-dark">
           <div id="txt">Animation Speed</div>

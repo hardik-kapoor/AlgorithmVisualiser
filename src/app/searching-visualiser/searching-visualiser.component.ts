@@ -12,7 +12,7 @@ export class SearchingVisualiserComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.createRandomArray(this.size,this.sortflag);
+    this.createRandomArray(this.size);
   }
 
     //Icons start here
@@ -32,7 +32,27 @@ export class SearchingVisualiserComponent implements OnInit {
   isChecked:number[]=[];    //is checked
   num:number=-1;    //number to be found
   size:number = 20;
-  sortflag:number = 1;
+  whichSort:string="Linear Search";
+
+  whichOne(){
+    if(this.whichSort==="Linear Search")
+      this.linearSearch();
+    else if(this.whichSort==="Exponential Search")
+      this.exponentialSearch();
+    else if(this.whichSort==="Binary Search")
+      this.binarySearch(0,this.arr.length-1);
+    else
+      this.jumpSearch();
+  }
+
+  change(whichNow:string)
+  {
+    this.whichSort=whichNow;
+    if(this.whichSort!=="Linear Search")
+    {
+      this.createRandomArray(this.size);
+    }
+  }
 
   reset()
   {
@@ -49,7 +69,7 @@ export class SearchingVisualiserComponent implements OnInit {
   setSize(event)
   {
     this.size = event.value;
-    this.createRandomArray(this.size , this.sortflag);
+    this.createRandomArray(this.size);
   }
 
   currentColor(ind:number)
@@ -64,7 +84,7 @@ export class SearchingVisualiserComponent implements OnInit {
       return {"background-color": '#343a40' , "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": 'white'};
   }
 
-  createRandomArray(length,isSortReq)
+  createRandomArray(length)
   {
     this.arr=[];
     let mnval=25,mxval=500;
@@ -74,7 +94,7 @@ export class SearchingVisualiserComponent implements OnInit {
     }
     this.num=Math.floor(Math.random()*(this.arr.length-1));
     this.num=this.arr[this.num];
-    if(isSortReq)
+    if(this.whichSort!=="Linear Search")
       this.arr.sort((a,b)=>{return a-b});
     this.max_val = Math.max(...this.arr);
   }
@@ -138,39 +158,39 @@ export class SearchingVisualiserComponent implements OnInit {
   
 
   //fun2
-    async binarySearch(lo:number, hi:number, num:number)
+    async binarySearch(lo:number, hi:number)
     {
       let mid:number=Math.floor((lo+hi)/2);
       this.isChecking=[];
       this.isChecking.push(mid);
       await new Promise(resolve => setTimeout(resolve, this.dur));
-      if(this.arr[mid]==num)
+      if(this.arr[mid]==this.num)
       {
         this.isChecking=[];
         this.isFound.push(mid);
         await new Promise(resolve => setTimeout(resolve, this.dur));
       }
-      else if(this.arr[mid]>num)
+      else if(this.arr[mid]>this.num)
       {
         this.isChecking=[];
         this.isChecked.push(mid);
-        await new Promise(resolve => {setTimeout(() => {resolve(this.binarySearch(lo,mid-1,num));}, );});
+        await new Promise(resolve => {setTimeout(() => {resolve(this.binarySearch(lo,mid-1));}, );});
       }
       else
       {
         this.isChecking=[];
         this.isChecked.push(mid);
-        await new Promise(resolve => {setTimeout(() => {resolve(this.binarySearch(mid+1,hi,num));}, );});
+        await new Promise(resolve => {setTimeout(() => {resolve(this.binarySearch(mid+1,hi));}, );});
       }
     }
 
-    async exponentialSearch(num:number)
+    async exponentialSearch()
     {
       this.isChecking=[];
       this.isChecked=[];
       this.isChecking.push(0);
       await new Promise(resolve => setTimeout(resolve, this.dur));
-      if(this.arr[0]==num)
+      if(this.arr[0]==this.num)
       {
         this.isChecking=[];
         this.isFound.push(0);
@@ -182,7 +202,7 @@ export class SearchingVisualiserComponent implements OnInit {
         this.isChecked.push(0);
         await new Promise(resolve => setTimeout(resolve, this.dur));
         let i:number=1; 
-        while(i<this.arr.length&&this.arr[i]<=num)
+        while(i<this.arr.length&&this.arr[i]<=this.num)
         {
           
           this.isChecking=[];
@@ -198,7 +218,7 @@ export class SearchingVisualiserComponent implements OnInit {
         this.isChecked.push(hi);
         await new Promise(resolve => setTimeout(resolve, this.dur));
         this.isChecking=[];
-        await new Promise(resolve => {setTimeout(() => {resolve(this.binarySearch(lo,hi,num));}, );});
+        await new Promise(resolve => {setTimeout(() => {resolve(this.binarySearch(lo,hi));}, );});
         
       }
     }   
