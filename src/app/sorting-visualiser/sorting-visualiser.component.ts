@@ -32,7 +32,7 @@ export class SortingVisualiserComponent implements OnInit {
   arrfixed:number[]=[...this.arr];
   whichSort:string="None";
 
-  dur:number=150;         //duration
+  dur:number=175;         //duration
   max_val:number=-1;
   size:number = 20;
 
@@ -43,7 +43,7 @@ export class SortingVisualiserComponent implements OnInit {
   //didnt make extra js files.
   setSpeed(event)
   {
-    this.dur = event.value;
+    this.dur = 605 - event.value;
   }
 
   setSize(event)
