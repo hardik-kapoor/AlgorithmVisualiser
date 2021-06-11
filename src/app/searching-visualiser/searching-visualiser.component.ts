@@ -91,6 +91,7 @@ export class SearchingVisualiserComponent implements OnInit {
 
   createRandomArray()
   {
+    this.reset();
     this.arr=[];
     let mnval=25,mxval=500;
     for(let i=0;i<this.size;i++)
