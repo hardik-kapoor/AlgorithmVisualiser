@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
 
 @Component({
   selector: 'app-graph-algo',

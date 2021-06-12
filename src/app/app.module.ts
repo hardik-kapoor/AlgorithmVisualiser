@@ -14,6 +14,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchingVisualiserComponent } from './searching-visualiser/searching-visualiser.component';
 import { GraphAlgoComponent } from './graph-algo/graph-algo.component';
 import { HomePageComponent } from './home-page/home-page.component';
+import { NgxGraphModule } from '@swimlane/ngx-graph';
 
 let routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
@@ -29,7 +30,7 @@ let routes = [
     SortingVisualiserComponent,
     SearchingVisualiserComponent,
     GraphAlgoComponent,
-    HomePageComponent
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -41,6 +42,7 @@ let routes = [
     MatSliderModule,
     MatIconModule,
     FontAwesomeModule,
+    NgxGraphModule
   ],
   providers: [],
   bootstrap: [AppComponent , SortingVisualiserComponent]

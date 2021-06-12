@@ -1,5 +1,33 @@
 <div class="row">
-    <div class="col-2 text-light card bg-dark">
-        chal raha hai bsdk
+    <div class="col-2">
+        <ngx-graph class="chart-container" [view]="[1000, 1000]"
+        [links]="[
+            {
+            id: 'a',
+            source: 'first',
+            target: 'second'
+            }, {
+            id: 'b',
+            source: 'first',
+            target: 'third'
+            }
+            data: {
+                color: '#00FF00'
+            }
+        ]"
+        [nodes]="[
+            {
+            id: 'first',
+            label: 'A'
+            }, {
+            id: 'second',
+            label: 'B'
+            }, {
+            id: 'third',
+            label: 'C'
+            }
+        ]"
+        >  
+        </ngx-graph>
     </div>
 </div>
