@@ -20,7 +20,7 @@ export class PathFinderComponent implements OnInit {
 
     this.ctxGrid.canvas.height = 500;
     this.ctxGrid.canvas.width = 1000;
-    this.resetGrid();
+    this.randomGrid();
   }
 
   resetGrid() 
@@ -32,8 +32,26 @@ export class PathFinderComponent implements OnInit {
       for(let j=0;j<this.canvas.height;j+=sz1)
       {
         this.ctxGrid.strokeRect(i,j,sz1,sz1);
+
       }
     }
+    
   }  
+
+  randomGrid()
+  {
+    this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    let sz1=20;
+    for(let i=0;i<this.canvas.width;i+=sz1)
+    {
+      for(let j=0;j<this.canvas.height;j+=sz1)
+      {
+        this.ctxGrid.strokeRect(i,j,sz1,sz1);
+        let x=Math.random();
+        if(x<0.3)
+          this.ctxGrid.fillRect(i,j,sz1,sz1);
+      }
+    }    
+  }
 
 }
