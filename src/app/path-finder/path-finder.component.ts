@@ -18,8 +18,6 @@ export class PathFinderComponent implements OnInit {
     this.canvas = <HTMLCanvasElement>document.getElementById('myCanvas');
     this.ctxGrid = this.canvas.getContext('2d');
 
-    this.ctxGrid.canvas.height = 520;
-    this.ctxGrid.canvas.width = 1235;
     this.resetGrid();
   }
 
