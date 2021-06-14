@@ -12,7 +12,6 @@ import { MatSliderModule } from '@angular/material/slider';
 import {MatIconModule} from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { SearchingVisualiserComponent } from './searching-visualiser/searching-visualiser.component';
-import { GraphAlgoComponent } from './graph-algo/graph-algo.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { PathFinderComponent } from './path-finder/path-finder.component';
@@ -22,7 +21,7 @@ let routes = [
   {path:'home',component:HomePageComponent},
   {path:'sorting' , component: SortingVisualiserComponent},
   {path:'searching', component: SearchingVisualiserComponent},
-  {path:'graphalgorithms',component:GraphAlgoComponent}
+  {path:'pathfinding',component:PathFinderComponent}
 ]
 
 @NgModule({
@@ -30,7 +29,6 @@ let routes = [
     AppComponent,
     SortingVisualiserComponent,
     SearchingVisualiserComponent,
-    GraphAlgoComponent,
     HomePageComponent,
     PathFinderComponent,
   ],
