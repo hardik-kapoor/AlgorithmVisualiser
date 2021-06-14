@@ -34,11 +34,12 @@ export class PathFinderComponent implements OnInit {
     this.ctxGrid.fillStyle='green';
     this.ctxGrid.fillRect(this.src[1]*20+1,this.src[0]*20+1,this.sz1-2,this.sz1-2);
     this.arr[this.src[0]][this.src[1]]=2;
-    this.arr[this.des[0]][this.des[1]]=2;
+    this.arr[this.des[0]][this.des[1]]=3;
     this.ctxGrid.fillStyle='red';
     this.ctxGrid.fillRect(this.des[1]*20+1,this.des[0]*20+1,this.sz1-2,this.sz1-2);
     this.ctxGrid.fillStyle='black';
     this.makeWalls();
+    this.randomGrid();
   }
 
   resetGrid() 
@@ -56,17 +57,16 @@ export class PathFinderComponent implements OnInit {
 
   randomGrid()
   {
-    this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
     for(let i=0;i<this.canvas.width;i+=this.sz1)
     {
       for(let j=0;j<this.canvas.height;j+=this.sz1)
       {
         this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
         let x=Math.random();
-        if(x<0.3&&this.arr[i][j]!=2&&this.arr[i][j]!=3)
+        if(x<0.3&&this.arr[j/20][i/20]!==2&&this.arr[j/20][i/20]!==3)
         {
           this.ctxGrid.fillRect(i+1,j+1,this.sz1-2,this.sz1-2);
-          this.arr[i][j]=1;
+          this.arr[j/20][i/20]=1;
         }
       }
     }    
