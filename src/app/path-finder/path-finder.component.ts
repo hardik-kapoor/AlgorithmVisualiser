@@ -33,7 +33,6 @@ export class PathFinderComponent implements OnInit {
       for(let j=0;j<this.canvas.height;j+=this.sz1)
       {
         this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
-
       }
     }
     
@@ -64,9 +63,9 @@ export class PathFinderComponent implements OnInit {
       cx=(Math.floor(cx/20))*20;
       cy=(Math.floor(cy/20))*20;
       this.ctxGrid.fillRect(cx,cy,this.sz1-1,this.sz1-1);
-      //console.log("Hello");
-    }.bind(this))  
-      
+    }.bind(this))
+    
+    
   }
 
 }
