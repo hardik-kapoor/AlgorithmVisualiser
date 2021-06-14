@@ -1,4 +1,5 @@
-#myCanvas{
+#myCanvas
+{
 
     margin-left: auto;
     margin-right: auto;
@@ -19,12 +20,4 @@
     transform: translate(0.5, 0.5);
 
     
-}
-
-#square div{
-    display: block;
-    width: 25px;
-    height: 25px;
-    border-style: solid;
-    border-width: thin;
 }
