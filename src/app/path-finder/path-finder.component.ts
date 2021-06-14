@@ -15,6 +15,8 @@ export class PathFinderComponent implements OnInit {
   sz1:number=20;
   isDrawing:boolean=false;
   arr;  
+  src;
+  des;
 
   ngOnInit(): void {
     this.canvas = <HTMLCanvasElement>document.getElementById('myCanvas');
@@ -27,6 +29,15 @@ export class PathFinderComponent implements OnInit {
       for(let j=0;j<this.arr[i].length;j++)
         this.arr[i][j]=0;
     this.resetGrid();
+    this.src=[10,10];
+    this.des=[20,30];
+    this.ctxGrid.fillStyle='green';
+    this.ctxGrid.fillRect(this.src[1]*20+1,this.src[0]*20+1,this.sz1-2,this.sz1-2);
+    this.arr[this.src[0]][this.src[1]]=2;
+    this.arr[this.des[0]][this.des[1]]=2;
+    this.ctxGrid.fillStyle='red';
+    this.ctxGrid.fillRect(this.des[1]*20+1,this.des[0]*20+1,this.sz1-2,this.sz1-2);
+    this.ctxGrid.fillStyle='black';
     this.makeWalls();
   }
 
@@ -52,8 +63,11 @@ export class PathFinderComponent implements OnInit {
       {
         this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
         let x=Math.random();
-        if(x<0.3)
+        if(x<0.3&&this.arr[i][j]!=2&&this.arr[i][j]!=3)
+        {
           this.ctxGrid.fillRect(i+1,j+1,this.sz1-2,this.sz1-2);
+          this.arr[i][j]=1;
+        }
       }
     }    
   }
@@ -74,15 +88,9 @@ export class PathFinderComponent implements OnInit {
         cy=(Math.floor(cy/20))*20;
         let r=Math.floor(cy/20);
         let c=Math.floor(cx/20);
-        if(this.arr[r][c]===0)
-        {
+        if(!((r===this.src[0]&&c===this.src[1])||(r===this.des[0]&&c===this.des[1]))){
           this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
           this.arr[r][c]=1;
-        }
-        if(this.arr[r][c]===1)
-        {
-          this.ctxGrid.strokeRect(cx,cy,this.sz1,this.sz1);
-          this.arr[r][c]=0;
         }
       }
     }.bind(this))
