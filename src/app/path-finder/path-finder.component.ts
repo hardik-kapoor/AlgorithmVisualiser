@@ -31,7 +31,7 @@ export class PathFinderComponent implements OnInit {
     {
       for(let j=0;j<this.canvas.height;j+=sz1)
       {
-        this.ctxGrid.strokeRect(i,j,sz1,sz1);
+        this.ctxGrid.strokeRect(i,j,sz1-1,sz1-1);
 
       }
     }
@@ -46,10 +46,10 @@ export class PathFinderComponent implements OnInit {
     {
       for(let j=0;j<this.canvas.height;j+=sz1)
       {
-        this.ctxGrid.strokeRect(i,j,sz1,sz1);
+        this.ctxGrid.strokeRect(i,j,sz1-1,sz1-1);
         let x=Math.random();
         if(x<0.3)
-          this.ctxGrid.fillRect(i,j,sz1,sz1);
+          this.ctxGrid.fillRect(i,j,sz1-1,sz1-1);
       }
     }    
   }
