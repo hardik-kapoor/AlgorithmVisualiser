@@ -13,6 +13,7 @@ export class PathFinderComponent implements OnInit {
   canvas;
   ctxGrid;
   sz1:number=20;
+  isDrawing:boolean=false;
 
 
   ngOnInit(): void {
@@ -56,26 +57,27 @@ export class PathFinderComponent implements OnInit {
   makeWalls()
   {
 
+    
     this.canvas.addEventListener('mousedown', function (e) {
-      const rect = this.canvas.getBoundingClientRect();
-      
-      this.canvas.addEventListener('mousemove', function (e) {
-        const rect = this.canvas.getBoundingClientRect();
+      this.isDrawing=true;
+      console.log(this.isDrawing);
+    }.bind(this))  
 
+    this.canvas.addEventListener('mousemove', function (e) {
+      if(this.isDrawing){
+        const rect = this.canvas.getBoundingClientRect();
         let cx = e.clientX - rect.left;
         let cy = e.clientY - rect.top;
-        
+
         cx=(Math.floor(cx/20))*20;
         cy=(Math.floor(cy/20))*20;
         this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
-      }.bind(this))
+      }
+    }.bind(this))
 
-      let cx = e.clientX - rect.left;
-      let cy = e.clientY - rect.top;
-      cx=(Math.floor(cx/20))*20;
-      cy=(Math.floor(cy/20))*20;
-      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
-      
+    
+    this.canvas.addEventListener('mouseup', function (e) {
+      this.isDrawing=false;
     }.bind(this))  
       
   }
