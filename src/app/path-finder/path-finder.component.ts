@@ -29,7 +29,7 @@ export class PathFinderComponent implements OnInit {
     let sz1=13;
     for(let i=0;i<this.canvas.width;i+=sz1)
     {
-      for(let j=0;j<this.canvas.width;j+=sz1)
+      for(let j=0;j<this.canvas.height;j+=sz1)
       {
         this.ctxGrid.strokeRect(i,j,sz1,sz1);
       }

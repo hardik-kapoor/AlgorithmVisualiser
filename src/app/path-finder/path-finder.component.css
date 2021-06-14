@@ -21,10 +21,3 @@
     
 }
 
-#square div{
-    display: block;
-    width: 25px;
-    height: 25px;
-    border-style: solid;
-    border-width: thin;
-}
