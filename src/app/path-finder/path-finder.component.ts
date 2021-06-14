@@ -10,14 +10,11 @@ export class PathFinderComponent implements OnInit {
   constructor() { }
   @ViewChild('canvas', { static: true })
 
-  shapes;
   canvas;
   ctxGrid;
 
 
   ngOnInit(): void {
-    this.shapes = new Array(95);
-    for (let i = 0; i < this.shapes.length; i++) { this.shapes[i] = new Array(40) };
     this.canvas = <HTMLCanvasElement>document.getElementById('myCanvas');
     this.ctxGrid = this.canvas.getContext('2d');
 
@@ -29,7 +26,7 @@ export class PathFinderComponent implements OnInit {
   resetGrid() {
 
     this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    let sz1=25;
+    let sz1=13;
     for(let i=0;i<this.canvas.width;i+=sz1)
     {
       for(let j=0;j<this.canvas.width;j+=sz1)
