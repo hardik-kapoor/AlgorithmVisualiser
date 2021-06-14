@@ -19,7 +19,7 @@ export class PathFinderComponent implements OnInit {
     this.ctxGrid = this.canvas.getContext('2d');
     this.ctxGrid.canvas.height = 500;
     this.ctxGrid.canvas.width = 1000;
-    this.ctxGrid.strokeStyle = "#FF0000";
+    this.ctxGrid.strokeStyle = "#808588";
     this.randomGrid();
   }
 
