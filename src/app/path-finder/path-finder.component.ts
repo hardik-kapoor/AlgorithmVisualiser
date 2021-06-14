@@ -17,7 +17,6 @@ export class PathFinderComponent implements OnInit {
   ngOnInit(): void {
     this.canvas = <HTMLCanvasElement>document.getElementById('myCanvas');
     this.ctxGrid = this.canvas.getContext('2d');
-
     this.ctxGrid.canvas.height = 500;
     this.ctxGrid.canvas.width = 1000;
     this.randomGrid();
