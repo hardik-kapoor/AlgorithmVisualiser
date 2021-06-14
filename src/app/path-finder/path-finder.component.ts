@@ -23,13 +23,14 @@ export class PathFinderComponent implements OnInit {
     this.ctxGrid.strokeStyle = "#808588";
     this.randomGrid();
 
-    this.canvas.addEventListener('mousemove', function (e) {
+    this.canvas.addEventListener('mousedown', function (e) {
       const rect = this.canvas.getBoundingClientRect();
 
       let cx = e.clientX - rect.left;
       let cy = e.clientY - rect.top;
       console.log([cx , cy]);
-    }.bind(this))
+    }.bind(this));
+    
   }
 
   resetGrid() 
