@@ -27,6 +27,7 @@ export class PathFinderComponent implements OnInit {
       for(let j=0;j<this.arr[i].length;j++)
         this.arr[i][j]=0;
     this.resetGrid();
+    this.makeWalls();
   }
 
   resetGrid() 
@@ -71,7 +72,18 @@ export class PathFinderComponent implements OnInit {
 
         cx=(Math.floor(cx/20))*20;
         cy=(Math.floor(cy/20))*20;
-        this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+        let r=Math.floor(cy/20);
+        let c=Math.floor(cx/20);
+        if(this.arr[r][c]===0)
+        {
+          this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+          this.arr[r][c]=1;
+        }
+        if(this.arr[r][c]===1)
+        {
+          this.ctxGrid.strokeRect(cx,cy,this.sz1,this.sz1);
+          this.arr[r][c]=0;
+        }
       }
     }.bind(this))
 
