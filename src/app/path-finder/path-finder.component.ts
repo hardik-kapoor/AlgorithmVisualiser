@@ -26,7 +26,7 @@ export class PathFinderComponent implements OnInit {
   resetGrid() {
 
     this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    let sz1=13;
+    let sz1=20;
     for(let i=0;i<this.canvas.width;i+=sz1)
     {
       for(let j=0;j<this.canvas.height;j+=sz1)
