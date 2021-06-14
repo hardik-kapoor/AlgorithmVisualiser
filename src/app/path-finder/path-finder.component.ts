@@ -34,6 +34,6 @@ export class PathFinderComponent implements OnInit {
         this.ctxGrid.strokeRect(i,j,sz1,sz1);
       }
     }
-  }
+  }  
 
 }
