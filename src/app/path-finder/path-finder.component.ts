@@ -34,7 +34,7 @@ export class PathFinderComponent implements OnInit {
     this.ctxGrid.fillStyle='green';
     this.ctxGrid.fillRect(this.src[1]*20+1,this.src[0]*20+1,this.sz1-2,this.sz1-2);
     this.arr[this.src[0]][this.src[1]]=2;
-    this.arr[this.des[0]][this.des[1]]=2;
+    this.arr[this.des[0]][this.des[1]]=3;
     this.ctxGrid.fillStyle='red';
     this.ctxGrid.fillRect(this.des[1]*20+1,this.des[0]*20+1,this.sz1-2,this.sz1-2);
     this.ctxGrid.fillStyle='black';
@@ -69,7 +69,7 @@ export class PathFinderComponent implements OnInit {
     }    
   }
 
-  async makeWalls()
+  makeWalls()
   {
     
     document.body.onmousedown=()=>{
