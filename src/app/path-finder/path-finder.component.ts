@@ -63,8 +63,11 @@ export class PathFinderComponent implements OnInit {
       {
         this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
         let x=Math.random();
-        if(x<0.3)
+        if(x<0.3&&this.arr[i][j]!=2&&this.arr[i][j]!=3)
+        {
           this.ctxGrid.fillRect(i+1,j+1,this.sz1-2,this.sz1-2);
+          this.arr[i][j]=1;
+        }
       }
     }    
   }
