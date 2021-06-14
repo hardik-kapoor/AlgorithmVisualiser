@@ -12,6 +12,7 @@ export class PathFinderComponent implements OnInit {
 
   canvas;
   ctxGrid;
+  sz1:number=20;
 
 
   ngOnInit(): void {
@@ -34,12 +35,11 @@ export class PathFinderComponent implements OnInit {
   resetGrid() 
   {
     this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    let sz1=20;
-    for(let i=0;i<this.canvas.width;i+=sz1)
+    for(let i=0;i<this.canvas.width;i+=this.sz1)
     {
-      for(let j=0;j<this.canvas.height;j+=sz1)
+      for(let j=0;j<this.canvas.height;j+=this.sz1)
       {
-        this.ctxGrid.strokeRect(i,j,sz1,sz1);
+        this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
 
       }
     }
@@ -49,17 +49,27 @@ export class PathFinderComponent implements OnInit {
   randomGrid()
   {
     this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    let sz1=20;
-    for(let i=0;i<this.canvas.width;i+=sz1)
+    for(let i=0;i<this.canvas.width;i+=this.sz1)
     {
-      for(let j=0;j<this.canvas.height;j+=sz1)
+      for(let j=0;j<this.canvas.height;j+=this.sz1)
       {
-        this.ctxGrid.strokeRect(i,j,sz1,sz1);
+        this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
         let x=Math.random();
         if(x<0.3)
-          this.ctxGrid.fillRect(i+1,j+1,sz1-1,sz1-1);
+          this.ctxGrid.fillRect(i+1,j+1,this.sz1-1,this.sz1-1);
       }
     }    
+  }
+
+  makeWalls()
+  {
+    this.canvas.addEventListener('mousemove', function (e) {
+      const rect = this.canvas.getBoundingClientRect();
+
+      let cx = e.clientX - rect.left;
+      let cy = e.clientY - rect.top;
+      this.ctxGrid.fillRect(cx,cy,this.sz1-1,this.sz1-1)
+    }.bind(this))    
   }
 
 }
