@@ -20,6 +20,7 @@ export class PathFinderComponent implements OnInit {
 
     this.ctxGrid.canvas.height = 500;
     this.ctxGrid.canvas.width = 1000;
+    this.ctxGrid.lineWidth = 2;
     this.resetGrid();
   }
 
