@@ -54,4 +54,15 @@ export class PathFinderComponent implements OnInit {
     }    
   }
 
+  makeWalls()
+  {
+    this.canvas.addEventListener('mousemove', function (e) {
+      const rect = this.canvas.getBoundingClientRect();
+
+      let cx = e.clientX - rect.left;
+      let cy = e.clientY - rect.top;
+      this.draw_erase_walls(e, cx, cy);
+    }.bind(this))    
+  }
+
 }
