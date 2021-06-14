@@ -22,6 +22,14 @@ export class PathFinderComponent implements OnInit {
     this.ctxGrid.canvas.width = 1000;
     this.ctxGrid.strokeStyle = "#808588";
     this.randomGrid();
+
+    this.canvas.addEventListener('mousemove', function (e) {
+      const rect = this.canvas.getBoundingClientRect();
+
+      let cx = e.clientX - rect.left;
+      let cy = e.clientY - rect.top;
+      console.log([cx , cy]);
+    }.bind(this))
   }
 
   resetGrid() 
