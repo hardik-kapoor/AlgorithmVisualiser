@@ -58,7 +58,7 @@ export class PathFinderComponent implements OnInit {
     }    
   }
 
-  makeWalls()
+  async makeWalls()
   {
     
     document.body.onmousedown=()=>{
@@ -74,16 +74,8 @@ export class PathFinderComponent implements OnInit {
         cy=(Math.floor(cy/20))*20;
         let r=Math.floor(cy/20);
         let c=Math.floor(cx/20);
-        if(this.arr[r][c]===0)
-        {
-          this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
-          this.arr[r][c]=1;
-        }
-        if(this.arr[r][c]===1)
-        {
-          this.ctxGrid.strokeRect(cx,cy,this.sz1,this.sz1);
-          this.arr[r][c]=0;
-        }
+        this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+        this.arr[r][c]=1;
       }
     }.bind(this))
 
