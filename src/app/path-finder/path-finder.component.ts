@@ -61,7 +61,8 @@ export class PathFinderComponent implements OnInit {
 
       let cx = e.clientX - rect.left;
       let cy = e.clientY - rect.top;
-      
+      cx=(Math.floor(cx/20))*20;
+      cy=(Math.floor(cy/20))*20;
       this.ctxGrid.fillRect(cx,cy,this.sz1-1,this.sz1-1);
       //console.log("Hello");
     }.bind(this))  
