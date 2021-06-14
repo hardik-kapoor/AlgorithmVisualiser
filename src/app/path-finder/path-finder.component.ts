@@ -48,7 +48,7 @@ export class PathFinderComponent implements OnInit {
         this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
         let x=Math.random();
         if(x<0.3)
-          this.ctxGrid.fillRect(i+1,j+1,this.sz1-1,this.sz1-1);
+          this.ctxGrid.fillRect(i+1,j+1,this.sz1-2,this.sz1-2);
       }
     }    
   }
@@ -62,10 +62,10 @@ export class PathFinderComponent implements OnInit {
       let cy = e.clientY - rect.top;
       cx=(Math.floor(cx/20))*20;
       cy=(Math.floor(cy/20))*20;
-      this.ctxGrid.fillRect(cx,cy,this.sz1-1,this.sz1-1);
-    }.bind(this))
-    
-    
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+      
+    }.bind(this))  
+      
   }
 
 }
