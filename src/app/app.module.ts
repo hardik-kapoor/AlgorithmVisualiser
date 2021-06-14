@@ -15,6 +15,7 @@ import { SearchingVisualiserComponent } from './searching-visualiser/searching-v
 import { GraphAlgoComponent } from './graph-algo/graph-algo.component';
 import { HomePageComponent } from './home-page/home-page.component';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
+import { PathFinderComponent } from './path-finder/path-finder.component';
 
 let routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
@@ -31,6 +32,7 @@ let routes = [
     SearchingVisualiserComponent,
     GraphAlgoComponent,
     HomePageComponent,
+    PathFinderComponent,
   ],
   imports: [
     BrowserModule,
