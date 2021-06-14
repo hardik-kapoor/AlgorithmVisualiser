@@ -18,15 +18,13 @@ export class PathFinderComponent implements OnInit {
     this.canvas = <HTMLCanvasElement>document.getElementById('myCanvas');
     this.ctxGrid = this.canvas.getContext('2d');
 
-    this.ctxGrid.canvas.height = 520;
-    this.ctxGrid.canvas.width = 1235;
     this.resetGrid();
   }
 
   resetGrid() {
 
     this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    let sz1=13;
+    let sz1=20;
     for(let i=0;i<this.canvas.width;i+=sz1)
     {
       for(let j=0;j<this.canvas.height;j+=sz1)
