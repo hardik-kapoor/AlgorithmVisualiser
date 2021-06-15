@@ -198,6 +198,7 @@ export class PathFinderComponent implements OnInit {
         this.pararr.push(temp);
         vis.push(temp2);
       }
+      
       vis[10][10]=1;
       while(!(q.isempty()))
       {
@@ -229,7 +230,7 @@ export class PathFinderComponent implements OnInit {
           break;
       }
       let nowi=this.des[0],nowj=this.des[1];
-      while(this.pararr[nowi][nowj]!==[10,10])
+      while(this.pararr[nowi][nowj][0]!==this.src[0] && this.pararr[nowi][nowj][1]!==this.src[1])
       {
         console.log(this.pararr[nowi][nowj]);
         let nowit=this.pararr[nowi][nowj][0];
@@ -264,28 +265,28 @@ export class PathFinderComponent implements OnInit {
     {
     
       if(this.isFound===true)
-        return;
+        return ;
       let x:number=root[0],y=root[1];
-      console.log([x,y]);
       
       for(let ind=0; ind<4; ind++)
       {
         let tx=x+this.dx[ind], ty=y+this.dy[ind];
-        console.log([tx,ty]);
+      
         if(tx<0||tx>=this.ys||ty<0||ty>=this.xs||this.arr[tx][ty]===1)
           continue;
         if(this.pararr[tx][ty][0]!==-1&& this.pararr[tx][ty][1]!==-1)
           continue;
+        if(this.des[0]===tx&& this.des[1]===ty)
+        {
+            this.isFound=true;
+            console.log("Hello");
+            return;
+        }
         this.arr[tx][ty]=4;
         this.drawWalls([tx,ty]);
         await new Promise(resolve => setTimeout(resolve, this.dur));
         this.pararr[tx][ty]=[x,y];
-        if(this.des[0]===tx&& this.des[1]===ty)
-        {
-          this.isFound=true;
-          console.log("Hello");
-          return;
-        }
+
         await new Promise(resolve => {setTimeout(() => {resolve(this._dfs([tx,ty]));}, );});
       }
     }
