@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Queue } from './queue';
+import {Stack} from './stack';
 
 @Component({
   selector: 'app-path-finder',
