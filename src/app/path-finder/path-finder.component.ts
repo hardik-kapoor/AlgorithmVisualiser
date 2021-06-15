@@ -22,6 +22,7 @@ export class PathFinderComponent implements OnInit {
   walltype = 1;
   dx=[1,-1,0,0];
   dy=[0,0,1,-1];
+  isFound:number=0;
 
   ngOnInit(): void {
     this.canvas = <HTMLCanvasElement>document.getElementById('myCanvas');
@@ -86,7 +87,7 @@ export class PathFinderComponent implements OnInit {
   }
 
   drawWalls(ind:number[]){
-    let cx=ind[1]/20,cy=ind[0]/20;
+    let cx=ind[1]*20,cy=ind[0]*20;
     if(this.arr[ind[0]][ind[1]]===0)
     {
       
@@ -223,7 +224,6 @@ export class PathFinderComponent implements OnInit {
   //
 
   //fun2
-
   //
 
 }
