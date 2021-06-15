@@ -229,13 +229,12 @@ export class PathFinderComponent implements OnInit {
           break;
       }
       let nowi=this.des[0],nowj=this.des[1];
-      while(this.pararr[nowi][nowj][0]!=-1)
+      while(this.pararr[nowi][nowj]!==[10,10])
       {
         console.log(this.pararr[nowi][nowj]);
         let nowit=this.pararr[nowi][nowj][0];
         let nowjt=this.pararr[nowi][nowj][1];
-        if([nowit,nowjt]!==this.src)
-          this.arr[nowit][nowjt]=5;
+        this.arr[nowit][nowjt]=5;
         this.drawWalls([nowit,nowjt]);
         await new Promise(resolve => setTimeout(resolve, this.dur));
         nowi=nowit;
@@ -273,7 +272,7 @@ export class PathFinderComponent implements OnInit {
       {
         let tx=x+this.dx[ind], ty=y+this.dy[ind];
         console.log([tx,ty]);
-        if(tx<0||tx>=this.xs||ty<0||ty>=this.ys||this.arr[tx][ty]===1)
+        if(tx<0||tx>=this.ys||ty<0||ty>=this.xs||this.arr[tx][ty]===1)
           continue;
         if(this.pararr[tx][ty][0]!==-1&& this.pararr[tx][ty][1]!==-1)
           continue;
