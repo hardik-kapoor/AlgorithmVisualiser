@@ -217,6 +217,10 @@ export class PathFinderComponent implements OnInit {
   //fun2
     async dfs()
     {
+      let xs=this.ctxGrid.canvas.height/this.sz1,ys=this.ctxGrid.canvas.width/this.sz1;
+      this.pararr=new Array(Math.floor(xs))
+                .fill(new Array(Math.floor(ys))
+                .fill(new Array(2)));      
       await new Promise(resolve => {setTimeout(() => {resolve(this._dfs(this.src));}, );});
     }
 
