@@ -30,6 +30,17 @@ export class PathFinderComponent implements OnInit {
   dx=[1,-1,0,0];
   dy=[0,0,1,-1];
 
+  /*
+  0->(weight)
+  1->wall
+  2->src
+  3->des
+  4->work in progess
+  5->final path
+  6-106->weight
+  */
+  inf:number=100000000;
+
   ngOnInit(): void {
     this.canvas = <HTMLCanvasElement>document.getElementById('myCanvas');
     this.ctxGrid = this.canvas.getContext('2d');
@@ -255,6 +266,10 @@ export class PathFinderComponent implements OnInit {
           break;
       }
       await new Promise(resolve => {setTimeout(() => {resolve(this.backtrack());}, );});
+    }
+
+    async dijkstra(){
+      
     }
   //
 
