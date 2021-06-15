@@ -16,4 +16,7 @@ export class Queue{
     pop(){
         this.queue.shift();
     }
+    size(){
+        return this.queue.length;
+    }
 }  

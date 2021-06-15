@@ -19,6 +19,7 @@ export class PathFinderComponent implements OnInit {
   arr;  
   src;
   des;
+  pararr;
   dur=250;
   isFound=false;
   walltype = 1;
@@ -178,12 +179,12 @@ export class PathFinderComponent implements OnInit {
       let q=new Queue();
       q.push(this.src);
       let xs=this.ctxGrid.canvas.height/this.sz1,ys=this.ctxGrid.canvas.height/this.sz1;
-      let pararr=new Array(Math.floor(xs))
+      this.pararr=new Array(Math.floor(xs))
                 .fill(new Array(Math.floor(ys))
                 .fill(new Array(2)));
       for(let i=0;i<xs;i++)
         for(let j=0;j<ys;j++)
-          pararr[i][j]=[-1,-1];
+          this.pararr[i][j]=[-1,-1];
       while(!(q.isempty()))
       {
         let now=q.front();
@@ -194,12 +195,12 @@ export class PathFinderComponent implements OnInit {
           let ni=i+this.dx[ind],nj=j+this.dy[ind];
           if(ni<0||ni>=xs||nj<0||nj>=ys||this.arr[nj][ni]===1)
             continue;
-          if(pararr[nj][ni]!==[-1,-1])
+          if(this.pararr[nj][ni]!==[-1,-1])
             continue;
           this.arr[nj][ni]=4;
           this.drawWalls([nj,ni]);
           await new Promise(resolve => setTimeout(resolve, this.dur));
-          pararr[nj][ni]=[j,i];
+          this.pararr[nj][ni]=[j,i];
           q.push([nj,ni]);
           if(ni===this.des[0]&&nj===this.des[1])
           {
