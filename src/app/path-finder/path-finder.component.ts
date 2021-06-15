@@ -50,7 +50,6 @@ export class PathFinderComponent implements OnInit {
     this.arr[this.des[0]][this.des[1]]=3;
     this.drawWalls(this.des);
     this.makeWalls();
-    this.randomGrid();
   }
 
   resetGrid() 
@@ -231,10 +230,8 @@ export class PathFinderComponent implements OnInit {
       }
       
       let nowi=this.des[0],nowj=this.des[1];
-      console.log(this.pararr[10][10]);
       while(this.pararr[nowi][nowj][0]!=this.src[0]||this.pararr[nowi][nowj][1]!=this.src[1])
       {
-        console.log(this.pararr[nowi][nowj]);
         let nowit=this.pararr[nowi][nowj][0];
         let nowjt=this.pararr[nowi][nowj][1];
         this.arr[nowit][nowjt]=5;
@@ -275,7 +272,7 @@ export class PathFinderComponent implements OnInit {
       {
         let tx=x+this.dx[ind], ty=y+this.dy[ind];
       
-        if(tx<0||tx>=this.ys||ty<0||ty>=this.xs||this.arr[tx][ty]===1)
+        if(tx<0||tx>=this.ys||ty<0||ty>=this.xs||this.arr[tx][ty]===1||this.isFound)
           continue;
         if(this.pararr[tx][ty][0]!==-1&& this.pararr[tx][ty][1]!==-1)
           continue;
