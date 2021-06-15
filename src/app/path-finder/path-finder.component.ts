@@ -30,8 +30,8 @@ export class PathFinderComponent implements OnInit {
   ngOnInit(): void {
     this.canvas = <HTMLCanvasElement>document.getElementById('myCanvas');
     this.ctxGrid = this.canvas.getContext('2d');
-    this.ctxGrid.canvas.height = 500;
-    this.ctxGrid.canvas.width = 1000;
+    this.ctxGrid.canvas.height = 400;
+    this.ctxGrid.canvas.width = 800;
     this.ctxGrid.strokeStyle = "#808588";
     this.xs=this.ctxGrid.canvas.width/this.sz1,this.ys=this.ctxGrid.canvas.height/this.sz1
     this.arr=[];
@@ -43,7 +43,7 @@ export class PathFinderComponent implements OnInit {
     }
     this.resetGrid();
     this.src=[10,10];
-    this.des=[20,30];
+    this.des=[15 , 35];
     this.arr[this.src[0]][this.src[1]]=2;
     this.drawWalls(this.src);
     this.arr[this.des[0]][this.des[1]]=3;
@@ -62,7 +62,7 @@ export class PathFinderComponent implements OnInit {
       }
     }
     this.src=[10,10];
-    this.des=[20,30];
+    this.des=[15,35];
     this.arr[this.src[0]][this.src[1]]=2;
     this.drawWalls(this.src);
     this.arr[this.des[0]][this.des[1]]=3;
