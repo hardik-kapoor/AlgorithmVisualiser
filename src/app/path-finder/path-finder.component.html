@@ -1,6 +1,6 @@
 
 <div class="container-fluid">
-    <div id="main" class="row bg-light">
+    <div id="main" class="row">
         <div class="col-2">
 
         </div>
@@ -10,22 +10,26 @@
         <div class="col-1">
             <br>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="bfs()" > BFS  </button>
-            </div>
-            <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="dfs()" > DFS  </button>
-            </div>
-            <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="dfs()" > Start  </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"  > <mat-slide-toggle (change)="walltoggle($event)"></mat-slide-toggle>  Walls</button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"  > Reset  </button>
             </div>
+            <div class="row-2">
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> <mat-slide-toggle [checked]="wallchecked" (change)="walltoggle($event)"></mat-slide-toggle>  Walls</button>
+            </div>
+            
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> Random Grid </button>
             </div>
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> Random Maze </button>
+            </div>
+            <div class="row-2">
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> Change Start </button>
+            </div>
+            <div class="row-2">
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark">Change Destination</button>
             </div>
         </div>
     </div>

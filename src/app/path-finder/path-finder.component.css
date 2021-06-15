@@ -38,6 +38,7 @@
     justify-content:center;
     position:relative;
     margin-bottom:15%;
+    margin-top:20px;
 }
 
 #txt2
@@ -52,10 +53,10 @@
 #bt
 {
     padding:0.4em;
-    font-size:1.2em;
+    font-size:1.1em;
     font-weight:400;
     transition: transform 500ms;
-    width: 8em;
+    width:150%;
     justify-content: center;
 }
 
@@ -73,8 +74,9 @@
     transform: scale(1.1);
     background-color: rgb(237, 237, 237);
     font-weight:500;
-    
 }
+
+
 
 #bt2:hover{
     transform: scale(1.1);
