@@ -1,12 +1,8 @@
 #myCanvas
 {
-
     display: block;
     border:5px solid #808588;
-
-    width : pixelWidth * devicePixelRatio;
-    height: pixelHeight * devicePixelRatio;
-    
+    width: 53vw;
 }
 
 #footer 
@@ -34,11 +30,13 @@
 }
 
 #main{
-    width: 100%;
+    width: auto;
+    display:flex;
     justify-content:center;
-    position:relative;
+
     margin-bottom:15%;
     margin-top:20px;
+
 }
 
 #txt2
@@ -56,7 +54,7 @@
     font-size:1.1em;
     font-weight:400;
     transition: transform 500ms;
-    width:150%;
+    width:100%;
     justify-content: center;
 }
 
@@ -98,3 +96,9 @@
     justify-content:center;
     padding:5px;
 }
+
+#sidebar{
+  background: linear-gradient(to right, #ff5f6d, #ffc371);
+    border-radius:10px;
+}
+

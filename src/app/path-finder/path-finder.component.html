@@ -1,13 +1,28 @@
 
-<div class="container-fluid">
-    <div id="main" class="row">
-        <div class="col-2">
+<div class="container-flex ">
+    <div id="main" class="container-fluid row">
+        <div class="container-fluid col-2 " style="background: linear-gradient(to right, #ff5f6d, #ffc371)">
+            <br>
+            <div class="row-2">
+                <mat-form-field class="card bg-light w-100">
+                    <mat-label 
+                    style="
+                    font-size:14px ; 
+                    color: black ;
+                    font-weight:400;
+                    "> Path Finding Algorithms</mat-label>
+                    <mat-select>
+                      <mat-option value="one">DFS</mat-option>
+                      <mat-option value="two">BFS</mat-option>
+                    </mat-select>
+                  </mat-form-field>
+            </div>
 
         </div>
-        <div id="graph" class="col-8">
+        <div id="graph" class="container-fluid col-7 ">
             <canvas id="myCanvas"></canvas>
         </div>
-        <div class="col-1">
+        <div class="col-2 container-fluid " id="sidebar">
             <br>
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="dfs()" > Start  </button>
