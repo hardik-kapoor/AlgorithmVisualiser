@@ -15,6 +15,7 @@ import { SearchingVisualiserComponent } from './searching-visualiser/searching-v
 import { HomePageComponent } from './home-page/home-page.component';
 import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { PathFinderComponent } from './path-finder/path-finder.component';
+import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 
 let routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
@@ -42,7 +43,8 @@ let routes = [
     MatSliderModule,
     MatIconModule,
     FontAwesomeModule,
-    NgxGraphModule
+    NgxGraphModule,
+    MatSlideToggleModule
   ],
   providers: [],
   bootstrap: [AppComponent , SortingVisualiserComponent]

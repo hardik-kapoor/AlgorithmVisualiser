@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Queue } from './queue';
 
+
 @Component({
   selector: 'app-path-finder',
   templateUrl: './path-finder.component.html',
@@ -21,6 +22,8 @@ export class PathFinderComponent implements OnInit {
   xs;
   ys;
   pararr;
+  tempsrc;
+  tempdes;
   dur=10;
   isFound=false;
   walltype = 1;
@@ -41,9 +44,11 @@ export class PathFinderComponent implements OnInit {
         temp.push(0);
       this.arr.push(temp);
     }
-    this.resetGrid();
     this.src=[10,10];
-    this.des=[15 , 35];
+    this.des=[15,35];
+    this.tempsrc=[...this.src];
+    this.tempdes=[...this.des];
+    this.resetGrid();
     this.arr[this.src[0]][this.src[1]]=2;
     this.drawWalls(this.src);
     this.arr[this.des[0]][this.des[1]]=3;
@@ -61,8 +66,8 @@ export class PathFinderComponent implements OnInit {
         this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
       }
     }
-    this.src=[10,10];
-    this.des=[15,35];
+    this.src=[...this.tempsrc];
+    this.des=[...this.tempdes];
     this.arr[this.src[0]][this.src[1]]=2;
     this.drawWalls(this.src);
     this.arr[this.des[0]][this.des[1]]=3;
