@@ -18,6 +18,11 @@ export class PathFinderComponent implements OnInit {
   arr;  
   src;
   des;
+  xs;
+  ys;
+  pararr;
+  dur=10;
+  isFound=false;
   walltype = 1;
   dx=[1,-1,0,0];
   dy=[0,0,1,-1];
@@ -28,22 +33,22 @@ export class PathFinderComponent implements OnInit {
     this.ctxGrid.canvas.height = 500;
     this.ctxGrid.canvas.width = 1000;
     this.ctxGrid.strokeStyle = "#808588";
-    this.arr=new Array(Math.floor(this.ctxGrid.canvas.height/this.sz1)+5).fill(new Array(Math.floor(this.ctxGrid.canvas.height/this.sz1)+5));
-    for(let i=0;i<this.arr.length;i++)
-      for(let j=0;j<this.arr[i].length;j++)
-        this.arr[i][j]=0;
+    this.xs=this.ctxGrid.canvas.width/this.sz1,this.ys=this.ctxGrid.canvas.height/this.sz1
+    this.arr=[];
+    for(let i=0;i<this.ys;i++){
+      let temp=[];
+      for(let j=0;j<this.xs;j++)
+        temp.push(0);
+      this.arr.push(temp);
+    }
     this.resetGrid();
     this.src=[10,10];
     this.des=[20,30];
-    this.ctxGrid.fillStyle='green';
-    this.ctxGrid.fillRect(this.src[1]*20+1,this.src[0]*20+1,this.sz1-2,this.sz1-2);
     this.arr[this.src[0]][this.src[1]]=2;
+    this.drawWalls(this.src);
     this.arr[this.des[0]][this.des[1]]=3;
-    this.ctxGrid.fillStyle='red';
-    this.ctxGrid.fillRect(this.des[1]*20+1,this.des[0]*20+1,this.sz1-2,this.sz1-2);
-    this.ctxGrid.fillStyle='black';
+    this.drawWalls(this.des);
     this.makeWalls();
-    this.randomGrid();
   }
 
   resetGrid() 
@@ -58,13 +63,10 @@ export class PathFinderComponent implements OnInit {
     }
     this.src=[10,10];
     this.des=[20,30];
-    this.ctxGrid.fillStyle='green';
-    this.ctxGrid.fillRect(this.src[1]*20+1,this.src[0]*20+1,this.sz1-2,this.sz1-2);
     this.arr[this.src[0]][this.src[1]]=2;
+    this.drawWalls(this.src);
     this.arr[this.des[0]][this.des[1]]=3;
-    this.ctxGrid.fillStyle='red';
-    this.ctxGrid.fillRect(this.des[1]*20+1,this.des[0]*20+1,this.sz1-2,this.sz1-2);
-    this.ctxGrid.fillStyle='black';
+    this.drawWalls(this.des);
   }  
 
   randomGrid()
@@ -77,11 +79,46 @@ export class PathFinderComponent implements OnInit {
         let x=Math.random();
         if(x<0.3&&this.arr[j/20][i/20]!==2&&this.arr[j/20][i/20]!==3)
         {
-          this.ctxGrid.fillRect(i+1,j+1,this.sz1-2,this.sz1-2);
           this.arr[j/20][i/20]=1;
+          this.drawWalls([j/20,i/20]);
         }
       }
     }    
+  }
+
+  drawWalls(ind:number[]){
+    let cx=ind[1]*20,cy=ind[0]*20;
+    if(this.arr[ind[0]][ind[1]]===0)
+    {
+      
+      this.ctxGrid.fillStyle = 'white';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
+    else if(this.arr[ind[0]][ind[1]]===1)
+    {
+      this.ctxGrid.fillStyle = 'black';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
+    else if(this.arr[ind[0]][ind[1]]===2)
+    {
+      this.ctxGrid.fillStyle = 'green';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
+    else if(this.arr[ind[0]][ind[1]]===3)
+    {
+      this.ctxGrid.fillStyle = 'red';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
+    else if(this.arr[ind[0]][ind[1]]===4)
+    {
+      this.ctxGrid.fillStyle = 'blue';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
+    else if(this.arr[ind[0]][ind[1]]===5)
+    {
+      this.ctxGrid.fillStyle = 'purple';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
   }
 
   makeWalls()
@@ -103,15 +140,11 @@ export class PathFinderComponent implements OnInit {
         if(!((r===this.src[0]&&c===this.src[1])||(r===this.des[0]&&c===this.des[1]))){
           if(this.walltype === 0){
             this.arr[r][c] = 0;
-            this.ctxGrid.fillStyle = 'white';
-            this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
-            console.log('done');
+            this.drawWalls([r,c]);
           }
           else{
-            this.ctxGrid.fillStyle = 'black';
-            this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
             this.arr[r][c]=1;
-            
+            this.drawWalls([r,c]);
           }
         }
       }
@@ -130,15 +163,11 @@ export class PathFinderComponent implements OnInit {
         if(!((r===this.src[0]&&c===this.src[1])||(r===this.des[0]&&c===this.des[1]))){
           if(this.walltype===0){
             this.arr[r][c] = 0;
-            this.ctxGrid.fillStyle = 'white';
-            this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
-            console.log('done');
+            this.drawWalls([r,c]);
           }
           else{
-            this.ctxGrid.fillStyle = 'black';
-            this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
             this.arr[r][c]=1;
-            
+            this.drawWalls([r,c]);
           }
         }
       }
@@ -148,32 +177,123 @@ export class PathFinderComponent implements OnInit {
       this.isDrawing=false;
     } 
   }
+  
+  async backtrack()
+  {
+    let nowi=this.des[0],nowj=this.des[1];
+    while(this.pararr[nowi][nowj][0]!=this.src[0]||this.pararr[nowi][nowj][1]!=this.src[1])
+    {
+      let nowit=this.pararr[nowi][nowj][0];
+      let nowjt=this.pararr[nowi][nowj][1];
+      this.arr[nowit][nowjt]=5;
+      this.drawWalls([nowit,nowjt]);
+      await new Promise(resolve => setTimeout(resolve, this.dur));
+      console.log(this.pararr[nowi][nowj]);
+      nowi=nowit;
+      nowj=nowjt;
+    }
+  }
 
   //fun1
     async bfs(){
       let q=new Queue();
       q.push(this.src);
-      let flag=false;
+      let xs=this.xs,ys=this.ys;
+      this.pararr=[];
+      let vis=[];
+      for(let i=0;i<ys;i++)
+      {
+        let temp=[];
+        let temp2=[];
+        for(let j=0;j<xs;j++){
+          temp.push([-1,-1]);
+          temp2.push(0);
+        }
+        this.pararr.push(temp);
+        vis.push(temp2);
+      }
+      
+      vis[10][10]=1;
       while(!(q.isempty()))
       {
         let now=q.front();
         q.pop();
-        let i=now[1],j=now[0];
+        let i=now[0],j=now[1];
         for(let ind=0;ind<4;ind++)
         {
           let ni=i+this.dx[ind],nj=j+this.dy[ind];
-          if(ni<0||ni>=this.canvas.height||nj<0||nj>=this.canvas.width||this.arr[nj][ni]==1)
+          if(ni<0||ni>=ys||nj<0||nj>=xs||this.arr[ni][nj]===1)
             continue;
-          if(this.arr[nj][ni]==2)
-            flag=true;
-          q.push([nj,ni]);
+          if(vis[ni][nj]===1)
+            continue;
+          if(ni===this.des[0]&&nj===this.des[1])
+          {
+            this.pararr[ni][nj]=[i,j];
+            vis[ni][nj]=1;
+            this.isFound=true;
+            break;
+          }
+          this.arr[ni][nj]=4;
+          this.drawWalls([ni,nj]);
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+          this.pararr[ni][nj]=[i,j];
+          vis[ni][nj]=1;
+          q.push([ni,nj]);
         }
+        if(this.isFound)
+          break;
       }
+      await new Promise(resolve => {setTimeout(() => {resolve(this.backtrack());}, );});
     }
   //
 
   //fun2
+    async dfs()
+    {
+      this.pararr=[];
+      for(let i=0;i<this.ys;i++)
+      {
+        let temp=[];
+        for(let j=0;j<this.xs;j++){
+          temp.push([-1,-1]);
+        }
+        this.pararr.push(temp);
+      }
+      this.isFound=false;
+      this.pararr[this.src[0]][this.src[1]]=[-2,-2];     
+      await new Promise(resolve => {setTimeout(() => {resolve(this._dfs(this.src));}, );});
+      await new Promise(resolve => {setTimeout(() => {resolve(this.backtrack());}, );});
+    }
 
+    async _dfs(root:number[])
+    {
+    
+      if(this.isFound===true)
+        return ;
+      let x:number=root[0],y=root[1];
+      
+      for(let ind=0; ind<4; ind++)
+      {
+        let tx=x+this.dx[ind], ty=y+this.dy[ind];
+      
+        if(tx<0||tx>=this.ys||ty<0||ty>=this.xs||this.arr[tx][ty]===1||this.isFound)
+          continue;
+        if(this.pararr[tx][ty][0]!==-1&& this.pararr[tx][ty][1]!==-1)
+          continue;
+        if(this.des[0]===tx&& this.des[1]===ty)
+        {
+            this.isFound=true;
+            this.pararr[tx][ty]=[x,y];
+            return;
+        }
+        this.arr[tx][ty]=4;
+        this.drawWalls([tx,ty]);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        this.pararr[tx][ty]=[x,y];
+
+        await new Promise(resolve => {setTimeout(() => {resolve(this._dfs([tx,ty]));}, );});
+      }
+    }
   //
 
 }
