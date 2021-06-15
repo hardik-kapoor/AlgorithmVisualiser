@@ -259,6 +259,22 @@ export class PathFinderComponent implements OnInit {
       this.isFound=false;
       this.pararr[this.src[0]][this.src[1]]=[-2,-2];     
       await new Promise(resolve => {setTimeout(() => {resolve(this._dfs(this.src));}, );});
+      let nowi=this.des[0],nowj=this.des[1];
+      while(this.pararr[nowi][nowj][0]!=this.src[0]||this.pararr[nowi][nowj][1]!=this.src[1])
+      {
+        let nowit=this.pararr[nowi][nowj][0];
+        let nowjt=this.pararr[nowi][nowj][1];
+        this.arr[nowit][nowjt]=5;
+        this.drawWalls([nowit,nowjt]);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        console.log(this.pararr[nowi][nowj]);
+        nowi=nowit;
+        nowj=nowjt;
+      }      
+
+
+
+
     }
 
     async _dfs(root:number[])
@@ -279,7 +295,7 @@ export class PathFinderComponent implements OnInit {
         if(this.des[0]===tx&& this.des[1]===ty)
         {
             this.isFound=true;
-            console.log("Hello");
+            this.pararr[tx][ty]=[x,y];
             return;
         }
         this.arr[tx][ty]=4;
