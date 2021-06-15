@@ -38,7 +38,7 @@ export class PathFinderComponent implements OnInit {
     this.arr=[];
     for(let i=0;i<this.ys;i++){
       let temp=[];
-      for(let j=0;j<this.xs;j++){}
+      for(let j=0;j<this.xs;j++)
         temp.push(0);
       this.arr.push(temp);
     }
