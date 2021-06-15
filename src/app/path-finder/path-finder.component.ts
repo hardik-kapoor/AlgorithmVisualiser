@@ -198,9 +198,7 @@ export class PathFinderComponent implements OnInit {
         this.pararr.push(temp);
         vis.push(temp2);
       }
-      console.log(vis[10][11]);
       vis[10][10]=1;
-      console.log(vis[10][11]);
       while(!(q.isempty()))
       {
         let now=q.front();
@@ -215,6 +213,8 @@ export class PathFinderComponent implements OnInit {
             continue;
           if(ni===this.des[0]&&nj===this.des[1])
           {
+            this.pararr[ni][nj]=[i,j];
+            vis[ni][nj]=1;
             this.isFound=true;
             break;
           }
@@ -227,6 +227,19 @@ export class PathFinderComponent implements OnInit {
         }
         if(this.isFound)
           break;
+      }
+      let nowi=this.des[0],nowj=this.des[1];
+      while(this.pararr[nowi][nowj][0]!=-1)
+      {
+        console.log(this.pararr[nowi][nowj]);
+        let nowit=this.pararr[nowi][nowj][0];
+        let nowjt=this.pararr[nowi][nowj][1];
+        if([nowit,nowjt]!==this.src)
+          this.arr[nowit][nowjt]=5;
+        this.drawWalls([nowit,nowjt]);
+        await new Promise(resolve => setTimeout(resolve, this.dur));
+        nowi=nowit;
+        nowj=nowjt;
       }
     }
   //
