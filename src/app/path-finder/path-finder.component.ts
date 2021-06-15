@@ -19,6 +19,8 @@ export class PathFinderComponent implements OnInit {
   arr;  
   src;
   des;
+  xs;
+  ys;
   pararr;
   dur=250;
   isFound=false;
@@ -217,16 +219,44 @@ export class PathFinderComponent implements OnInit {
   //fun2
     async dfs()
     {
-      let xs=this.ctxGrid.canvas.height/this.sz1,ys=this.ctxGrid.canvas.width/this.sz1;
-      this.pararr=new Array(Math.floor(xs))
-                .fill(new Array(Math.floor(ys))
-                .fill(new Array(2)));      
+      this.xs=this.ctxGrid.canvas.height/this.sz1;
+      this.ys=this.ctxGrid.canvas.width/this.sz1;
+      this.pararr=new Array(Math.floor(this.ys))
+                .fill(new Array(Math.floor(this.xs))
+                .fill(new Array(2))); 
+      for(let i=0;i<this.xs;i++)
+        for(let j=0;j<this.ys;j++)
+          this.pararr[i][j]=[-1,-1];
+      this.isFound=false;     
       await new Promise(resolve => {setTimeout(() => {resolve(this._dfs(this.src));}, );});
     }
 
     async _dfs(root:number[])
     {
+      console.log(root);
+      if(this.isFound===true)
+        return;
+      let x:number=root[0],y=root[1];
+      for(let ind=0; ind<4; ind++)
+      {
+        let tx=x+this.dx[ind], ty=y+this.dy[ind];
+        console.log([tx,ty]);
+        if(tx<0||tx>=this.xs||ty<0||ty>=this.ys||this.arr[tx][ty]===1)
+          continue;
+        console.log(this.pararr[tx][ty]);
+        if(this.pararr[tx][ty]!==[-1,-1])
+          continue;
 
+        this.pararr[tx][ty]=root;
+        if(this.des===[tx,ty])
+        {
+          this.isFound=true;
+          console.log("Hello");
+          return;
+        }
+        console.log([tx,ty]);
+        this._dfs([tx,ty]);
+      }
     }
   //
 
