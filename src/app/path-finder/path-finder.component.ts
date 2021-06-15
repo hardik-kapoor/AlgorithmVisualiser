@@ -38,7 +38,7 @@ export class PathFinderComponent implements OnInit {
     this.arr=[];
     for(let i=0;i<this.ys;i++){
       let temp=[];
-      for(let j=0;j<this.xs;j++){}
+      for(let j=0;j<this.xs;j++)
         temp.push(0);
       this.arr.push(temp);
     }
@@ -272,7 +272,7 @@ export class PathFinderComponent implements OnInit {
       {
         let tx=x+this.dx[ind], ty=y+this.dy[ind];
       
-        if(tx<0||tx>=this.ys||ty<0||ty>=this.xs||this.arr[tx][ty]===1)
+        if(tx<0||tx>=this.ys||ty<0||ty>=this.xs||this.arr[tx][ty]===1||this.isFound)
           continue;
         if(this.pararr[tx][ty][0]!==-1&& this.pararr[tx][ty][1]!==-1)
           continue;
