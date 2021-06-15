@@ -20,8 +20,10 @@ export class PathFinderComponent implements OnInit {
   src;
   des;
   pararr;
-  dur=250;
+  dur=10;
   isFound=false;
+  xs;
+  ys;
   walltype = 1;
   dx=[1,-1,0,0];
   dy=[0,0,1,-1];
@@ -32,10 +34,14 @@ export class PathFinderComponent implements OnInit {
     this.ctxGrid.canvas.height = 500;
     this.ctxGrid.canvas.width = 1000;
     this.ctxGrid.strokeStyle = "#808588";
-    this.arr=new Array(Math.floor(this.ctxGrid.canvas.width/this.sz1)+5).fill(new Array(Math.floor(this.ctxGrid.canvas.height/this.sz1)+5));
-    for(let i=0;i<this.arr.length;i++)
-      for(let j=0;j<this.arr[i].length;j++)
-        this.arr[i][j]=0;
+    this.xs=this.ctxGrid.canvas.width/this.sz1,this.ys=this.ctxGrid.canvas.height/this.sz1
+    this.arr=[];
+    for(let i=0;i<this.ys;i++){
+      let temp=[];
+      for(let j=0;j<this.xs;j++){}
+        temp.push(0);
+      this.arr.push(temp);
+    }
     this.resetGrid();
     this.src=[10,10];
     this.des=[20,30];
@@ -178,14 +184,14 @@ export class PathFinderComponent implements OnInit {
     async bfs(){
       let q=new Queue();
       q.push(this.src);
-      let xs=this.ctxGrid.canvas.width/this.sz1,ys=this.ctxGrid.canvas.height/this.sz1;
+      let xs=this.xs,ys=this.ys;
       this.pararr=[];
       let vis=[];
-      for(let i=0;i<xs;i++)
+      for(let i=0;i<ys;i++)
       {
         let temp=[];
         let temp2=[];
-        for(let j=0;j<ys;j++){
+        for(let j=0;j<xs;j++){
           temp.push([-1,-1]);
           temp2.push(0);
         }
@@ -207,16 +213,17 @@ export class PathFinderComponent implements OnInit {
             continue;
           if(vis[ni][nj]===1)
             continue;
-          this.arr[ni][nj]=4;
-          this.drawWalls([ni,nj]);
-          this.pararr[ni][nj]=[i,j];
-          vis[ni][nj]=1;
-          q.push([ni,nj]);
           if(ni===this.des[0]&&nj===this.des[1])
           {
             this.isFound=true;
             break;
           }
+          this.arr[ni][nj]=4;
+          this.drawWalls([ni,nj]);
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+          this.pararr[ni][nj]=[i,j];
+          vis[ni][nj]=1;
+          q.push([ni,nj]);
         }
         if(this.isFound)
           break;
