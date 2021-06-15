@@ -26,7 +26,7 @@ export class PathFinderComponent implements OnInit {
   tempdes;
   dur=10;
   isFound=false;
-  walltype = 1;
+  walltype = 0;
   dx=[1,-1,0,0];
   dy=[0,0,1,-1];
 
@@ -55,6 +55,13 @@ export class PathFinderComponent implements OnInit {
     this.drawWalls(this.des);
     this.makeWalls();
   }
+
+  walltoggle(event){
+    console.log(event)
+    if(event.checked === true)this.walltype = 1;
+    else this.walltype = 0;
+  }
+
 
   resetGrid() 
   {

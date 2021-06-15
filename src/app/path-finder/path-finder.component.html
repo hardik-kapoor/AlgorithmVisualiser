@@ -19,7 +19,7 @@
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="dfs()" > Start  </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"  > <mat-slide-toggle ></mat-slide-toggle>  Walls</button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"  > <mat-slide-toggle (change)="walltoggle($event)"></mat-slide-toggle>  Walls</button>
             </div>
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> Random Grid </button>
