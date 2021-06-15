@@ -19,6 +19,7 @@ export class PathFinderComponent implements OnInit {
   arr;  
   src;
   des;
+  isFound=false;
   walltype = 1;
   dx=[1,-1,0,0];
   dy=[0,0,1,-1];
@@ -175,7 +176,6 @@ export class PathFinderComponent implements OnInit {
     async bfs(){
       let q=new Queue();
       q.push(this.src);
-      let flag=false;
       let xs=this.ctxGrid.canvas.height/this.sz1,ys=this.ctxGrid.canvas.height/this.sz1;
       let pararr=new Array(Math.floor(xs))
                 .fill(new Array(Math.floor(ys))
@@ -199,11 +199,11 @@ export class PathFinderComponent implements OnInit {
           q.push([nj,ni]);
           if(ni===this.des[0]&&nj===this.des[1])
           {
-            flag=true;
+            this.isFound=true;
             break;
           }
         }
-        if(flag)
+        if(this.isFound)
           break;
       }
     }
