@@ -84,6 +84,41 @@ export class PathFinderComponent implements OnInit {
     }    
   }
 
+  drawWalls(ind:number[]){
+    let cx=ind[1]/20,cy=ind[0]/20;
+    if(this.arr[ind[0]][ind[1]]===0)
+    {
+      
+      this.ctxGrid.fillStyle = 'white';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
+    else if(this.arr[ind[0]][ind[1]]===1)
+    {
+      this.ctxGrid.fillStyle = 'black';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
+    else if(this.arr[ind[0]][ind[1]]===2)
+    {
+      this.ctxGrid.fillStyle = 'blue';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
+    else if(this.arr[ind[0]][ind[1]]===3)
+    {
+      this.ctxGrid.fillStyle = 'red';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
+    else if(this.arr[ind[0]][ind[1]]===4)
+    {
+      this.ctxGrid.fillStyle = 'green';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
+    else if(this.arr[ind[0]][ind[1]]===5)
+    {
+      this.ctxGrid.fillStyle = 'purple';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
+  }
+
   makeWalls()
   {
     
@@ -105,7 +140,6 @@ export class PathFinderComponent implements OnInit {
             this.arr[r][c] = 0;
             this.ctxGrid.fillStyle = 'white';
             this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
-            console.log('done');
           }
           else{
             this.ctxGrid.fillStyle = 'black';
@@ -154,6 +188,13 @@ export class PathFinderComponent implements OnInit {
       let q=new Queue();
       q.push(this.src);
       let flag=false;
+      let xs=this.ctxGrid.canvas.height/this.sz1,ys=this.ctxGrid.canvas.height/this.sz1;
+      let pararr=new Array(Math.floor(xs))
+                .fill(new Array(Math.floor(ys))
+                .fill(new Array(2)));
+      for(let i=0;i<xs;i++)
+        for(let j=0;j<ys;j++)
+          pararr[i][j]=[-1,-1];
       while(!(q.isempty()))
       {
         let now=q.front();
@@ -162,12 +203,20 @@ export class PathFinderComponent implements OnInit {
         for(let ind=0;ind<4;ind++)
         {
           let ni=i+this.dx[ind],nj=j+this.dy[ind];
-          if(ni<0||ni>=this.canvas.height||nj<0||nj>=this.canvas.width||this.arr[nj][ni]==1)
+          if(ni<0||ni>=xs||nj<0||nj>=ys||this.arr[nj][ni]===1)
             continue;
-          if(this.arr[nj][ni]==2)
-            flag=true;
+          if(pararr[nj][ni]!==[-1,-1])
+            continue;
+          pararr[nj][ni]=[j,i];
           q.push([nj,ni]);
+          if(ni===this.des[0]&&nj===this.des[1])
+          {
+            flag=true;
+            break;
+          }
         }
+        if(flag)
+          break;
       }
     }
   //
