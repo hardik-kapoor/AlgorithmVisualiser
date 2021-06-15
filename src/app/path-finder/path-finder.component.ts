@@ -247,8 +247,6 @@ export class PathFinderComponent implements OnInit {
   //fun2
     async dfs()
     {
-      this.xs=this.ctxGrid.canvas.height/this.sz1;
-      this.ys=this.ctxGrid.canvas.width/this.sz1;
       this.pararr=[];
       for(let i=0;i<this.ys;i++)
       {
