@@ -246,8 +246,6 @@ export class PathFinderComponent implements OnInit {
   //fun2
     async dfs()
     {
-      this.xs=this.ctxGrid.canvas.height/this.sz1;
-      this.ys=this.ctxGrid.canvas.width/this.sz1;
       this.pararr=[];
       for(let i=0;i<this.ys;i++)
       {
@@ -274,7 +272,7 @@ export class PathFinderComponent implements OnInit {
       {
         let tx=x+this.dx[ind], ty=y+this.dy[ind];
         console.log([tx,ty]);
-        if(tx<0||tx>=this.xs||ty<0||ty>=this.ys||this.arr[tx][ty]===1)
+        if(tx<0||tx>=this.ys||ty<0||ty>=this.xs||this.arr[tx][ty]===1)
           continue;
         if(this.pararr[tx][ty][0]!==-1&& this.pararr[tx][ty][1]!==-1)
           continue;
