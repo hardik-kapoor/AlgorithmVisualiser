@@ -31,13 +31,14 @@ export class PathFinderComponent implements OnInit {
   dy=[0,0,1,-1];
 
   /*
-  0->(weight)
+  0->(weight)(is equal to 1)
   1->wall
   2->src
   3->des
   4->work in progess
   5->final path
-  6-106->weight
+  6->changing
+  7-107->weight (is equal to weight - 5, or 2->102)
   */
   inf:number=100000000;
 
@@ -148,6 +149,11 @@ export class PathFinderComponent implements OnInit {
     else if(this.arr[ind[0]][ind[1]]===5)
     {
       this.ctxGrid.fillStyle = 'purple';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
+    else if(this.arr[ind[0]][ind[1]]===6)
+    {
+      this.ctxGrid.fillStyle = 'black';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
   }
@@ -276,7 +282,81 @@ export class PathFinderComponent implements OnInit {
     }
 
     async dijkstra(){
-      
+      let dis=[],done=[];
+      this.pararr=[];
+      for(let i=0;i<this.ys;i++)
+      {
+        let temp=[],temp2=[],temp3=[];
+        for(let j=0;j<this.xs;j++)
+        {
+          temp.push(this.inf);
+          temp2.push(0);
+          temp3.push([-1,-1]);
+        }
+        dis.push(temp);
+        done.push(temp2);
+        this.pararr.push(temp3);
+      }
+      dis[this.src[0]][this.src[1]]=0;
+      while(!this.isFound)
+      {
+        let now=[-1,-1],mn=this.inf;
+        for(let i=0;i<this.ys;i++)
+        {
+          for(let j=0;j<this.xs;j++)
+          {
+            if(dis[i][j]<mn&&!done[i][j])
+            {
+              now=[i,j];
+              mn=dis[i][j];
+            }
+          }
+        }
+        if(now[0]===-1)
+          break;
+        done[now[0]][now[1]]=1;
+        if(now[0]===this.des[0]&&now[1]===this.des[1])
+        {
+          this.isFound=true;
+          break;
+        }
+        if(this.arr[now[0]][now[1]]!==2&&this.arr[now[0]][now[1]]!==3)
+        {
+          this.arr[now[0]][now[1]]=4;
+          this.drawWalls([now[0],now[1]]);
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+        }
+        for(let ind=0;ind<4;ind++)
+        {
+          let ni=now[0]+this.dx[ind],nj=now[1]+this.dy[ind];
+          if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]===1||done[ni][nj])
+            continue;
+          if(this.arr[now[0]][now[1]]!==2&&this.arr[now[0]][now[1]]!==3){
+            this.arr[ni][nj]=6;
+            this.drawWalls([ni,nj]);
+          }
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+          let vl:number=-1;
+          if(this.arr[ni][nj]===3)
+            vl=103;
+          else if(this.arr[ni][nj]===0)
+            vl=1;
+          else
+            vl=this.arr[ni][nj]-5;
+          if(dis[ni][nj]>dis[now[0]][now[1]]+vl)
+          {
+            dis[ni][nj]=dis[now[0]][now[1]]+vl;
+            this.pararr[ni][nj]=now;
+          }
+          if(this.arr[now[0]][now[1]]!==2&&this.arr[now[0]][now[1]]!==3){
+            this.arr[ni][nj]=0;
+            this.drawWalls([ni,nj]);
+          }
+          await new Promise(resolve => setTimeout(resolve, this.dur));
+        }
+      }
+      if(this.isFound)
+        this.backtrack();
     }
   //
 
