@@ -32,7 +32,7 @@ export class PathFinderComponent implements OnInit {
     this.ctxGrid.canvas.height = 500;
     this.ctxGrid.canvas.width = 1000;
     this.ctxGrid.strokeStyle = "#808588";
-    this.arr=new Array(Math.floor(this.ctxGrid.canvas.height/this.sz1)+5).fill(new Array(Math.floor(this.ctxGrid.canvas.height/this.sz1)+5));
+    this.arr=new Array(Math.floor(this.ctxGrid.canvas.width/this.sz1)+5).fill(new Array(Math.floor(this.ctxGrid.canvas.height/this.sz1)+5));
     for(let i=0;i<this.arr.length;i++)
       for(let j=0;j<this.arr[i].length;j++)
         this.arr[i][j]=0;
@@ -178,7 +178,7 @@ export class PathFinderComponent implements OnInit {
     async bfs(){
       let q=new Queue();
       q.push(this.src);
-      let xs=this.ctxGrid.canvas.height/this.sz1,ys=this.ctxGrid.canvas.width/this.sz1;
+      let xs=this.ctxGrid.canvas.width/this.sz1,ys=this.ctxGrid.canvas.height/this.sz1;
       this.pararr=new Array(Math.floor(xs))
                 .fill(new Array(Math.floor(ys))
                 .fill(new Array(2)));
@@ -193,10 +193,12 @@ export class PathFinderComponent implements OnInit {
         for(let ind=0;ind<4;ind++)
         {
           let ni=i+this.dx[ind],nj=j+this.dy[ind];
+          console.log([ni,nj]);
           if(ni<0||ni>=xs||nj<0||nj>=ys||this.arr[nj][ni]===1)
             continue;
           if(this.pararr[nj][ni]!==[-1,-1])
             continue;
+          console.log([ni,nj]);
           this.arr[nj][ni]=4;
           this.drawWalls([nj,ni]);
           await new Promise(resolve => setTimeout(resolve, this.dur));
