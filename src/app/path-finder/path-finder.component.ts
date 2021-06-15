@@ -36,13 +36,10 @@ export class PathFinderComponent implements OnInit {
     this.resetGrid();
     this.src=[10,10];
     this.des=[20,30];
-    this.ctxGrid.fillStyle='green';
-    this.ctxGrid.fillRect(this.src[1]*20+1,this.src[0]*20+1,this.sz1-2,this.sz1-2);
     this.arr[this.src[0]][this.src[1]]=2;
+    this.drawWalls(this.src);
     this.arr[this.des[0]][this.des[1]]=3;
-    this.ctxGrid.fillStyle='red';
-    this.ctxGrid.fillRect(this.des[1]*20+1,this.des[0]*20+1,this.sz1-2,this.sz1-2);
-    this.ctxGrid.fillStyle='black';
+    this.drawWalls(this.des);
     this.makeWalls();
     this.randomGrid();
   }
@@ -59,13 +56,10 @@ export class PathFinderComponent implements OnInit {
     }
     this.src=[10,10];
     this.des=[20,30];
-    this.ctxGrid.fillStyle='green';
-    this.ctxGrid.fillRect(this.src[1]*20+1,this.src[0]*20+1,this.sz1-2,this.sz1-2);
     this.arr[this.src[0]][this.src[1]]=2;
+    this.drawWalls(this.src);
     this.arr[this.des[0]][this.des[1]]=3;
-    this.ctxGrid.fillStyle='red';
-    this.ctxGrid.fillRect(this.des[1]*20+1,this.des[0]*20+1,this.sz1-2,this.sz1-2);
-    this.ctxGrid.fillStyle='black';
+    this.drawWalls(this.des);
   }  
 
   randomGrid()
@@ -78,8 +72,8 @@ export class PathFinderComponent implements OnInit {
         let x=Math.random();
         if(x<0.3&&this.arr[j/20][i/20]!==2&&this.arr[j/20][i/20]!==3)
         {
-          this.ctxGrid.fillRect(i+1,j+1,this.sz1-2,this.sz1-2);
           this.arr[j/20][i/20]=1;
+          this.drawWalls([j/20,i/20]);
         }
       }
     }    
@@ -100,7 +94,7 @@ export class PathFinderComponent implements OnInit {
     }
     else if(this.arr[ind[0]][ind[1]]===2)
     {
-      this.ctxGrid.fillStyle = 'blue';
+      this.ctxGrid.fillStyle = 'green';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===3)
@@ -110,7 +104,7 @@ export class PathFinderComponent implements OnInit {
     }
     else if(this.arr[ind[0]][ind[1]]===4)
     {
-      this.ctxGrid.fillStyle = 'green';
+      this.ctxGrid.fillStyle = 'blue';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===5)
@@ -139,14 +133,11 @@ export class PathFinderComponent implements OnInit {
         if(!((r===this.src[0]&&c===this.src[1])||(r===this.des[0]&&c===this.des[1]))){
           if(this.walltype === 0){
             this.arr[r][c] = 0;
-            this.ctxGrid.fillStyle = 'white';
-            this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+            this.drawWalls([r,c]);
           }
           else{
-            this.ctxGrid.fillStyle = 'black';
-            this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
             this.arr[r][c]=1;
-            
+            this.drawWalls([r,c]);
           }
         }
       }
@@ -165,15 +156,11 @@ export class PathFinderComponent implements OnInit {
         if(!((r===this.src[0]&&c===this.src[1])||(r===this.des[0]&&c===this.des[1]))){
           if(this.walltype===0){
             this.arr[r][c] = 0;
-            this.ctxGrid.fillStyle = 'white';
-            this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
-            console.log('done');
+            this.drawWalls([r,c]);
           }
           else{
-            this.ctxGrid.fillStyle = 'black';
-            this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
             this.arr[r][c]=1;
-            
+            this.drawWalls([r,c]);
           }
         }
       }
