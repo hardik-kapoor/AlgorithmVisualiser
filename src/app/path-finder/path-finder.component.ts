@@ -178,7 +178,7 @@ export class PathFinderComponent implements OnInit {
     async bfs(){
       let q=new Queue();
       q.push(this.src);
-      let xs=this.ctxGrid.canvas.height/this.sz1,ys=this.ctxGrid.canvas.height/this.sz1;
+      let xs=this.ctxGrid.canvas.height/this.sz1,ys=this.ctxGrid.canvas.width/this.sz1;
       this.pararr=new Array(Math.floor(xs))
                 .fill(new Array(Math.floor(ys))
                 .fill(new Array(2)));
