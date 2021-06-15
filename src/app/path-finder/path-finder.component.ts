@@ -214,6 +214,15 @@ export class PathFinderComponent implements OnInit {
   //
 
   //fun2
+    async dfs()
+    {
+      await new Promise(resolve => {setTimeout(() => {resolve(this._dfs(this.src));}, );});
+    }
+
+    async _dfs(root:number[])
+    {
+
+    }
   //
 
 }
