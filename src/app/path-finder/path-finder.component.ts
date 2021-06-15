@@ -179,31 +179,39 @@ export class PathFinderComponent implements OnInit {
       let q=new Queue();
       q.push(this.src);
       let xs=this.ctxGrid.canvas.width/this.sz1,ys=this.ctxGrid.canvas.height/this.sz1;
-      this.pararr=new Array(Math.floor(xs))
-                .fill(new Array(Math.floor(ys))
-                .fill(new Array(2)));
+      this.pararr=[];
+      let vis=[];
       for(let i=0;i<xs;i++)
-        for(let j=0;j<ys;j++)
-          this.pararr[i][j]=[-1,-1];
+      {
+        let temp=[];
+        let temp2=[];
+        for(let j=0;j<ys;j++){
+          temp.push([-1,-1]);
+          temp2.push(0);
+        }
+        this.pararr.push(temp);
+        vis.push(temp2);
+      }
+      console.log(vis[10][11]);
+      vis[10][10]=1;
+      console.log(vis[10][11]);
       while(!(q.isempty()))
       {
         let now=q.front();
         q.pop();
-        let i=now[1],j=now[0];
+        let i=now[0],j=now[1];
         for(let ind=0;ind<4;ind++)
         {
           let ni=i+this.dx[ind],nj=j+this.dy[ind];
-          console.log([ni,nj]);
-          if(ni<0||ni>=xs||nj<0||nj>=ys||this.arr[nj][ni]===1)
+          if(ni<0||ni>=ys||nj<0||nj>=xs||this.arr[ni][nj]===1)
             continue;
-          if(this.pararr[nj][ni]!==[-1,-1])
+          if(vis[ni][nj]===1)
             continue;
-          console.log([ni,nj]);
-          this.arr[nj][ni]=4;
-          this.drawWalls([nj,ni]);
-          await new Promise(resolve => setTimeout(resolve, this.dur));
-          this.pararr[nj][ni]=[j,i];
-          q.push([nj,ni]);
+          this.arr[ni][nj]=4;
+          this.drawWalls([ni,nj]);
+          this.pararr[ni][nj]=[i,j];
+          vis[ni][nj]=1;
+          q.push([ni,nj]);
           if(ni===this.des[0]&&nj===this.des[1])
           {
             this.isFound=true;
