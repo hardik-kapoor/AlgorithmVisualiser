@@ -58,6 +58,7 @@ export class PathFinderComponent implements OnInit {
 
   resetGrid() 
   {
+    this.isFound=false;
     this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
     for(let i=0;i<this.canvas.width;i+=this.sz1)
     {
@@ -65,6 +66,13 @@ export class PathFinderComponent implements OnInit {
       {
         this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
       }
+    }
+    this.arr=[];
+    for(let i=0;i<this.ys;i++){
+      let temp=[];
+      for(let j=0;j<this.xs;j++)
+        temp.push(0);
+      this.arr.push(temp);
     }
     this.src=[...this.tempsrc];
     this.des=[...this.tempdes];
@@ -193,7 +201,6 @@ export class PathFinderComponent implements OnInit {
       this.arr[nowit][nowjt]=5;
       this.drawWalls([nowit,nowjt]);
       await new Promise(resolve => setTimeout(resolve, this.dur));
-      console.log(this.pararr[nowi][nowj]);
       nowi=nowit;
       nowj=nowjt;
     }
@@ -217,8 +224,7 @@ export class PathFinderComponent implements OnInit {
         this.pararr.push(temp);
         vis.push(temp2);
       }
-      
-      vis[10][10]=1;
+      vis[this.src[0]][this.src[1]]=1;
       while(!(q.isempty()))
       {
         let now=q.front();
