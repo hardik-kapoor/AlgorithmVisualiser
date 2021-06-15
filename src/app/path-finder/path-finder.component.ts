@@ -58,7 +58,7 @@ export class PathFinderComponent implements OnInit {
   {
     this.canvas.addEventListener('mousedown', function (e) {
       const rect = this.canvas.getBoundingClientRect();
-
+      
       let cx = e.clientX - rect.left;
       let cy = e.clientY - rect.top;
       cx=(Math.floor(cx/20))*20;
