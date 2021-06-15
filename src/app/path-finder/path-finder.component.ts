@@ -24,7 +24,7 @@ export class PathFinderComponent implements OnInit {
   pararr;
   tempsrc;
   tempdes;
-  dur=10;
+  dur=1;
   isFound=false;
   walltype = 1;
   wallchecked = true;
@@ -334,6 +334,7 @@ export class PathFinderComponent implements OnInit {
           let ni=now[0]+this.dx[ind],nj=now[1]+this.dy[ind];
           if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]===1||done[ni][nj])
             continue;
+          let prev=this.arr[ni][nj];
           if(this.arr[now[0]][now[1]]!==2&&this.arr[now[0]][now[1]]!==3){
             this.arr[ni][nj]=6;
             this.drawWalls([ni,nj]);
@@ -352,7 +353,7 @@ export class PathFinderComponent implements OnInit {
             this.pararr[ni][nj]=now;
           }
           if(this.arr[now[0]][now[1]]!==2&&this.arr[now[0]][now[1]]!==3){
-            this.arr[ni][nj]=0;
+            this.arr[ni][nj]=prev;
             this.drawWalls([ni,nj]);
           }
           await new Promise(resolve => setTimeout(resolve, this.dur));
