@@ -26,9 +26,11 @@ export class PathFinderComponent implements OnInit {
   tempdes;
   dur=10;
   isFound=false;
-  walltype = 0;
+  walltype = 1;
+  wallchecked = true;
   dx=[1,-1,0,0];
   dy=[0,0,1,-1];
+  
 
   /*
   0->(weight)(is equal to 1)
@@ -73,6 +75,7 @@ export class PathFinderComponent implements OnInit {
     if(event.checked === true)this.walltype = 1;
     else this.walltype = 0;
   }
+
 
 
   resetGrid() 
