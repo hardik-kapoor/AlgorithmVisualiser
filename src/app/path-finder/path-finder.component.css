@@ -1,23 +1,98 @@
 #myCanvas
 {
 
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: -20px;
-
     display: block;
     border:5px solid #808588;
 
-    position: absolute;
-    top: 60%;
-    transform: translate(0, -50%);  
-    left: 0;
-    right: 0;
-
     width : pixelWidth * devicePixelRatio;
     height: pixelHeight * devicePixelRatio;
-
-    transform: translate(0.5, 0.5);
-
     
+}
+
+#footer 
+{
+    position:fixed;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    color: white;
+    text-align: center;
+    height:15%;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+
+
+#txt
+{
+    padding:0.7em;
+    font-size:0.9em;
+    font-weight:400;
+    transition: transform 450ms;
+}
+
+#main{
+    width: 100%;
+    justify-content:center;
+    position:relative;
+    margin-bottom:15%;
+}
+
+#txt2
+{
+    padding:0.7em;
+    font-size:100%;
+    font-weight: 400;
+    transition: transform 450ms;
+    margin-left:5px;
+}
+
+#bt
+{
+    padding:0.4em;
+    font-size:1.2em;
+    font-weight:400;
+    transition: transform 500ms;
+    width: 8em;
+    justify-content: center;
+}
+
+
+
+#txt:hover{
+
+    transform: scale(1.1);
+    background-color: rgb(237, 237, 237);
+    font-weight:500;
+    
+}
+
+#bt:hover{
+    transform: scale(1.1);
+    background-color: rgb(237, 237, 237);
+    font-weight:500;
+    
+}
+
+#bt2:hover{
+    transform: scale(1.1);
+    background-color: rgb(237, 237, 237);
+    
+    font-weight:500;
+}
+
+::ng-deep .mat-accent .mat-slider-thumb {
+    background-color: black;
+} 
+::ng-deep .mat-accent .mat-slider-thumb-label {
+    background-color: black;
+} 
+
+#graph
+{
+    display: flex;
+    justify-content:center;
+    padding:5px;
 }

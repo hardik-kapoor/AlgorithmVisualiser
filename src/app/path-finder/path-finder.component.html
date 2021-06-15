@@ -1,1 +1,34 @@
-<canvas id="myCanvas"></canvas>
+
+<div class="container-fluid bg-light">
+    <div id="main" class="row">
+        <div id="graph" class="col-9 bg-light">
+            <canvas id="myCanvas"></canvas>
+        </div>
+        <div class="col-2">
+
+        </div>
+    </div>
+</div>
+
+<div id="footer" class="card bg-light">
+
+    
+    <div class="row">
+        <div class = "col text-dark"><button id="txt"   class="btn btn-light">Linear Search</button></div>
+        <div class = "col text-dark"><button id="txt"   class="btn btn-light">Binary Search</button></div>
+        <div class = "col text-dark"><button id="txt"   class="btn btn-light">Jump Search</button></div>
+        <div class = "col text-dark"><button id="txt"   class="btn btn-light">Exponential Search</button></div>
+          
+      <div class="col-2 text-dark">
+          <div id="txt">Animation Speed</div>
+          <mat-slider class="ng-deep w-100 h-75" min="5" max="600" step="1"   [value]="150"></mat-slider>
+        </div>
+        
+    <div class="col-2 text-dark">
+        <div id="txt">Array Size</div>
+        <mat-slider class="ng-deep w-100 h-75" min="10" max="80" step="1"   [value]="20"></mat-slider>
+    </div>
+    <div class="col-1"></div>
+
+    </div>
+</div>

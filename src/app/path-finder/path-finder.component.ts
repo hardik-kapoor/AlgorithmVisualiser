@@ -1,4 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { Queue } from './queue';
+import {Stack} from './stack';
 
 @Component({
   selector: 'app-path-finder',
@@ -17,6 +19,9 @@ export class PathFinderComponent implements OnInit {
   arr;  
   src;
   des;
+  walltype = 1;
+  dx=[1,-1,0,0];
+  dy=[0,0,1,-1];
 
   ngOnInit(): void {
     this.canvas = <HTMLCanvasElement>document.getElementById('myCanvas');
@@ -52,7 +57,15 @@ export class PathFinderComponent implements OnInit {
         this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
       }
     }
-    
+    this.src=[10,10];
+    this.des=[20,30];
+    this.ctxGrid.fillStyle='green';
+    this.ctxGrid.fillRect(this.src[1]*20+1,this.src[0]*20+1,this.sz1-2,this.sz1-2);
+    this.arr[this.src[0]][this.src[1]]=2;
+    this.arr[this.des[0]][this.des[1]]=3;
+    this.ctxGrid.fillStyle='red';
+    this.ctxGrid.fillRect(this.des[1]*20+1,this.des[0]*20+1,this.sz1-2,this.sz1-2);
+    this.ctxGrid.fillStyle='black';
   }  
 
   randomGrid()
@@ -89,8 +102,45 @@ export class PathFinderComponent implements OnInit {
         let r=Math.floor(cy/20);
         let c=Math.floor(cx/20);
         if(!((r===this.src[0]&&c===this.src[1])||(r===this.des[0]&&c===this.des[1]))){
-          this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
-          this.arr[r][c]=1;
+          if(this.walltype === 0){
+            this.arr[r][c] = 0;
+            this.ctxGrid.fillStyle = 'white';
+            this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+            console.log('done');
+          }
+          else{
+            this.ctxGrid.fillStyle = 'black';
+            this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+            this.arr[r][c]=1;
+            
+          }
+        }
+      }
+    }.bind(this))
+
+    this.canvas.addEventListener('mouseup', function (e) {
+      if(this.isDrawing){
+        const rect = this.canvas.getBoundingClientRect();
+        let cx = e.clientX - rect.left;
+        let cy = e.clientY - rect.top;
+
+        cx=(Math.floor(cx/20))*20;
+        cy=(Math.floor(cy/20))*20;
+        let r=Math.floor(cy/20);
+        let c=Math.floor(cx/20);
+        if(!((r===this.src[0]&&c===this.src[1])||(r===this.des[0]&&c===this.des[1]))){
+          if(this.walltype===0){
+            this.arr[r][c] = 0;
+            this.ctxGrid.fillStyle = 'white';
+            this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+            console.log('done');
+          }
+          else{
+            this.ctxGrid.fillStyle = 'black';
+            this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+            this.arr[r][c]=1;
+            
+          }
         }
       }
     }.bind(this))
@@ -100,10 +150,31 @@ export class PathFinderComponent implements OnInit {
     } 
   }
 
+  //fun1
+    async bfs(){
+      let q=new Queue();
+      q.push(this.src);
+      let flag=false;
+      while(!(q.isempty()))
+      {
+        let now=q.front();
+        q.pop();
+        let i=now[1],j=now[0];
+        for(let ind=0;ind<4;ind++)
+        {
+          let ni=i+this.dx[ind],nj=j+this.dy[ind];
+          if(ni<0||ni>=this.canvas.height||nj<0||nj>=this.canvas.width||this.arr[nj][ni]==1)
+            continue;
+          if(this.arr[nj][ni]==2)
+            flag=true;
+          q.push([nj,ni]);
+        }
+      }
+    }
+  //
 
+  //fun2
 
-
-
-
+  //
 
 }
