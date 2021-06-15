@@ -86,7 +86,7 @@ export class PathFinderComponent implements OnInit {
   }
 
   drawWalls(ind:number[]){
-    let cx=ind[1]/20,cy=ind[0]/20;
+    let cx=ind[1]*20,cy=ind[0]*20;
     if(this.arr[ind[0]][ind[1]]===0)
     {
       
