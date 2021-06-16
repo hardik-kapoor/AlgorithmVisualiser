@@ -23,7 +23,7 @@
         <div class="col-2 container-fluid " id="sidebar">
             <br>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="bfs()" > Start  </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="dijkstra()" > Start  </button>
             </div>
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="resetGrid()" > Reset  </button>
@@ -45,7 +45,7 @@
           </div>
             <div class="row-2 bg-light" style="height:50px ; border-radius:5px" >
               <div style="font-weight: 400; padding:2px ; margin-left:5px"> Wall weight </div>
-            <mat-slider class="ng-deep w-100 bg-light" style="border-radius:5px" min="1" max="101" step="1" [value]="101"
+            <mat-slider class="ng-deep w-100 bg-light" style="border-radius:5px" (input)="changeWallWeight($event.value)" min="1" max="101" step="1" [value]="101"
             [disabled]="this.walltype==0"
             ></mat-slider>
             </div>

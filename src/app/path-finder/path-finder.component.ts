@@ -28,7 +28,8 @@ export class PathFinderComponent implements OnInit {
   isFound=false;
   walltype = 1;
   wallchecked = true;
-  whichInd:number=8;
+  whichInd:number=4;
+  wt:number=101;
   dx=[1,-1,0,0,1,1,-1,-1];
   dy=[0,0,1,-1,-1,1,-1,1];
 
@@ -69,6 +70,11 @@ export class PathFinderComponent implements OnInit {
     this.arr[this.des[0]][this.des[1]]=3;
     this.drawWalls(this.des);
     this.makeWalls();
+  }
+
+  changeWallWeight(vl)
+  {
+    this.wt=vl;
   }
 
   walltoggle(event){
@@ -162,11 +168,14 @@ export class PathFinderComponent implements OnInit {
       this.ctxGrid.fillStyle = 'black';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
+    else{
+      this.ctxGrid.fillStyle='gray';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
   }
 
   makeWalls()
   {
-
     document.body.onmousedown=()=>{
       this.isDrawing=true;
     }
@@ -180,13 +189,18 @@ export class PathFinderComponent implements OnInit {
         cy=(Math.floor(cy/20))*20;
         let r=Math.floor(cy/20);
         let c=Math.floor(cx/20);
+        let val=-1;
+        if(this.wt===101)
+          val=1;
+        else
+          val=this.wt+6;
         if(!((r===this.src[0]&&c===this.src[1])||(r===this.des[0]&&c===this.des[1]))){
           if(this.walltype === 0){
             this.arr[r][c] = 0;
             this.drawWalls([r,c]);
           }
           else{
-            this.arr[r][c]=1;
+            this.arr[r][c]=val;
             this.drawWalls([r,c]);
           }
         }
@@ -203,13 +217,18 @@ export class PathFinderComponent implements OnInit {
         cy=(Math.floor(cy/20))*20;
         let r=Math.floor(cy/20);
         let c=Math.floor(cx/20);
+        let val=-1;
+        if(this.wt===101)
+          val=1;
+        else
+          val=this.wt+6;
         if(!((r===this.src[0]&&c===this.src[1])||(r===this.des[0]&&c===this.des[1]))){
-          if(this.walltype===0){
+          if(this.walltype === 0){
             this.arr[r][c] = 0;
             this.drawWalls([r,c]);
           }
           else{
-            this.arr[r][c]=1;
+            this.arr[r][c]=val;
             this.drawWalls([r,c]);
           }
         }
