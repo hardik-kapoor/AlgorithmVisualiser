@@ -14,7 +14,7 @@ export class PathFinderComponent implements OnInit {
 
   canvas;
   ctxGrid;
-  sz1:number=10;
+  sz1:number=13;
   isDrawing:boolean=false;
   arr;
   src;
@@ -34,7 +34,6 @@ export class PathFinderComponent implements OnInit {
   dy=[0,0,1,-1,-1,1,-1,1];
   done=[];
 
-
   /*
   0->(weight)(is equal to 1)
   1->wall
@@ -50,7 +49,7 @@ export class PathFinderComponent implements OnInit {
   ngOnInit(): void {
     this.canvas = <HTMLCanvasElement>document.getElementById('myCanvas');
     this.ctxGrid = this.canvas.getContext('2d');
-    this.ctxGrid.canvas.height = 510;
+    this.ctxGrid.canvas.height = 520;
     this.ctxGrid.canvas.width = 690;
     this.ctxGrid.strokeStyle = "#808588";
     this.xs=this.ctxGrid.canvas.width/this.sz1,this.ys=this.ctxGrid.canvas.height/this.sz1
@@ -61,8 +60,8 @@ export class PathFinderComponent implements OnInit {
         temp.push(0);
       this.arr.push(temp);
     }
-    this.src=[10,10];
-    this.des=[15,35];
+    this.src=[0,0];
+    this.des=[this.ys-1,this.xs-1];
     this.tempsrc=[...this.src];
     this.tempdes=[...this.des];
     this.resetGrid();
@@ -73,9 +72,12 @@ export class PathFinderComponent implements OnInit {
     this.makeWalls();
   }
 
-  changeWallWeight(vl)
+  changeWallWeight(event)
   {
-    this.wt=vl;
+    this.wt = event.value;
+    console.log(this.wt/100);
+    console.log('rgb(1,1,1,'+String(this.wt/101)+')');
+    console.log('rgb(1,1,1,'+String((Math.round(this.wt)/101).toFixed(2))+')');
   }
 
   walltoggle(event){
@@ -141,7 +143,9 @@ export class PathFinderComponent implements OnInit {
     }
     else if(this.arr[ind[0]][ind[1]]===1)
     {
-      this.ctxGrid.fillStyle = 'black';
+      this.ctxGrid.fillStyle = 'white';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+      this.ctxGrid.fillStyle = 'rgb(1,1,1,'+String((Math.round(this.wt)/101).toFixed(2))+')';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===2)
@@ -156,7 +160,7 @@ export class PathFinderComponent implements OnInit {
     }
     else if(this.arr[ind[0]][ind[1]]===4)
     {
-      this.ctxGrid.fillStyle = 'blue';
+      this.ctxGrid.fillStyle = 'rgb(0,0,255,0.2)';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===5)
@@ -170,7 +174,9 @@ export class PathFinderComponent implements OnInit {
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else{
-      this.ctxGrid.fillStyle='gray';
+      this.ctxGrid.fillStyle = 'white';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+      this.ctxGrid.fillStyle = 'rgb(153,184,152,'+String((Math.round(this.wt)/101).toFixed(2))+')';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
   }
@@ -373,6 +379,16 @@ export class PathFinderComponent implements OnInit {
       }
       if(this.isFound)
         this.backtrack();
+    }
+
+    //maze generation
+
+    getBlocked(){
+    }
+
+    primsMazeAlgorithm(){
+      let tempArr=[...this.arr];
+      
     }
   //
 
