@@ -14,7 +14,7 @@ export class PathFinderComponent implements OnInit {
 
   canvas;
   ctxGrid;
-  sz1:number=10;
+  sz1:number=13;
   isDrawing:boolean=false;
   arr;
   src;
@@ -49,7 +49,7 @@ export class PathFinderComponent implements OnInit {
   ngOnInit(): void {
     this.canvas = <HTMLCanvasElement>document.getElementById('myCanvas');
     this.ctxGrid = this.canvas.getContext('2d');
-    this.ctxGrid.canvas.height = 510;
+    this.ctxGrid.canvas.height = 520;
     this.ctxGrid.canvas.width = 690;
     this.ctxGrid.strokeStyle = "#808588";
     this.xs=this.ctxGrid.canvas.width/this.sz1,this.ys=this.ctxGrid.canvas.height/this.sz1
@@ -140,7 +140,7 @@ export class PathFinderComponent implements OnInit {
     }
     else if(this.arr[ind[0]][ind[1]]===1)
     {
-      this.ctxGrid.fillStyle = 'black';
+      this.ctxGrid.fillStyle = 'rgb(1,1,1,0.2)';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===2)
