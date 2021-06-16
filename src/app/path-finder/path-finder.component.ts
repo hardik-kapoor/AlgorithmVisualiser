@@ -604,24 +604,9 @@ export class PathFinderComponent implements OnInit {
         this.backtrack();
     }
 
-    randomEvenNumber(lo:number, hi:number)
+    randomNumber(min:number, max:number)
     {
-      let low:number=Math.floor(lo/2)+Math.ceil(lo%2);
-      let high:number=Math.floor(hi/2);
-      return Math.floor(Math.random() * (high- low + 1) ) + low;
-   
-    }
-
-    randomOddNumber(lo:number,hi:number)
-    {
-      let low:number=Math.floor(lo/2);
-      let high:number=Math.floor(hi/2);
-      if(hi%2===1)
-      {
-        high=high-1;
-      }
-      return Math.floor(Math.random() * (high - low + 1) ) + low;
-      
+      return Math.floor(Math.random() * (max - min) ) + min;
     }
 
     async recursiveRandomMaze()
@@ -638,75 +623,56 @@ export class PathFinderComponent implements OnInit {
         this.done.push(temp);
       }
       await new Promise(resolve => {setTimeout(() => {resolve(this._recursiveRandomMaze(0,this.xs-1,0,this.ys-1));}, );});
-
+      for(let i:number=0; i<this.ys; i++)
+      {
+        for(let j:number=0; j<this.xs; j++)
+          this.drawWalls([i,j]);
+      }
 
     }
 
     async _recursiveRandomMaze(left:number, right:number, top:number, bottom:number)
     {
-
       if(left>=right || top>=bottom)
         return;
-      if(left===right && top ===bottom)
+      if(left===right-1&&top===bottom-1)
         return;
-      
-      let rnd:number= Math.floor( Math.random()*2 );
-      if(left===right)
-        rnd=0;
-      if(top===bottom)
+      let rnd:number=this.randomNumber(0,2);
+      if(left===right-1)
         rnd=1;
+      if(top===bottom-1)
+        rnd=0;
       if(rnd===0)
       {
-        let row:number=this.randomEvenNumber(top,bottom);
+        let row:number = this.randomNumber(top,bottom);
         for(let ind:number=left; ind<=right; ind++)
         {
-          if(this.arr[row][ind]===2|| this.arr[row][ind]===3||this.done[row][ind]===1)
+          if(this.arr[row][ind]===2 || this.arr[row][ind]===3 || this.done[row][ind]===1)
             continue;
-          this.arr[row][ind]=1;
           this.done[row][ind]=1;
-          this.drawWalls([row,ind]);
-          await new Promise(resolve => setTimeout(resolve, this.dur));          
-          
+          this.arr[row][ind]=1;
         }
-        let i:number=this.randomOddNumber(left,right);
-        if(this.arr[row][i]!==2&&this.arr[row][i]!==3)
-        {
+        let i:number = this.randomNumber(left,right);
+        if(this.arr[row][i]!==2 && this.arr[row][i]!==3)
           this.arr[row][i]=0;
-          this.drawWalls([row,i]);
-        }
-
-        //await new Promise(resolve => {setTimeout(() => {resolve(this._recursiveRandomMaze(left,right,top,row-1));}, );});
-        await new Promise(resolve => {setTimeout(() => {resolve(this._recursiveRandomMaze(left,right,row+1,bottom));}, );});
-
- 
-     
-      }
+        this._recursiveRandomMaze(left,right,top,row-2);
+        this._recursiveRandomMaze(left,right,row+2,bottom);
+      }  
       else
       {
-        let clm:number=this.randomEvenNumber(left,right);
-        for (let ind:number=top; ind<=bottom; ind++)
+        let clm:number = this.randomNumber(left,right);
+        for(let ind:number=top; ind<=bottom; ind++)
         {
-          if(this.arr[ind][clm]===2||this.arr[ind][clm]===3||this.done[ind][clm]===1)
+          if(this.arr[ind][clm]===2 || this.arr[ind][clm]===3 || this.done[ind][clm]===1)
             continue;
-          this.arr[ind][clm]=1;
           this.done[ind][clm]=1;
-          this.drawWalls([ind,clm]);
-          await new Promise(resolve => setTimeout(resolve, this.dur));          
-
-          
+          this.arr[ind][clm]=1;
         }
-        
-        let i:number=this.randomOddNumber(top,bottom);
+        let i:number = this.randomNumber(top,bottom);
         if(this.arr[i][clm]!==2 && this.arr[i][clm]!==3)
-        {
           this.arr[i][clm]=0;
-          this.drawWalls([i,clm]);
-          await new Promise(resolve => setTimeout(resolve, this.dur));          
-
-        }
-        let tleft=left,tright=right, ttop=top,tbottom=bottom;
-        await new Promise(resolve => {setTimeout(() => {resolve(this._recursiveRandomMaze(tleft,clm-2,ttop,tbottom));}, );});
-        await new Promise(resolve => {setTimeout(() => {resolve(this._recursiveRandomMaze(clm+2,tright,ttop,tbottom));}, );});
+        this._recursiveRandomMaze(left,clm-2,top,bottom);
+        this._recursiveRandomMaze(clm+2,right,top,bottom);
 
       }
     }
