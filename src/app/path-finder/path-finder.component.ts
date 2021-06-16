@@ -28,7 +28,7 @@ export class PathFinderComponent implements OnInit {
   isFound=false;
   walltype = 1;
   wallchecked = true;
-  whichInd:number=8;
+  whichInd:number=4;
   wt:number=101;
   dx=[1,-1,0,0,1,1,-1,-1];
   dy=[0,0,1,-1,-1,1,-1,1];
@@ -121,17 +121,17 @@ export class PathFinderComponent implements OnInit {
       {
         this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
         let x=Math.random();
-        if(x<0.3&&this.arr[j/20][i/20]!==2&&this.arr[j/20][i/20]!==3)
+        if(x<0.3&&this.arr[j/this.sz1][i/this.sz1]!==2&&this.arr[j/this.sz1][i/this.sz1]!==3)
         {
-          this.arr[j/20][i/20]=1;
-          this.drawWalls([j/20,i/20]);
+          this.arr[j/this.sz1][i/this.sz1]=1;
+          this.drawWalls([j/this.sz1,i/this.sz1]);
         }
       }
     }
   }
 
   drawWalls(ind:number[]){
-    let cx=ind[1]*20,cy=ind[0]*20;
+    let cx=ind[1]*this.sz1,cy=ind[0]*this.sz1;
     if(this.arr[ind[0]][ind[1]]===0)
     {
 
@@ -185,10 +185,10 @@ export class PathFinderComponent implements OnInit {
         let cx = e.clientX - rect.left;
         let cy = e.clientY - rect.top;
 
-        cx=(Math.floor(cx/20))*20;
-        cy=(Math.floor(cy/20))*20;
-        let r=Math.floor(cy/20);
-        let c=Math.floor(cx/20);
+        cx=(Math.floor(cx/this.sz1))*this.sz1;
+        cy=(Math.floor(cy/this.sz1))*this.sz1;
+        let r=Math.floor(cy/this.sz1);
+        let c=Math.floor(cx/this.sz1);
         let val=-1;
         if(this.wt===101)
           val=1;
@@ -213,10 +213,10 @@ export class PathFinderComponent implements OnInit {
         let cx = e.clientX - rect.left;
         let cy = e.clientY - rect.top;
 
-        cx=(Math.floor(cx/20))*20;
-        cy=(Math.floor(cy/20))*20;
-        let r=Math.floor(cy/20);
-        let c=Math.floor(cx/20);
+        cx=(Math.floor(cx/this.sz1))*this.sz1;
+        cy=(Math.floor(cy/this.sz1))*this.sz1;
+        let r=Math.floor(cy/this.sz1);
+        let c=Math.floor(cx/this.sz1);
         let val=-1;
         if(this.wt===101)
           val=1;
