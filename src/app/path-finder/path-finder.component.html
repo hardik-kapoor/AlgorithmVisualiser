@@ -5,9 +5,9 @@
             <br>
             <div class="row-2">
                 <mat-form-field class="card bg-light w-100">
-                    <mat-label 
+                    <mat-label
                     style="
-                    font-size:14px ; 
+                    font-size:14px ;
                     color: black ;
                     font-weight:400;
                     "> Path Finding Algorithms</mat-label>
@@ -33,7 +33,7 @@
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> <mat-slide-toggle [checked]="wallchecked" (change)="walltoggle($event)"></mat-slide-toggle>  Walls</button>
             </div>
-            
+
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> Random Grid </button>
             </div>
@@ -54,18 +54,18 @@
 <!--
 <div id="footer" class="card bg-light">
 
-    
+
     <div class="row">
         <div class = "col text-dark"><button id="txt"   class="btn btn-light">Linear Search</button></div>
         <div class = "col text-dark"><button id="txt"   class="btn btn-light">Binary Search</button></div>
         <div class = "col text-dark"><button id="txt"   class="btn btn-light">Jump Search</button></div>
         <div class = "col text-dark"><button id="txt"   class="btn btn-light">Exponential Search</button></div>
-          
+
       <div class="col-2 text-dark">
           <div id="txt">Animation Speed</div>
           <mat-slider class="ng-deep w-100 h-75" min="5" max="600" step="1"   [value]="150"></mat-slider>
         </div>
-        
+
     <div class="col-2 text-dark">
         <div id="txt">Array Size</div>
         <mat-slider class="ng-deep w-100 h-75" min="10" max="80" step="1"   [value]="20"></mat-slider>

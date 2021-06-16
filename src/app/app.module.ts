@@ -7,7 +7,7 @@ import {RouterModule} from '@angular/router';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
-import { MatSelectModule } from '@angular/material/select'; 
+import { MatSelectModule } from '@angular/material/select';
 import { MatSliderModule } from '@angular/material/slider';
 import {MatIconModule} from '@angular/material/icon';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -17,6 +17,7 @@ import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { PathFinderComponent } from './path-finder/path-finder.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NavbarComponent } from './navbar/navbar.component';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 
 let routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
@@ -46,7 +47,8 @@ let routes = [
     MatIconModule,
     FontAwesomeModule,
     NgxGraphModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    FormBuilder, FormControl, FormGroup, Validators
   ],
   providers: [],
   bootstrap: [AppComponent , SortingVisualiserComponent]

@@ -16,7 +16,7 @@ export class PathFinderComponent implements OnInit {
   ctxGrid;
   sz1:number=20;
   isDrawing:boolean=false;
-  arr;  
+  arr;
   src;
   des;
   xs;
@@ -30,7 +30,7 @@ export class PathFinderComponent implements OnInit {
   wallchecked = true;
   dx=[1,-1,0,0];
   dy=[0,0,1,-1];
-  
+
 
   /*
   0->(weight)(is equal to 1)
@@ -76,9 +76,11 @@ export class PathFinderComponent implements OnInit {
     else this.walltype = 0;
   }
 
+  chose(event){
+    console.log(event);
+  }
 
-
-  resetGrid() 
+  resetGrid()
   {
     this.isFound=false;
     this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -102,7 +104,7 @@ export class PathFinderComponent implements OnInit {
     this.drawWalls(this.src);
     this.arr[this.des[0]][this.des[1]]=3;
     this.drawWalls(this.des);
-  }  
+  }
 
   randomGrid()
   {
@@ -118,14 +120,14 @@ export class PathFinderComponent implements OnInit {
           this.drawWalls([j/20,i/20]);
         }
       }
-    }    
+    }
   }
 
   drawWalls(ind:number[]){
     let cx=ind[1]*20,cy=ind[0]*20;
     if(this.arr[ind[0]][ind[1]]===0)
     {
-      
+
       this.ctxGrid.fillStyle = 'white';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
@@ -163,7 +165,7 @@ export class PathFinderComponent implements OnInit {
 
   makeWalls()
   {
-    
+
     document.body.onmousedown=()=>{
       this.isDrawing=true;
     }
@@ -215,9 +217,9 @@ export class PathFinderComponent implements OnInit {
 
     document.body.onmouseup=()=>{
       this.isDrawing=false;
-    } 
+    }
   }
-  
+
   async backtrack()
   {
     let nowi=this.des[0],nowj=this.des[1];
@@ -377,22 +379,22 @@ export class PathFinderComponent implements OnInit {
         this.pararr.push(temp);
       }
       this.isFound=false;
-      this.pararr[this.src[0]][this.src[1]]=[-2,-2];     
+      this.pararr[this.src[0]][this.src[1]]=[-2,-2];
       await new Promise(resolve => {setTimeout(() => {resolve(this._dfs(this.src));}, );});
       await new Promise(resolve => {setTimeout(() => {resolve(this.backtrack());}, );});
     }
 
     async _dfs(root:number[])
     {
-    
+
       if(this.isFound===true)
         return ;
       let x:number=root[0],y=root[1];
-      
+
       for(let ind=0; ind<4; ind++)
       {
         let tx=x+this.dx[ind], ty=y+this.dy[ind];
-      
+
         if(tx<0||tx>=this.ys||ty<0||ty>=this.xs||this.arr[tx][ty]===1||this.isFound)
           continue;
         if(this.pararr[tx][ty][0]!==-1&& this.pararr[tx][ty][1]!==-1)
