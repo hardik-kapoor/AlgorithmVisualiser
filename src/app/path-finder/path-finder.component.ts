@@ -33,7 +33,6 @@ export class PathFinderComponent implements OnInit {
   dx=[1,-1,0,0,1,1,-1,-1];
   dy=[0,0,1,-1,-1,1,-1,1];
 
-
   /*
   0->(weight)(is equal to 1)
   1->wall
@@ -72,9 +71,9 @@ export class PathFinderComponent implements OnInit {
     this.makeWalls();
   }
 
-  changeWallWeight(vl)
+  changeWallWeight(event)
   {
-    this.wt=vl;
+    this.wt = event.value;
   }
 
   walltoggle(event){
@@ -140,7 +139,9 @@ export class PathFinderComponent implements OnInit {
     }
     else if(this.arr[ind[0]][ind[1]]===1)
     {
-      this.ctxGrid.fillStyle = 'rgb(1,1,1,0.2)';
+      this.ctxGrid.fillStyle = 'white';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+      this.ctxGrid.fillStyle = 'rgb(1,1,1,'+String(this.wt/100)+')';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===2)
