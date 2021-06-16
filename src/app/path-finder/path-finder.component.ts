@@ -340,7 +340,7 @@ export class PathFinderComponent implements OnInit {
         if(now[0]===-1)
           break;
         done[now[0]][now[1]]=1;
-        if(now[0]===this.des[0]&&now[1]===this.des[1])
+        if(this.arr[now[0]][now[1]]===3)
         {
           this.isFound=true;
           break;
@@ -356,10 +356,9 @@ export class PathFinderComponent implements OnInit {
           let ni=now[0]+this.dx[ind],nj=now[1]+this.dy[ind];
           if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]===1||done[ni][nj])
             continue;
-          let prev=this.arr[ni][nj];
           let vl:number=-1;
           if(this.arr[ni][nj]===3)
-            vl=103;
+            vl=0;
           else if(this.arr[ni][nj]===0)
             vl=1;
           else
