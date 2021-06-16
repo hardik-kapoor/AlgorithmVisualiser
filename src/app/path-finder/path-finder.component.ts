@@ -165,14 +165,17 @@ export class PathFinderComponent implements OnInit {
     }
     else if(this.arr[ind[0]][ind[1]]===4)
     {
-      this.ctxGrid.fillStyle = 'rgb(40,40,120,0.2)';
+      let img = new Image();
+      img.src = 'https://mdn.mozillademos.org/files/222/Canvas_createpattern.png';
+      var pattern = this.ctxGrid.createPattern(img, 'repeat');
+      this.ctxGrid.fillStyle = pattern;
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===5)
     {
       this.ctxGrid.shadowBlur = 20;
       this.ctxGrid.shadowColor = "black";
-      this.ctxGrid.fillStyle = 'rgb(40,80,240,0.8)';
+      this.ctxGrid.fillStyle = 'rgb(0,21,64,0.8)';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===6)
