@@ -17,7 +17,7 @@ import { NgxGraphModule } from '@swimlane/ngx-graph';
 import { PathFinderComponent } from './path-finder/path-finder.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import { NavbarComponent } from './navbar/navbar.component';
-import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
+
 
 let routes = [
   {path:'',redirectTo:'home',pathMatch:'full'},
@@ -48,7 +48,7 @@ let routes = [
     FontAwesomeModule,
     NgxGraphModule,
     MatSlideToggleModule,
-    FormBuilder, FormControl, FormGroup, Validators
+
   ],
   providers: [],
   bootstrap: [AppComponent , SortingVisualiserComponent]

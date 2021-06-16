@@ -4,20 +4,17 @@
         <div id="sidebar" class="container-fluid col-2 " style="background: linear-gradient(to right, #ff5f6d, #ffc371)">
             <br>
             <div class="row-2">
-                <mat-form-field class="card bg-light w-100">
-                    <mat-label
-                    style="
-                    font-size:14px ;
-                    color: black ;
-                    font-weight:400;
-                    "> Path Finding Algorithms</mat-label>
-                    <mat-select>
-                      <mat-option value="one">Depth First Search</mat-option>
-                      <mat-option value="two">Breadth First Search</mat-option>
-                      <mat-option value="three">Dijkstra</mat-option>
-                    </mat-select>
-                  </mat-form-field>
-            </div>
+              <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> DFS </button>
+          </div>
+          <div class="row-2">
+              <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> BFS </button>
+          </div>
+          <div class="row-2">
+              <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> Dijktra </button>
+          </div>
+          <div class="row-2">
+              <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> A-star</button>
+          </div>
 
         </div>
         <div id="graph" class="container-fluid col-7 bg-light">
@@ -29,7 +26,7 @@
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="bfs()" > Start  </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="resetGrid()" > Reset  </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="dijkstra()" > dijkstra  </button>
             </div>
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> <mat-slide-toggle [checked]="wallchecked" (change)="walltoggle($event)"></mat-slide-toggle>  Walls</button>
