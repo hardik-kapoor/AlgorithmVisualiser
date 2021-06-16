@@ -95,5 +95,20 @@
   background: linear-gradient(to right, #ff5f6d, #ffc371);
   border-radius:10px;
   width:200px;
+  margin-left:10px;
+  margin-right:10px;
+  margin-bottom:20px;
+  height:550px;
 }
 
+
+
+#graph{
+  width: auto;
+  display:flex;
+  justify-content:center;
+
+  margin-bottom:15%;
+
+
+}
