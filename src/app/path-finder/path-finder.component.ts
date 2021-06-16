@@ -100,8 +100,18 @@ export class PathFinderComponent implements OnInit {
 
   resetGrid()
   {
+    this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctxGrid.shadowBlur=0;
-    this.ctxGrid.shadowColor="white";
+    this.ctxGrid.shadowColor="none";
+    for(let i=0;i<this.canvas.width;i+=this.sz1)
+    {
+      for(let j=0;j<this.canvas.height;j+=this.sz1)
+      {
+        this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
+      }
+    }
+    this.ctxGrid.shadowBlur=0;
+    this.ctxGrid.shadowColor="none";
     this.isFound=false;
     this.arr=[];
     for(let i=0;i<this.ys;i++){
