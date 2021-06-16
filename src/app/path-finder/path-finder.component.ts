@@ -495,13 +495,6 @@ export class PathFinderComponent implements OnInit {
             gvalue[ni][nj]=gv;
             this.pararr[ni][nj]=now;
           }
-          if(this.arr[ni][nj]===3)
-          {
-            this.pararr[ni][nj]=now;
-            this.isFound=true;
-            break;
-          }
-          
           
         }
         if(this.isFound)
