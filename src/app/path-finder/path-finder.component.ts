@@ -615,6 +615,7 @@ export class PathFinderComponent implements OnInit {
     {
       //ys=rows, xs=col
       this.done=[];
+      this.resetGrid();
       for(let i=0; i<this.ys; i++)
       {
         let temp=[];
