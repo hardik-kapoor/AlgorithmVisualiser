@@ -173,7 +173,9 @@ export class PathFinderComponent implements OnInit {
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else{
-      this.ctxGrid.fillStyle='gray';
+      this.ctxGrid.fillStyle = 'white';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+      this.ctxGrid.fillStyle = 'rgb(1,1,1,'+String((Math.round(this.wt)/101).toFixed(2))+')';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
   }
