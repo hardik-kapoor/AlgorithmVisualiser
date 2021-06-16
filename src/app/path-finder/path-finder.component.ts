@@ -59,8 +59,8 @@ export class PathFinderComponent implements OnInit {
         temp.push(0);
       this.arr.push(temp);
     }
-    this.src=[10,10];
-    this.des=[15,35];
+    this.src=[0,0];
+    this.des=[this.ys-1,this.xs-1];
     this.tempsrc=[...this.src];
     this.tempdes=[...this.des];
     this.resetGrid();
@@ -378,6 +378,16 @@ export class PathFinderComponent implements OnInit {
       }
       if(this.isFound)
         this.backtrack();
+    }
+
+    //maze generation
+
+    getBlocked(){
+    }
+
+    primsMazeAlgorithm(){
+      let tempArr=[...this.arr];
+      
     }
   //
 
