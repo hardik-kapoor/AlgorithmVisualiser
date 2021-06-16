@@ -100,6 +100,8 @@ export class PathFinderComponent implements OnInit {
 
   resetGrid()
   {
+    this.ctxGrid.shadowBlur=0;
+    this.ctxGrid.shadowColor="white";
     this.isFound=false;
     this.arr=[];
     for(let i=0;i<this.ys;i++){
