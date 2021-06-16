@@ -438,7 +438,7 @@ export class PathFinderComponent implements OnInit {
       return [(ind1[0]+ind2[0])/2,(ind1[1]+ind2[1])/2]
     }
 
-    primsMazeAlgorithm(){
+    async primsMazeAlgorithm(){
       this.resetGrid();
       let tempArr=[...this.arr];
       for(let i=0;i<this.ys;i++)
@@ -471,9 +471,12 @@ export class PathFinderComponent implements OnInit {
           blocked.push(tempp[i]);
       }
       this.arr=[...tempArr];
-      for(let i=0;i<this.ys;i++)
-        for(let j=0;j<this.xs;j++)
+      for(let i=0;i<this.ys;i++){
+        for(let j=0;j<this.xs;j++){
           this.drawWalls([i,j]);
+          await new Promise(resolve => setTimeout(resolve, this.dur/10));
+        }
+      }
     }
   //
 
