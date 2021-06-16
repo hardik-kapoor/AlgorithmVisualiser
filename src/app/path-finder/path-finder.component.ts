@@ -155,16 +155,16 @@ export class PathFinderComponent implements OnInit {
     else if(this.arr[ind[0]][ind[1]]===3)
     {
       this.ctxGrid.fillStyle = 'red';
-      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1,this.sz1);
     }
     else if(this.arr[ind[0]][ind[1]]===4)
     {
-      this.ctxGrid.fillStyle = 'rgb(0,0,255,0.2)';
+      this.ctxGrid.fillStyle = 'rgb(40,40,120,0.2)';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===5)
     {
-      this.ctxGrid.fillStyle = 'purple';
+      this.ctxGrid.fillStyle = 'rgb(40,80,120)';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===6)
@@ -175,7 +175,7 @@ export class PathFinderComponent implements OnInit {
     else{
       this.ctxGrid.fillStyle = 'white';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
-      this.ctxGrid.fillStyle = 'rgb(153,184,152,'+String((Math.round(this.wt)/101).toFixed(2))+')';
+      this.ctxGrid.fillStyle = 'rgb(131,184,152,'+String((Math.max(0.16,Math.round(this.wt)/101)).toFixed(2))+')';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
   }
@@ -387,7 +387,7 @@ export class PathFinderComponent implements OnInit {
 
     primsMazeAlgorithm(){
       let tempArr=[...this.arr];
-      
+
     }
   //
 
