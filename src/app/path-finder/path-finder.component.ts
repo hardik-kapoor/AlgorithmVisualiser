@@ -150,7 +150,7 @@ export class PathFinderComponent implements OnInit {
     }
     else if(this.arr[ind[0]][ind[1]]===2)
     {
-      this.ctxGrid.fillStyle = 'green';
+      this.ctxGrid.fillStyle = '#28B464';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===3)
@@ -165,7 +165,9 @@ export class PathFinderComponent implements OnInit {
     }
     else if(this.arr[ind[0]][ind[1]]===5)
     {
-      this.ctxGrid.fillStyle = 'rgb(40,80,120)';
+      this.ctxGrid.shadowBlur = 20;
+      this.ctxGrid.shadowColor = "black";
+      this.ctxGrid.fillStyle = 'rgb(40,80,180,0.8)';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===6)
@@ -419,15 +421,11 @@ export class PathFinderComponent implements OnInit {
     primsMazeAlgorithm(){
       this.resetGrid();
       let tempArr=[...this.arr];
-<<<<<<< HEAD
-
-=======
       for(let i=0;i<this.ys;i++)
         for(let j=0;j<this.xs;j++)
           if(tempArr[i][j]!==2&&tempArr[i][j]!==3)
             tempArr[i][j]=1;
       let now=[this.getRand(this.ys),this.getRand(this.xs)];
->>>>>>> 22c70e75a0dc224a9baefdbd171d5149499e16d9
     }
   //
 
@@ -586,7 +584,7 @@ export class PathFinderComponent implements OnInit {
         let temp=[];
         for(let j=0; j<this.xs; j++)
         {
-          temp.push(0); 
+          temp.push(0);
         }
         this.done.push(temp);
       }
@@ -597,7 +595,7 @@ export class PathFinderComponent implements OnInit {
 
     async _recursiveRandomMaze(left:number, right:number, top:number, bottom:number)
     {
-      
+
       if(left>=right || top>=bottom)
         return;
       if(left>=right-1 && top>=bottom-1)
@@ -619,12 +617,12 @@ export class PathFinderComponent implements OnInit {
           this.drawWalls([row,ind]);
         }
         let i:number=this.randomOddNumber(left,right);
-        if(this.arr[row][i]!==2&&this.arr[row][i]!==3) 
+        if(this.arr[row][i]!==2&&this.arr[row][i]!==3)
         {
           this.arr[row][i]=0;
-          this.drawWalls([row,i]);          
+          this.drawWalls([row,i]);
         }
-        
+
         //await new Promise(resolve => {setTimeout(() => {resolve(this._recursiveRandomMaze(left,right,top,row-1));}, );});
         await new Promise(resolve => {setTimeout(() => {resolve(this._recursiveRandomMaze(left,right,row+1,bottom));}, );});
 
@@ -632,7 +630,7 @@ export class PathFinderComponent implements OnInit {
       else
       {
         let clm:number=this.randomEvenNumber(left,right);
-        for (let ind:number=top; ind<=bottom; ind++) 
+        for (let ind:number=top; ind<=bottom; ind++)
         {
           if(this.arr[ind][clm]===2||this.arr[ind][clm]===3)
             continue;
