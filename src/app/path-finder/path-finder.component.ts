@@ -28,7 +28,7 @@ export class PathFinderComponent implements OnInit {
   isFound=false;
   walltype = 1;
   wallchecked = true;
-  whichInd:number=4;
+  whichInd:number=8;
   wt:number=101;
   dx=[1,-1,0,0,1,1,-1,-1];
   dy=[0,0,1,-1,-1,1,-1,1];
@@ -637,13 +637,8 @@ export class PathFinderComponent implements OnInit {
     {
       if(left>=right || top>=bottom)
         return;
-      if(left===right-1&&top===bottom-1)
-        return;
       let rnd:number=this.randomNumber(0,2);
-      if(left===right-1)
-        rnd=1;
-      if(top===bottom-1)
-        rnd=0;
+      
       if(rnd===0)
       {
         let row:number = this.randomNumber(top,bottom);
