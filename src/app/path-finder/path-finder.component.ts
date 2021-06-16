@@ -182,6 +182,8 @@ export class PathFinderComponent implements OnInit {
       this.ctxGrid.shadowColor = "black";
       this.ctxGrid.fillStyle = 'rgb(40,80,180,0.8)';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+      this.ctxGrid.shadowBlur=0;
+      this.ctxGrid.shadowColor="#000000";
     }
     else if(this.arr[ind[0]][ind[1]]===6)
     {
