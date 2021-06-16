@@ -60,11 +60,19 @@ export class PathFinderComponent implements OnInit {
         temp.push(0);
       this.arr.push(temp);
     }
+    this.isFound=false;
+    this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    for(let i=0;i<this.canvas.width;i+=this.sz1)
+    {
+      for(let j=0;j<this.canvas.height;j+=this.sz1)
+      {
+        this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
+      }
+    }
     this.src=[10,10];
     this.des=[35,15];
     this.tempsrc=[...this.src];
     this.tempdes=[...this.des];
-    this.resetGrid();
     this.arr[this.src[0]][this.src[1]]=2;
     this.drawWalls(this.src);
     this.arr[this.des[0]][this.des[1]]=3;
@@ -92,15 +100,9 @@ export class PathFinderComponent implements OnInit {
 
   resetGrid()
   {
+    this.ctxGrid.shadowBlur=0;
+    this.ctxGrid.shadowColor="white";
     this.isFound=false;
-    this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    for(let i=0;i<this.canvas.width;i+=this.sz1)
-    {
-      for(let j=0;j<this.canvas.height;j+=this.sz1)
-      {
-        this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
-      }
-    }
     this.arr=[];
     for(let i=0;i<this.ys;i++){
       let temp=[];
@@ -108,6 +110,9 @@ export class PathFinderComponent implements OnInit {
         temp.push(0);
       this.arr.push(temp);
     }
+    for(let i=0;i<this.ys;i++)
+      for(let j=0;j<this.xs;j++)
+        this.drawWalls([i,j]);
     this.src=[...this.tempsrc];
     this.des=[...this.tempdes];
     this.arr[this.src[0]][this.src[1]]=2;
