@@ -60,11 +60,19 @@ export class PathFinderComponent implements OnInit {
         temp.push(0);
       this.arr.push(temp);
     }
-    this.src=[0,0];
-    this.des=[this.ys-1,this.xs-1];
+    this.isFound=false;
+    this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    for(let i=0;i<this.canvas.width;i+=this.sz1)
+    {
+      for(let j=0;j<this.canvas.height;j+=this.sz1)
+      {
+        this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
+      }
+    }
+    this.src=[10,10];
+    this.des=[35,15];
     this.tempsrc=[...this.src];
     this.tempdes=[...this.des];
-    this.resetGrid();
     this.arr[this.src[0]][this.src[1]]=2;
     this.drawWalls(this.src);
     this.arr[this.des[0]][this.des[1]]=3;
@@ -92,8 +100,9 @@ export class PathFinderComponent implements OnInit {
 
   resetGrid()
   {
-    this.isFound=false;
     this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.ctxGrid.shadowBlur=0;
+    this.ctxGrid.shadowColor="#000000";
     for(let i=0;i<this.canvas.width;i+=this.sz1)
     {
       for(let j=0;j<this.canvas.height;j+=this.sz1)
@@ -101,6 +110,7 @@ export class PathFinderComponent implements OnInit {
         this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
       }
     }
+    this.isFound=false;
     this.arr=[];
     for(let i=0;i<this.ys;i++){
       let temp=[];
@@ -108,6 +118,9 @@ export class PathFinderComponent implements OnInit {
         temp.push(0);
       this.arr.push(temp);
     }
+    for(let i=0;i<this.ys;i++)
+      for(let j=0;j<this.xs;j++)
+        this.drawWalls([i,j]);
     this.src=[...this.tempsrc];
     this.des=[...this.tempdes];
     this.arr[this.src[0]][this.src[1]]=2;
@@ -150,22 +163,24 @@ export class PathFinderComponent implements OnInit {
     }
     else if(this.arr[ind[0]][ind[1]]===2)
     {
-      this.ctxGrid.fillStyle = 'green';
+      this.ctxGrid.fillStyle = '#28B464';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===3)
     {
       this.ctxGrid.fillStyle = 'red';
-      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1,this.sz1);
     }
     else if(this.arr[ind[0]][ind[1]]===4)
     {
-      this.ctxGrid.fillStyle = 'rgb(0,0,255,0.2)';
+      this.ctxGrid.fillStyle = 'rgb(40,40,120,0.2)';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===5)
     {
-      this.ctxGrid.fillStyle = 'purple';
+      this.ctxGrid.shadowBlur = 20;
+      this.ctxGrid.shadowColor = "black";
+      this.ctxGrid.fillStyle = 'rgb(40,80,180,0.8)';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===6)
@@ -176,7 +191,7 @@ export class PathFinderComponent implements OnInit {
     else{
       this.ctxGrid.fillStyle = 'white';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
-      this.ctxGrid.fillStyle = 'rgb(153,184,152,'+String((Math.round(this.wt)/101).toFixed(2))+')';
+      this.ctxGrid.fillStyle = 'rgb(131,184,152,'+String((Math.max(0.16,Math.round(this.wt)/101)).toFixed(2))+')';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
   }
@@ -383,12 +398,80 @@ export class PathFinderComponent implements OnInit {
 
     //maze generation
 
-    getBlocked(){
+    getBlocked(ind:number[]){
+      let ret=[];
+      let thisdx=[0,0,-2,2];
+      let thisdy=[2,-2,0,0];
+      for(let i=0;i<4;i++)
+      {
+        let ni=ind[0]+thisdx[i],nj=ind[1]+thisdy[i];
+        if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]!==1)
+          continue;
+        ret.push([ni,nj]);
+      }
+      return ret;
+    }
+
+    getFree(ind:number[])
+    {
+      let ret=[];
+      let thisdx=[0,0,-2,2];
+      let thisdy=[2,-2,0,0];
+      for(let i=0;i<4;i++)
+      {
+        let ni=ind[0]+thisdx[i],nj=ind[1]+thisdy[i];
+        if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]===1)
+          continue;
+        ret.push([ni,nj]);
+      }
+      return ret[this.getRand(ret.length)];
+    }
+
+    getRand(mx:number){
+      return Math.floor(Math.random()*mx);
+    }
+
+    getMid(ind1:number[],ind2:number[])
+    {
+      return [(ind1[0]+ind2[0])/2,(ind1[1]+ind2[1])/2]
     }
 
     primsMazeAlgorithm(){
+      this.resetGrid();
       let tempArr=[...this.arr];
-      
+      for(let i=0;i<this.ys;i++)
+        for(let j=0;j<this.xs;j++)
+          if(tempArr[i][j]!==2&&tempArr[i][j]!==3)
+            tempArr[i][j]=1;
+          else
+            tempArr[i][j]=this.arr[i][j];
+      let now=this.src;
+      while(tempArr[now[0]][now[1]]===2||tempArr[now[0]][now[1]]===3)
+      {
+        now=[this.getRand(this.ys),this.getRand(this.xs)];
+      }
+      tempArr[now[0]][now[1]]=0;
+      let blocked=this.getBlocked(now);
+      while(blocked.length>0)
+      {
+        let get=blocked[this.getRand(blocked.length)];    //can be randomised
+        let id=blocked.indexOf(get);
+        if(id>-1)
+          blocked.splice(id,1);
+        let freeGet=this.getFree(get);
+        let fr=this.getMid(get,freeGet);
+        if(tempArr[fr[0]][fr[1]]===1)
+          tempArr[fr[0]][fr[1]]=0;
+        if(tempArr[get[0]][get[1]]===1)
+          tempArr[get[0]][get[1]]=0;
+        let tempp=this.getBlocked(get);
+        for(let i=0;i<tempp.length;i++)
+          blocked.push(tempp[i]);
+      }
+      this.arr=[...tempArr];
+      for(let i=0;i<this.ys;i++)
+        for(let j=0;j<this.xs;j++)
+          this.drawWalls([i,j]);
     }
   //
 
@@ -550,7 +633,7 @@ export class PathFinderComponent implements OnInit {
         let temp=[];
         for(let j=0; j<this.xs; j++)
         {
-          temp.push(0); 
+          temp.push(0);
         }
         this.done.push(temp);
       }
@@ -561,8 +644,8 @@ export class PathFinderComponent implements OnInit {
 
     async _recursiveRandomMaze(left:number, right:number, top:number, bottom:number)
     {
-      
-      if(left>right||top>bottom)
+
+      if(left>=right || top>=bottom)
         return;
       if(left===right && top ===bottom)
         return;
@@ -586,16 +669,14 @@ export class PathFinderComponent implements OnInit {
           
         }
         let i:number=this.randomOddNumber(left,right);
-        if(this.arr[row][i]!==2&&this.arr[row][i]!==3) 
+        if(this.arr[row][i]!==2&&this.arr[row][i]!==3)
         {
           this.arr[row][i]=0;
-          this.drawWalls([row,i]);          
-          await new Promise(resolve => setTimeout(resolve, this.dur));          
-
+          this.drawWalls([row,i]);
         }
-        let tleft=left,tright=right, ttop=top,tbottom=bottom;
-        await new Promise(resolve => {setTimeout(() => {resolve(this._recursiveRandomMaze(tleft,tright,ttop,row-2));}, );});
-        await new Promise(resolve => {setTimeout(() => {resolve(this._recursiveRandomMaze(tleft,tright,row+2,tbottom));}, );});
+
+        //await new Promise(resolve => {setTimeout(() => {resolve(this._recursiveRandomMaze(left,right,top,row-1));}, );});
+        await new Promise(resolve => {setTimeout(() => {resolve(this._recursiveRandomMaze(left,right,row+1,bottom));}, );});
 
  
      
@@ -603,7 +684,7 @@ export class PathFinderComponent implements OnInit {
       else
       {
         let clm:number=this.randomEvenNumber(left,right);
-        for (let ind:number=top; ind<=bottom; ind++) 
+        for (let ind:number=top; ind<=bottom; ind++)
         {
           if(this.arr[ind][clm]===2||this.arr[ind][clm]===3||this.done[ind][clm]===1)
             continue;
