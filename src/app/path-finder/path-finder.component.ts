@@ -100,16 +100,8 @@ export class PathFinderComponent implements OnInit {
 
   resetGrid()
   {
-    this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctxGrid.shadowBlur=0;
-    this.ctxGrid.shadowColor="#000000";
-    for(let i=0;i<this.canvas.width;i+=this.sz1)
-    {
-      for(let j=0;j<this.canvas.height;j+=this.sz1)
-      {
-        this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
-      }
-    }
+    this.ctxGrid.shadowColor="white";
     this.isFound=false;
     this.arr=[];
     for(let i=0;i<this.ys;i++){
@@ -146,11 +138,11 @@ export class PathFinderComponent implements OnInit {
     }
   }
 
-  drawWalls(ind:number[]){
+  drawWalls(ind:number[])
+  {
     let cx=ind[1]*this.sz1,cy=ind[0]*this.sz1;
     if(this.arr[ind[0]][ind[1]]===0)
     {
-
       this.ctxGrid.fillStyle = 'white';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
@@ -173,17 +165,14 @@ export class PathFinderComponent implements OnInit {
     }
     else if(this.arr[ind[0]][ind[1]]===4)
     {
-      let img = new Image();
-      img.src = 'https://mdn.mozillademos.org/files/222/Canvas_createpattern.png';
-      var pattern = this.ctxGrid.createPattern(img, 'repeat');
-      this.ctxGrid.fillStyle = pattern;
+      this.ctxGrid.fillStyle = 'rgb(40,40,120,0.2)';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===5)
     {
       this.ctxGrid.shadowBlur = 20;
       this.ctxGrid.shadowColor = "black";
-      this.ctxGrid.fillStyle = 'rgb(0,21,64,0.8)';
+      this.ctxGrid.fillStyle = 'rgb(40,80,180,0.8)';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===6)
@@ -191,7 +180,8 @@ export class PathFinderComponent implements OnInit {
       this.ctxGrid.fillStyle = 'pink';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
-    else{
+    else
+    {
       this.ctxGrid.fillStyle = 'white';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
       this.ctxGrid.fillStyle = 'rgb(131,184,152,'+String((Math.max(0.16,Math.round(this.wt)/101)).toFixed(2))+')';
