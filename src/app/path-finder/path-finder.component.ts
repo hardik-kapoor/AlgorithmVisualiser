@@ -430,6 +430,26 @@ export class PathFinderComponent implements OnInit {
         this.pararr.push(temp3);
       }
       dis[this.src[0]][this.src[1]]=0;
+      this.isFound=false;
+      while(dis.length!==0)
+      { 
+        let now=[-1,-1],mn=this.inf;
+        for(let i=0;i<this.ys;i++)
+        {
+          for(let j=0;j<this.xs;j++)
+          {
+            if(dis[i][j]<mn&&!done[i][j])
+            {
+              now=[i,j];
+              mn=dis[i][j];
+            }
+          }
+        }
+        if(now[0]===-1)
+          break;
+        
+
+      }
     }
 
 
