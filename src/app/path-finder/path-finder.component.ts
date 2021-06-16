@@ -357,11 +357,6 @@ export class PathFinderComponent implements OnInit {
           if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]===1||done[ni][nj])
             continue;
           let prev=this.arr[ni][nj];
-          if(this.arr[now[0]][now[1]]!==2&&this.arr[now[0]][now[1]]!==3){
-            this.arr[ni][nj]=6;
-            this.drawWalls([ni,nj]);
-          }
-          await new Promise(resolve => setTimeout(resolve, this.dur));
           let vl:number=-1;
           if(this.arr[ni][nj]===3)
             vl=103;
@@ -374,11 +369,6 @@ export class PathFinderComponent implements OnInit {
             dis[ni][nj]=dis[now[0]][now[1]]+vl;
             this.pararr[ni][nj]=now;
           }
-          if(this.arr[now[0]][now[1]]!==2&&this.arr[now[0]][now[1]]!==3){
-            this.arr[ni][nj]=prev;
-            this.drawWalls([ni,nj]);
-          }
-          await new Promise(resolve => setTimeout(resolve, this.dur));
         }
       }
       if(this.isFound)
