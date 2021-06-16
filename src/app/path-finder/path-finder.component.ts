@@ -28,7 +28,7 @@ export class PathFinderComponent implements OnInit {
   isFound=false;
   walltype = 1;
   wallchecked = true;
-  whichInd:number=8;
+  whichInd:number=4;
   wt:number=101;
   dx=[1,-1,0,0,1,1,-1,-1];
   dy=[0,0,1,-1,-1,1,-1,1];
@@ -100,8 +100,16 @@ export class PathFinderComponent implements OnInit {
 
   resetGrid()
   {
+    this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctxGrid.shadowBlur=0;
-    this.ctxGrid.shadowColor="white";
+    this.ctxGrid.shadowColor="#000000";
+    for(let i=0;i<this.canvas.width;i+=this.sz1)
+    {
+      for(let j=0;j<this.canvas.height;j+=this.sz1)
+      {
+        this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
+      }
+    }
     this.isFound=false;
     this.arr=[];
     for(let i=0;i<this.ys;i++){
@@ -138,11 +146,11 @@ export class PathFinderComponent implements OnInit {
     }
   }
 
-  drawWalls(ind:number[])
-  {
+  drawWalls(ind:number[]){
     let cx=ind[1]*this.sz1,cy=ind[0]*this.sz1;
     if(this.arr[ind[0]][ind[1]]===0)
     {
+
       this.ctxGrid.fillStyle = 'white';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
@@ -182,8 +190,7 @@ export class PathFinderComponent implements OnInit {
       this.ctxGrid.fillStyle = 'pink';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
-    else
-    {
+    else{
       this.ctxGrid.fillStyle = 'white';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
       this.ctxGrid.fillStyle = 'rgb(131,184,152,'+String((Math.max(0.16,Math.round(this.wt)/101)).toFixed(2))+')';
@@ -399,7 +406,7 @@ export class PathFinderComponent implements OnInit {
       let thisdy=[2,-2,0,0];
       for(let i=0;i<4;i++)
       {
-        let ni=ind[0]+thisdx[0],nj=ind[1]+thisdy[0];
+        let ni=ind[0]+thisdx[i],nj=ind[1]+thisdy[i];
         if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]!==1)
           continue;
         ret.push([ni,nj]);
@@ -414,16 +421,21 @@ export class PathFinderComponent implements OnInit {
       let thisdy=[2,-2,0,0];
       for(let i=0;i<4;i++)
       {
-        let ni=ind[0]+thisdx[0],nj=ind[1]+thisdy[0];
+        let ni=ind[0]+thisdx[i],nj=ind[1]+thisdy[i];
         if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]===1)
           continue;
         ret.push([ni,nj]);
       }
-      return ret.pop();
+      return ret[this.getRand(ret.length)];
     }
 
     getRand(mx:number){
       return Math.floor(Math.random()*mx);
+    }
+
+    getMid(ind1:number[],ind2:number[])
+    {
+      return [(ind1[0]+ind2[0])/2,(ind1[1]+ind2[1])/2]
     }
 
     primsMazeAlgorithm(){
@@ -433,7 +445,35 @@ export class PathFinderComponent implements OnInit {
         for(let j=0;j<this.xs;j++)
           if(tempArr[i][j]!==2&&tempArr[i][j]!==3)
             tempArr[i][j]=1;
-      let now=[this.getRand(this.ys),this.getRand(this.xs)];
+          else
+            tempArr[i][j]=this.arr[i][j];
+      let now=this.src;
+      while(tempArr[now[0]][now[1]]===2||tempArr[now[0]][now[1]]===3)
+      {
+        now=[this.getRand(this.ys),this.getRand(this.xs)];
+      }
+      tempArr[now[0]][now[1]]=0;
+      let blocked=this.getBlocked(now);
+      while(blocked.length>0)
+      {
+        let get=blocked[this.getRand(blocked.length)];    //can be randomised
+        let id=blocked.indexOf(get);
+        if(id>-1)
+          blocked.splice(id,1);
+        let freeGet=this.getFree(get);
+        let fr=this.getMid(get,freeGet);
+        if(tempArr[fr[0]][fr[1]]===1)
+          tempArr[fr[0]][fr[1]]=0;
+        if(tempArr[get[0]][get[1]]===1)
+          tempArr[get[0]][get[1]]=0;
+        let tempp=this.getBlocked(get);
+        for(let i=0;i<tempp.length;i++)
+          blocked.push(tempp[i]);
+      }
+      this.arr=[...tempArr];
+      for(let i=0;i<this.ys;i++)
+        for(let j=0;j<this.xs;j++)
+          this.drawWalls([i,j]);
     }
   //
 
@@ -585,11 +625,6 @@ export class PathFinderComponent implements OnInit {
         this.done.push(temp);
       }
       await new Promise(resolve => {setTimeout(() => {resolve(this._recursiveRandomMaze(0,this.xs-1,0,this.ys-1));}, );});
-      for(let i:number=0; i<this.ys; i++)
-      {
-        for(let j:number=0; j<this.xs; j++)
-          this.drawWalls([i,j]);
-      }
 
     }
 
@@ -643,7 +678,7 @@ export class PathFinderComponent implements OnInit {
 
       }
     }
-
+    
 
   //
 
