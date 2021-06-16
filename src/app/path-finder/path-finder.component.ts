@@ -411,6 +411,29 @@ export class PathFinderComponent implements OnInit {
         await new Promise(resolve => {setTimeout(() => {resolve(this._dfs([tx,ty]));}, );});
       }
     }
+
+    async astar()
+    {
+      let dis=[],done=[];
+      this.pararr=[];
+      for(let i=0;i<this.ys;i++)
+      {
+        let temp=[],temp2=[],temp3=[];
+        for(let j=0;j<this.xs;j++)
+        {
+          temp.push(this.inf);
+          temp2.push(0);
+          temp3.push([-1,-1]);
+        }
+        dis.push(temp);
+        done.push(temp2);
+        this.pararr.push(temp3);
+      }
+      dis[this.src[0]][this.src[1]]=0;
+    }
+
+
+
   //
 
 }
