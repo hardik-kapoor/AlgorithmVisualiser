@@ -12,8 +12,9 @@
                     font-weight:400;
                     "> Path Finding Algorithms</mat-label>
                     <mat-select>
-                      <mat-option value="one">DFS</mat-option>
-                      <mat-option value="two">BFS</mat-option>
+                      <mat-option value="one">Depth First Search</mat-option>
+                      <mat-option value="two">Breadth First Search</mat-option>
+                      <mat-option value="three">Dijkstra</mat-option>
                     </mat-select>
                   </mat-form-field>
             </div>
@@ -28,7 +29,7 @@
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="bfs()" > Start  </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="dijkstra()" > dijkstra  </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="resetGrid()" > Reset  </button>
             </div>
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> <mat-slide-toggle [checked]="wallchecked" (change)="walltoggle($event)"></mat-slide-toggle>  Walls</button>
