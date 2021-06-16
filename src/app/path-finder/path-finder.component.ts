@@ -14,7 +14,7 @@ export class PathFinderComponent implements OnInit {
 
   canvas;
   ctxGrid;
-  sz1:number=15;
+  sz1:number=10;
   isDrawing:boolean=false;
   arr;
   src;
