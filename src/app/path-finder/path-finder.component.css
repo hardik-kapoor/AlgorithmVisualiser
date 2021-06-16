@@ -89,12 +89,7 @@
     background-color: black;
 }
 
-#graph
-{
-    display: flex;
-    justify-content:center;
-    padding:5px;
-}
+
 
 #sidebar{
   background: linear-gradient(to right, #ff5f6d, #ffc371);

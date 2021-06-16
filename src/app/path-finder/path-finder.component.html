@@ -1,7 +1,7 @@
 
-<div class="container-flex ">
+<div style="height:600px">
     <div id="main" class="container-fluid row">
-        <div id="sidebar" class="container-fluid col-2 " style="background: linear-gradient(to right, #ff5f6d, #ffc371)">
+        <div id="sidebar" class="container-fluid col-2 " style="background: linear-gradient(to right, #ff5f6d, #ffc371) ; height:550px">
             <br>
             <div class="row-2">
               <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> DFS </button>
@@ -26,7 +26,7 @@
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="bfs()" > Start  </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="dijkstra()" > dijkstra  </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="resetGrid()" > Reset  </button>
             </div>
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> <mat-slide-toggle [checked]="wallchecked" (change)="walltoggle($event)"></mat-slide-toggle>  Walls</button>
@@ -43,6 +43,10 @@
             </div>
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark">Change Destination</button>
+            </div>
+            <div class="row-2 bg-light" style="height:50px ; border-radius:5px">
+              <div style="font-weight: 400; padding:2px ; margin-left:5px"> Weights </div>
+            <mat-slider class="ng-deep w-100 bg-light" style="border-radius:5px" min="1" max="100" step="1" [value]="20"></mat-slider>
             </div>
         </div>
     </div>
