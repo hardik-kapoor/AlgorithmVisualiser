@@ -167,7 +167,7 @@ export class PathFinderComponent implements OnInit {
     {
       this.ctxGrid.shadowBlur = 20;
       this.ctxGrid.shadowColor = "black";
-      this.ctxGrid.fillStyle = 'rgb(40,80,180,0.8)';
+      this.ctxGrid.fillStyle = 'rgb(40,80,240,0.8)';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===6)
@@ -391,7 +391,7 @@ export class PathFinderComponent implements OnInit {
       let thisdy=[2,-2,0,0];
       for(let i=0;i<4;i++)
       {
-        let ni=ind[0]+thisdx[i],nj=ind[1]+thisdy[i];
+        let ni=ind[0]+thisdx[0],nj=ind[1]+thisdy[0];
         if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]!==1)
           continue;
         ret.push([ni,nj]);
@@ -406,21 +406,16 @@ export class PathFinderComponent implements OnInit {
       let thisdy=[2,-2,0,0];
       for(let i=0;i<4;i++)
       {
-        let ni=ind[0]+thisdx[i],nj=ind[1]+thisdy[i];
+        let ni=ind[0]+thisdx[0],nj=ind[1]+thisdy[0];
         if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]===1)
           continue;
         ret.push([ni,nj]);
       }
-      return ret[this.getRand(ret.length)];
+      return ret.pop();
     }
 
     getRand(mx:number){
       return Math.floor(Math.random()*mx);
-    }
-
-    getMid(ind1:number[],ind2:number[])
-    {
-      return [(ind1[0]+ind2[0])/2,(ind1[1]+ind2[1])/2]
     }
 
     primsMazeAlgorithm(){
@@ -430,35 +425,7 @@ export class PathFinderComponent implements OnInit {
         for(let j=0;j<this.xs;j++)
           if(tempArr[i][j]!==2&&tempArr[i][j]!==3)
             tempArr[i][j]=1;
-          else
-            tempArr[i][j]=this.arr[i][j];
-      let now=this.src;
-      while(tempArr[now[0]][now[1]]===2||tempArr[now[0]][now[1]]===3)
-      {
-        now=[this.getRand(this.ys),this.getRand(this.xs)];
-      }
-      tempArr[now[0]][now[1]]=0;
-      let blocked=this.getBlocked(now);
-      while(blocked.length>0)
-      {
-        let get=blocked[this.getRand(blocked.length)];    //can be randomised
-        let id=blocked.indexOf(get);
-        if(id>-1)
-          blocked.splice(id,1);
-        let freeGet=this.getFree(get);
-        let fr=this.getMid(get,freeGet);
-        if(tempArr[fr[0]][fr[1]]===1)
-          tempArr[fr[0]][fr[1]]=0;
-        if(tempArr[get[0]][get[1]]===1)
-          tempArr[get[0]][get[1]]=0;
-        let tempp=this.getBlocked(get);
-        for(let i=0;i<tempp.length;i++)
-          blocked.push(tempp[i]);
-      }
-      this.arr=[...tempArr];
-      for(let i=0;i<this.ys;i++)
-        for(let j=0;j<this.xs;j++)
-          this.drawWalls([i,j]);
+      let now=[this.getRand(this.ys),this.getRand(this.xs)];
     }
   //
 
