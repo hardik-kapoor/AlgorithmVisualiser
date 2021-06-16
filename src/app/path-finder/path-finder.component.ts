@@ -28,9 +28,16 @@ export class PathFinderComponent implements OnInit {
   isFound=false;
   walltype = 1;
   wallchecked = true;
+<<<<<<< HEAD
   dx=[1,-1,0,0];
   dy=[0,0,1,-1];
 
+=======
+  whichInd:number=8;
+  dx=[1,-1,0,0,1,1,-1,-1];
+  dy=[0,0,1,-1,-1,1,-1,1];
+  
+>>>>>>> 69673465cced32abde8b056f2986afb1d9444695
 
   /*
   0->(weight)(is equal to 1)
@@ -259,7 +266,7 @@ export class PathFinderComponent implements OnInit {
         let now=q.front();
         q.pop();
         let i=now[0],j=now[1];
-        for(let ind=0;ind<4;ind++)
+        for(let ind=0;ind<this.whichInd;ind++)
         {
           let ni=i+this.dx[ind],nj=j+this.dy[ind];
           if(ni<0||ni>=ys||nj<0||nj>=xs||this.arr[ni][nj]===1)
@@ -331,7 +338,7 @@ export class PathFinderComponent implements OnInit {
           this.drawWalls([now[0],now[1]]);
           await new Promise(resolve => setTimeout(resolve, this.dur));
         }
-        for(let ind=0;ind<4;ind++)
+        for(let ind=0;ind<this.whichInd;ind++)
         {
           let ni=now[0]+this.dx[ind],nj=now[1]+this.dy[ind];
           if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]===1||done[ni][nj])
@@ -390,8 +397,13 @@ export class PathFinderComponent implements OnInit {
       if(this.isFound===true)
         return ;
       let x:number=root[0],y=root[1];
+<<<<<<< HEAD
 
       for(let ind=0; ind<4; ind++)
+=======
+      
+      for(let ind=0; ind<this.whichInd; ind++)
+>>>>>>> 69673465cced32abde8b056f2986afb1d9444695
       {
         let tx=x+this.dx[ind], ty=y+this.dy[ind];
 
