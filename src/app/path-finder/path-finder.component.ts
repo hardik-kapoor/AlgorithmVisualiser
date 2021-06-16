@@ -28,7 +28,7 @@ export class PathFinderComponent implements OnInit {
   isFound=false;
   walltype = 1;
   wallchecked = true;
-  whichInd:number=4;
+  whichInd:number=8;
   wt:number=101;
   dx=[1,-1,0,0,1,1,-1,-1];
   dy=[0,0,1,-1,-1,1,-1,1];
@@ -165,7 +165,7 @@ export class PathFinderComponent implements OnInit {
     }
     else if(this.arr[ind[0]][ind[1]]===6)
     {
-      this.ctxGrid.fillStyle = 'black';
+      this.ctxGrid.fillStyle = 'pink';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else{
@@ -425,24 +425,27 @@ export class PathFinderComponent implements OnInit {
 
     async astar()
     {
-      let dis=[],done=[];
+      let dis=[],done=[],gvalue=[];
       this.pararr=[];
       for(let i=0;i<this.ys;i++)
       {
-        let temp=[],temp2=[],temp3=[];
+        let temp=[],temp2=[],temp3=[],temp4=[];
         for(let j=0;j<this.xs;j++)
         {
           temp.push(this.inf);
           temp2.push(0);
           temp3.push([-1,-1]);
+          temp4.push(this.inf);
         }
         dis.push(temp);
         done.push(temp2);
         this.pararr.push(temp3);
+        gvalue.push(temp4);
       }
       dis[this.src[0]][this.src[1]]=0;
+      gvalue[this.src[0]][this.src[1]]=0;
       this.isFound=false;
-      while(dis.length!==0)
+      while(this.isFound===false)
       { 
         let now=[-1,-1],mn=this.inf;
         for(let i=0;i<this.ys;i++)
@@ -458,49 +461,54 @@ export class PathFinderComponent implements OnInit {
         }
         if(now[0]===-1)
           break;
-        if( this.arr[now[0]][now[1]]!==2 && this.arr[now[0]][now[1]]!==3)
+        done[now[0]][now[1]]=1;
+        if(this.arr[now[0]][now[1]]===3)
         {
-          this.arr[now[0]][now[1]]=4;
+          this.isFound=true;
+          break;
+        }
+        if(this.arr[now[0]][now[1]]!==2&&this.arr[now[0]][now[1]]!==3)
+        {
+          this.arr[now[0]][now[1]]=4;   //in progress
           this.drawWalls([now[0],now[1]]);
           await new Promise(resolve => setTimeout(resolve, this.dur));
         }
         for(let ind=0;ind<this.whichInd;ind++)
         {
           let ni=now[0]+this.dx[ind],nj=now[1]+this.dy[ind];
+
           if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]===1||done[ni][nj])
             continue;
-          let prev=this.arr[ni][nj];
-          if(this.arr[now[0]][now[1]]!==2&&this.arr[now[0]][now[1]]!==3){
-            this.arr[ni][nj]=6;
-            this.drawWalls([ni,nj]);
-          }
-          if(this.des[0]===ni&& this.des[1]===nj)
+          let gv:number=-1;
+          if(this.arr[ni][nj]===3)
+            gv=0;
+          else if(this.arr[ni][nj]===0)
+            gv=1;
+          else
+            gv=this.arr[ni][nj]-5;
+          gv=dis[now[0]][now[1]]+gv;
+          let hv:number=Math.abs(now[0]-ni)+Math.abs(now[1]-nj);
+          let fv:number=gv+hv;
+          if(dis[ni][nj]>fv)
           {
+            dis[ni][nj]=fv;
+            gvalue[ni][nj]=gv;
+            this.pararr[ni][nj]=now;
+          }
+          if(this.arr[ni][nj]===3)
+          {
+            this.pararr[ni][nj]=now;
             this.isFound=true;
             break;
           }
-          await new Promise(resolve => setTimeout(resolve, this.dur));
-          let vl:number=-1;
-          if(this.arr[ni][nj]===3)
-            vl=103;
-          else if(this.arr[ni][nj]===0)
-            vl=1;
-          else
-            vl=this.arr[ni][nj]-5;
-          if(dis[ni][nj]>dis[now[0]][now[1]]+vl)
-          {
-            dis[ni][nj]=dis[now[0]][now[1]]+vl;
-            this.pararr[ni][nj]=now;
-          }
-          if(this.arr[now[0]][now[1]]!==2&&this.arr[now[0]][now[1]]!==3){
-            this.arr[ni][nj]=prev;
-            this.drawWalls([ni,nj]);
-          }
-          await new Promise(resolve => setTimeout(resolve, this.dur));
+          
+          
         }
-      
-
+        if(this.isFound)
+          break;
       }
+      if(this.isFound)
+        this.backtrack();
     }
 
 
