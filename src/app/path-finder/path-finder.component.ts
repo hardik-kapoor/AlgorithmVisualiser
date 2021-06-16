@@ -159,7 +159,7 @@ export class PathFinderComponent implements OnInit {
     }
     else if(this.arr[ind[0]][ind[1]]===4)
     {
-      this.ctxGrid.fillStyle = 'blue';
+      this.ctxGrid.fillStyle = 'rgb(0,0,255,0.2)';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===5)
@@ -175,7 +175,7 @@ export class PathFinderComponent implements OnInit {
     else{
       this.ctxGrid.fillStyle = 'white';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
-      this.ctxGrid.fillStyle = 'rgb(1,1,1,'+String((Math.round(this.wt)/101).toFixed(2))+')';
+      this.ctxGrid.fillStyle = 'rgb(153,184,152,'+String((Math.round(this.wt)/101).toFixed(2))+')';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
   }
