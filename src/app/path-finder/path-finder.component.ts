@@ -16,7 +16,7 @@ export class PathFinderComponent implements OnInit {
   ctxGrid;
   sz1:number=20;
   isDrawing:boolean=false;
-  arr;  
+  arr;
   src;
   des;
   xs;
@@ -28,10 +28,11 @@ export class PathFinderComponent implements OnInit {
   isFound=false;
   walltype = 1;
   wallchecked = true;
-  whichInd:number=8;
+  whichInd:number=4;
+  wt:number=101;
   dx=[1,-1,0,0,1,1,-1,-1];
   dy=[0,0,1,-1,-1,1,-1,1];
-  
+
 
   /*
   0->(weight)(is equal to 1)
@@ -71,15 +72,22 @@ export class PathFinderComponent implements OnInit {
     this.makeWalls();
   }
 
+  changeWallWeight(vl)
+  {
+    this.wt=vl;
+  }
+
   walltoggle(event){
     console.log(event)
     if(event.checked === true)this.walltype = 1;
     else this.walltype = 0;
   }
 
+  chose(event){
+    console.log(event);
+  }
 
-
-  resetGrid() 
+  resetGrid()
   {
     this.isFound=false;
     this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -103,7 +111,7 @@ export class PathFinderComponent implements OnInit {
     this.drawWalls(this.src);
     this.arr[this.des[0]][this.des[1]]=3;
     this.drawWalls(this.des);
-  }  
+  }
 
   randomGrid()
   {
@@ -119,14 +127,14 @@ export class PathFinderComponent implements OnInit {
           this.drawWalls([j/20,i/20]);
         }
       }
-    }    
+    }
   }
 
   drawWalls(ind:number[]){
     let cx=ind[1]*20,cy=ind[0]*20;
     if(this.arr[ind[0]][ind[1]]===0)
     {
-      
+
       this.ctxGrid.fillStyle = 'white';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
@@ -160,11 +168,14 @@ export class PathFinderComponent implements OnInit {
       this.ctxGrid.fillStyle = 'black';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
+    else{
+      this.ctxGrid.fillStyle='gray';
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
+    }
   }
 
   makeWalls()
   {
-    
     document.body.onmousedown=()=>{
       this.isDrawing=true;
     }
@@ -178,13 +189,18 @@ export class PathFinderComponent implements OnInit {
         cy=(Math.floor(cy/20))*20;
         let r=Math.floor(cy/20);
         let c=Math.floor(cx/20);
+        let val=-1;
+        if(this.wt===101)
+          val=1;
+        else
+          val=this.wt+6;
         if(!((r===this.src[0]&&c===this.src[1])||(r===this.des[0]&&c===this.des[1]))){
           if(this.walltype === 0){
             this.arr[r][c] = 0;
             this.drawWalls([r,c]);
           }
           else{
-            this.arr[r][c]=1;
+            this.arr[r][c]=val;
             this.drawWalls([r,c]);
           }
         }
@@ -201,13 +217,18 @@ export class PathFinderComponent implements OnInit {
         cy=(Math.floor(cy/20))*20;
         let r=Math.floor(cy/20);
         let c=Math.floor(cx/20);
+        let val=-1;
+        if(this.wt===101)
+          val=1;
+        else
+          val=this.wt+6;
         if(!((r===this.src[0]&&c===this.src[1])||(r===this.des[0]&&c===this.des[1]))){
-          if(this.walltype===0){
+          if(this.walltype === 0){
             this.arr[r][c] = 0;
             this.drawWalls([r,c]);
           }
           else{
-            this.arr[r][c]=1;
+            this.arr[r][c]=val;
             this.drawWalls([r,c]);
           }
         }
@@ -216,9 +237,9 @@ export class PathFinderComponent implements OnInit {
 
     document.body.onmouseup=()=>{
       this.isDrawing=false;
-    } 
+    }
   }
-  
+
   async backtrack()
   {
     let nowi=this.des[0],nowj=this.des[1];
@@ -319,7 +340,7 @@ export class PathFinderComponent implements OnInit {
         if(now[0]===-1)
           break;
         done[now[0]][now[1]]=1;
-        if(now[0]===this.des[0]&&now[1]===this.des[1])
+        if(this.arr[now[0]][now[1]]===3)
         {
           this.isFound=true;
           break;
@@ -335,15 +356,9 @@ export class PathFinderComponent implements OnInit {
           let ni=now[0]+this.dx[ind],nj=now[1]+this.dy[ind];
           if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]===1||done[ni][nj])
             continue;
-          let prev=this.arr[ni][nj];
-          if(this.arr[now[0]][now[1]]!==2&&this.arr[now[0]][now[1]]!==3){
-            this.arr[ni][nj]=6;
-            this.drawWalls([ni,nj]);
-          }
-          await new Promise(resolve => setTimeout(resolve, this.dur));
           let vl:number=-1;
           if(this.arr[ni][nj]===3)
-            vl=103;
+            vl=0;
           else if(this.arr[ni][nj]===0)
             vl=1;
           else
@@ -353,11 +368,6 @@ export class PathFinderComponent implements OnInit {
             dis[ni][nj]=dis[now[0]][now[1]]+vl;
             this.pararr[ni][nj]=now;
           }
-          if(this.arr[now[0]][now[1]]!==2&&this.arr[now[0]][now[1]]!==3){
-            this.arr[ni][nj]=prev;
-            this.drawWalls([ni,nj]);
-          }
-          await new Promise(resolve => setTimeout(resolve, this.dur));
         }
       }
       if(this.isFound)
@@ -378,22 +388,22 @@ export class PathFinderComponent implements OnInit {
         this.pararr.push(temp);
       }
       this.isFound=false;
-      this.pararr[this.src[0]][this.src[1]]=[-2,-2];     
+      this.pararr[this.src[0]][this.src[1]]=[-2,-2];
       await new Promise(resolve => {setTimeout(() => {resolve(this._dfs(this.src));}, );});
       await new Promise(resolve => {setTimeout(() => {resolve(this.backtrack());}, );});
     }
 
     async _dfs(root:number[])
     {
-    
+
       if(this.isFound===true)
         return ;
       let x:number=root[0],y=root[1];
-      
+
       for(let ind=0; ind<this.whichInd; ind++)
       {
         let tx=x+this.dx[ind], ty=y+this.dy[ind];
-      
+
         if(tx<0||tx>=this.ys||ty<0||ty>=this.xs||this.arr[tx][ty]===1||this.isFound)
           continue;
         if(this.pararr[tx][ty][0]!==-1&& this.pararr[tx][ty][1]!==-1)
