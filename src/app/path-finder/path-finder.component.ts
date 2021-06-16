@@ -59,8 +59,8 @@ export class PathFinderComponent implements OnInit {
         temp.push(0);
       this.arr.push(temp);
     }
-    this.src=[0,0];
-    this.des=[this.ys-1,this.xs-1];
+    this.src=[10,10];
+    this.des=[35,15];
     this.tempsrc=[...this.src];
     this.tempdes=[...this.des];
     this.resetGrid();
@@ -382,12 +382,47 @@ export class PathFinderComponent implements OnInit {
 
     //maze generation
 
-    getBlocked(){
+    getBlocked(ind:number[]){
+      let ret=[];
+      let thisdx=[0,0,-2,2];
+      let thisdy=[2,-2,0,0];
+      for(let i=0;i<4;i++)
+      {
+        let ni=ind[0]+thisdx[0],nj=ind[1]+thisdy[0];
+        if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]!==1)
+          continue;
+        ret.push([ni,nj]);
+      }
+      return ret;
+    }
+
+    getFree(ind:number[])
+    {
+      let ret=[];
+      let thisdx=[0,0,-2,2];
+      let thisdy=[2,-2,0,0];
+      for(let i=0;i<4;i++)
+      {
+        let ni=ind[0]+thisdx[0],nj=ind[1]+thisdy[0];
+        if(ni<0||ni>=this.ys||nj<0||nj>=this.xs||this.arr[ni][nj]===1)
+          continue;
+        ret.push([ni,nj]);
+      }
+      return ret.pop();
+    }
+
+    getRand(mx:number){
+      return Math.floor(Math.random()*mx);
     }
 
     primsMazeAlgorithm(){
+      this.resetGrid();
       let tempArr=[...this.arr];
-      
+      for(let i=0;i<this.ys;i++)
+        for(let j=0;j<this.xs;j++)
+          if(tempArr[i][j]!==2&&tempArr[i][j]!==3)
+            tempArr[i][j]=1;
+      let now=[this.getRand(this.ys),this.getRand(this.xs)];
     }
   //
 
