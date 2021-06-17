@@ -36,7 +36,7 @@
         <div class="col-2 container-fluid " id="sidebar">
             <br>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="astar()" [disabled]="isdisabled() || isdisabledalt()" > Start  </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="startAlgo()" [disabled]="isdisabled() || isdisabledalt()" > Start  </button>
             </div>
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="resetGrid()" [disabled]="isdisabled()"> Reset  </button>
@@ -45,7 +45,7 @@
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="randomGrid()" [disabled]="isdisabled()"> Random Grid </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="primsMazeAlgorithm()" [disabled]="isdisabled()"> Random Maze </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="startMaze()" [disabled]="isdisabled()"> Random Maze </button>
             </div>
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="changeSrc()" [disabled]="isdisabled() || isdisabledalt()"> Change Start </button>
