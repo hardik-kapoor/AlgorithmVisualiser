@@ -32,6 +32,8 @@ export class PathFinderComponent implements OnInit {
   isDone=false;
   walltype = 1;
   wallchecked = true;
+  whichAlgo="dfs";
+  whichMaze="recursive";
   whichInd:number=4;
   wt:number=101;
   dx=[1,-1,0,0,1,1,-1,-1];
@@ -82,6 +84,63 @@ export class PathFinderComponent implements OnInit {
     this.arr[this.des[0]][this.des[1]]=3;
     this.drawWalls(this.des);
     this.makeWalls();
+  }
+
+  changeAlgo(which:string)
+  {
+    this.whichAlgo=which;
+  }
+
+  changeMaze(which:string)
+  {
+    this.whichMaze=which;
+  }
+
+  changeId(which:number)
+  {
+    this.whichInd=which;
+  }
+
+  startAlgo(){
+    if(this.whichAlgo==="dfs")
+      this.dfs();
+    else if(this.whichAlgo==="bfs")
+      this.bfs();
+    else if(this.whichAlgo==="dijkstra")
+      this.dijkstra();
+    else if(this.whichAlgo==="astar")
+      this.astar();
+  }
+
+  startMaze(){
+    if(this.whichMaze==="recursive")
+      this.recursiveRandomMaze();
+    else if(this.whichMaze==="prims")
+      this.primsMazeAlgorithm();
+  }
+
+  btnDisSt(which:string)
+  {
+    if(which===this.whichAlgo)
+      return true;
+    else
+      return false;
+  }
+
+  btnDisMz(which:string)
+  {
+    if(which===this.whichMaze)
+      return true;
+    else
+      return false;
+  }
+
+  btnDisId(which:number)
+  {
+    if(which===this.whichInd)
+      return true;
+    else
+      return false;
   }
 
   isdisabled(){
@@ -186,7 +245,7 @@ export class PathFinderComponent implements OnInit {
     {
       this.ctxGrid.fillStyle = 'white';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
-      this.ctxGrid.fillStyle = 'rgb(1,1,1,'+String((Math.round(this.wt)/101).toFixed(2))+')';
+      this.ctxGrid.fillStyle = 'black';
       this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===2)

@@ -4,18 +4,31 @@
         <div id="sidebar" class="container-fluid col-2 " style="background: linear-gradient(to right, #ff5f6d, #ffc371)">
             <br>
             <div class="row-2">
-              <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> DFS </button>
-          </div>
-          <div class="row-2">
-              <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> BFS </button>
-          </div>
-          <div class="row-2">
-              <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> Dijkstra </button>
-          </div>
-          <div class="row-2">
-              <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> A-star</button>
-          </div>
-
+              <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)='changeAlgo("dfs")' [disabled]='btnDisSt("dfs")'> DFS </button>
+            </div>
+            <div class="row-2">
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)='changeAlgo("bfs")' [disabled]='btnDisSt("bfs")'> BFS </button>
+            </div>
+            <div class="row-2">
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)='changeAlgo("dijkstra")' [disabled]='btnDisSt("dijkstra")'> Dijkstra </button>
+            </div>
+            <div class="row-2">
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)='changeAlgo("astar")' [disabled]='btnDisSt("astar")'> A-star</button>
+            </div>
+            <br>
+            <div class="row-2">
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)='changeMaze("recursive")' [disabled]='btnDisMz("recursive")'> Recursive randomised Maze Generation </button>
+            </div>
+            <div class="row-2">
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)='changeMaze("prims")' [disabled]='btnDisMz("prims")'> Prims randomised Maze Generation </button>
+            </div>
+            <br>
+            <div class="row-2">
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)='changeId(+4)' [disabled]='btnDisId(+4)'> 4 </button>
+            </div>
+            <div class="row-2">
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)='changeId(+8)' [disabled]='btnDisId(+8)'> 8 </button>
+            </div>
         </div>
         <div id="graph" class="container-fluid col-7">
             <canvas id="myCanvas"></canvas>
