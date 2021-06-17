@@ -11,7 +11,7 @@
 }
 .text-box{
     position: absolute;
-    top:40%;
+    top:20%;
     bottom: 50%;
     left: 17%;
     right: 10%;
@@ -21,11 +21,50 @@
 }
 .subtext{
     position: absolute;
-    top:50%;
+    top:30%;
     bottom: 50%;
     left: 40%;
     right: 10%;
-    animation: fadeInAnimation ease 7s;
+    animation: fadeInAnimation ease 3s;
     animation-iteration-count: 1;
     animation-fill-mode: forwards;
 }
+.row .column .card a{
+    text-decoration: none;
+    color: black;
+}
+.column {
+    
+    width: 30%;
+    padding: 0 10px;
+  }
+  .row {
+      margin: 200px 200px 10px 300px;
+      animation: fadeInAnimation ease 1s;
+     animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    }
+  
+  
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  
+  .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); 
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+  }
+  
+  
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  }
