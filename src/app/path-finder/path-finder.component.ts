@@ -233,6 +233,11 @@ export class PathFinderComponent implements OnInit {
     }
   }
 
+  notFound(){
+    alert("Path Not Found!!");
+    this.resetGrid();
+  }
+
   drawWalls(ind:number[]){
     let cx=ind[1]*this.sz1,cy=ind[0]*this.sz1;
     if(this.arr[ind[0]][ind[1]]===0)
@@ -458,6 +463,11 @@ export class PathFinderComponent implements OnInit {
         if(this.isFound)
           break;
       }
+      if(!this.isFound)
+      {
+        this.notFound();
+        return;
+      }
       await new Promise(resolve => {setTimeout(() => {resolve(this.backtrack());}, );});
       this.isWorking=false;
       this.isDone=true;
@@ -530,6 +540,8 @@ export class PathFinderComponent implements OnInit {
       }
       if(this.isFound)
         this.backtrack();
+      else
+        this.notFound();
       this.isWorking=false;
       this.isDone=true;
     }
@@ -634,6 +646,11 @@ export class PathFinderComponent implements OnInit {
       this.isFound=false;
       this.pararr[this.src[0]][this.src[1]]=[-2,-2];
       await new Promise(resolve => {setTimeout(() => {resolve(this._dfs(this.src));}, );});
+      if(!this.isFound)
+      {
+        this.notFound();
+        return;
+      }
       await new Promise(resolve => {setTimeout(() => {resolve(this.backtrack());}, );});
       this.isWorking=false;
       this.isDone=true;
@@ -749,6 +766,8 @@ export class PathFinderComponent implements OnInit {
       }
       if(this.isFound)
         this.backtrack();
+      else
+        this.notFound();
       this.isWorking=false;
       this.isDone=true;
     }
