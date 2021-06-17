@@ -50,7 +50,7 @@
 #bt
 {
     padding:0.4em;
-    font-size:1.1em;
+    font-size:1em;
     font-weight:400;
     transition: transform 500ms;
     width:100%;
@@ -92,7 +92,7 @@
 
 
 #sidebar{
-  background: linear-gradient(to right, #ff5f6d, #ffc371);
+  background: rgba(255, 255, 255, 0.2);
   border-radius:10px;
   width:200px;
   margin-left:10px;

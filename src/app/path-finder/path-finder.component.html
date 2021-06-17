@@ -1,7 +1,10 @@
 
-<div>
-    <div id="main" class="container-fluid row">
-        <div id="sidebar" class="container-fluid col-2 " style="background: linear-gradient(to right, #ff5f6d, #ffc371)">
+<div style="background-image:url('https://assets.hongkiat.com/uploads/minimalist-dekstop-wallpapers/4k/preview/09.jpg');
+background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;">
+    <div  class="container-fluid row">
+        <div id="sidebar" class="container-fluid col-2">
             <br>
             <div class="row-2">
               <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)='changeAlgo("dfs")' [disabled]='btnDisSt("dfs")'> DFS </button>
@@ -24,14 +27,16 @@
             </div>
             <br>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)='changeId(+4)' [disabled]='btnDisId(+4)'> 4 </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)='changeId(+4)' [disabled]='btnDisId(+4)'> 4-way Movement </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)='changeId(+8)' [disabled]='btnDisId(+8)'> 8 </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)='changeId(+8)' [disabled]='btnDisId(+8)'> 8-way Movement </button>
             </div>
         </div>
         <div id="graph" class="container-fluid col-7">
-            <canvas id="myCanvas"></canvas>
+            <div>
+              <canvas id="myCanvas"></canvas>
+            </div>
         </div>
         <div class="col-2 container-fluid " id="sidebar">
             <br>
@@ -41,12 +46,14 @@
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="resetGrid()" [disabled]="isdisabled()"> Reset  </button>
             </div>
+            <br>
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="randomGrid()" [disabled]="isdisabled()"> Random Grid </button>
             </div>
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="startMaze()" [disabled]="isdisabled()"> Random Maze </button>
             </div>
+            <br>
             <div class="row-2">
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="changeSrc()" [disabled]="isdisabled() || isdisabledalt()"> Change Start </button>
             </div>
