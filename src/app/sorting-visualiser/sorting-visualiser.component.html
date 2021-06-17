@@ -1,5 +1,8 @@
 
-<div class="bg-light">
+<div style="background-image:url('https://assets.hongkiat.com/uploads/minimalist-dekstop-wallpapers/4k/original/09.jpg');
+background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;">
     <div id = "main" class="row">
         <div id="left-bt" class="col">
             <fa-icon id="icon" [icon]="_chosen"></fa-icon> {{whichSort}}
@@ -8,8 +11,8 @@
             <div class="row">
                 <div id="graph">
                 <div *ngFor="let number of arr;index as i;last as l;first as f">
-                    <div 
-                    class="bar" 
+                    <div
+                    class="bar"
                     [style.height]='(75*number)/max_val + "%"' [ngStyle]="currentColor(i)">
                     <div *ngIf = "this.size < 25" id="bar-txt">{{arr[i]}}</div>
                 </div>
@@ -28,7 +31,7 @@
                 <div class="row-2">
                     <button id="bt" class="btn btn-light mb-2 text-dark" (click)="createRandomArray()"><fa-icon id="icon" [icon]="_shuffle"></fa-icon> Shuffle </button>
                 </div>
-        
+
         </div>
     </div>
 </div>
@@ -38,7 +41,7 @@
 <!-- Footer Part -->
 <div id="footer" class="card bg-light">
 
-    
+
     <div class="row">
       <div class = "col-1 text-dark"><button id="txt"  (click)="change('Quicksort')" class="btn btn-light">QuickSort</button></div>
       <div class = "col-1 text-dark"><button id="txt"  (click)="change('Heapsort')" class="btn btn-light">HeapSort</button></div>

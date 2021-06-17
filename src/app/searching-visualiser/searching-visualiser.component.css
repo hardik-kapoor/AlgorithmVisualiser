@@ -2,7 +2,8 @@
     float: left;
     margin-left:1px;
     margin-right:1px;
-    border:2px solid #343a40;
+    border:2px solid black;
+    border-radius:3px;
     transition: transform 200ms;
 }
 

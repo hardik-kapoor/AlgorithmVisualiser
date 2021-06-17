@@ -49,7 +49,7 @@ export class SortingVisualiserComponent implements OnInit {
   setSize(event)
   {
     this.size = event.value;
-    this.createRandomArray(); 
+    this.createRandomArray();
   }
 
   change(now:string){
@@ -67,7 +67,7 @@ export class SortingVisualiserComponent implements OnInit {
   {
     this.isChecking=[];
     this.isSwapping=[];
-    this.isDone=[]; 
+    this.isDone=[];
     this.isChild=[];
   }
 
@@ -130,7 +130,7 @@ export class SortingVisualiserComponent implements OnInit {
     else if(this.isChild.includes(ind))
       return {"background-color": '#B4933F' , "width": String(Math.min(33,(600/this.size)))+"px", "color": 'white'};
     else
-      return {"background-color": '#343a40' , "width": String(Math.min(33,(600/this.size)))+"px" , "color": 'white'};
+      return {"background-color": 'rgb(255,255,255,0.7)' , "width": String(Math.min(33,(600/this.size)))+"px" , "color": 'black'};
   }
 
 
@@ -161,7 +161,7 @@ export class SortingVisualiserComponent implements OnInit {
     async partition(lo:number,hi:number)
     {
       let ind:number=Math.floor(Math.random()*(hi+1-lo)+lo);
-      
+
       this.isSwapping=[];
       this.isSwapping.push(ind);
       this.isSwapping.push(hi);
@@ -211,7 +211,7 @@ export class SortingVisualiserComponent implements OnInit {
         this.isDone.push(this.part);
 
         await new Promise(resolve => {setTimeout(() => {resolve(this.quicks(lo,this.part-1));}, 0);});
-        
+
 
         await new Promise(resolve => {setTimeout(() => {resolve(this.quicks(this.part+1,hi));}, 0);});
 
@@ -223,7 +223,7 @@ export class SortingVisualiserComponent implements OnInit {
       this.reset();
       this.quicks(0,this.arr.length-1);
     }
-    
+
     async insertionsort(){
       this.reset();
       for(let i=1;i<this.arr.length;i++)
@@ -299,7 +299,7 @@ export class SortingVisualiserComponent implements OnInit {
   async mergesort(lo:number, hi:number)
   {
     console.log(lo,hi);
-    
+
     if(lo===hi)
       return ;
     let mid:number=Math.floor((lo+hi)/2);
@@ -313,7 +313,7 @@ export class SortingVisualiserComponent implements OnInit {
     this.isDone=[];
     while(pt1<=mid && pt2<=hi)
     {
-      
+
       this.isChecking=[];
       this.isSwapping=[];
       this.isChecking.push(pt1);
@@ -325,7 +325,7 @@ export class SortingVisualiserComponent implements OnInit {
         this.isChecking=[];
         this.isSwapping=[];
         this.isSwapping.push(pt1);
-        this.isChecking.push(pt2);    
+        this.isChecking.push(pt2);
         pt1++;
         await new Promise(resolve => setTimeout(resolve, this.dur));
         if(lo==0&&hi==this.arr.length-1)
@@ -350,7 +350,7 @@ export class SortingVisualiserComponent implements OnInit {
           this.arr[id]=this.arr[id-1];
           id--;
         }
-      
+
         this.arr[id]=val;
 
         pt1++;
@@ -362,15 +362,15 @@ export class SortingVisualiserComponent implements OnInit {
           this.isSwapping=[];
           this.isChecking=[];
           await new Promise(resolve => setTimeout(resolve, this.dur));
-        }        
+        }
       }
       this.isSwapping=[];
       this.isChecking=[];
-      
-      
+
+
     }
     if(lo===0&& this.arr.length-1===hi)
-    {    
+    {
       let i:number=0;
       while(i<=this.arr.length-1)
       {
@@ -398,7 +398,7 @@ export class SortingVisualiserComponent implements OnInit {
     if(rc<n && this.arr[rc]>this.arr[maxid])
       maxid=rc;
     if(maxid!=i)
-    { 
+    {
       this.isChecking=[];
       this.isChild=[];
       this.isSwapping=[];
@@ -407,7 +407,7 @@ export class SortingVisualiserComponent implements OnInit {
       await new Promise(resolve => setTimeout(resolve, this.dur));
       [this.arr[i],this.arr[maxid]]=[this.arr[maxid],this.arr[i]];
       await new Promise(resolve => {setTimeout(() => {resolve(this.heapify(maxid,n));}, );});
-    }  
+    }
     this.isChecking=[];
   }
 
@@ -439,7 +439,7 @@ export class SortingVisualiserComponent implements OnInit {
       i--;
       tlen--;
       await new Promise(resolve => {setTimeout(() => {resolve(this.heapify(0, tlen));}, );});
-      
+
     }
     this.isDone.push(0);
 

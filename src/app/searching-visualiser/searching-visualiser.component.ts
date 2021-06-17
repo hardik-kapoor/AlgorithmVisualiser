@@ -22,7 +22,7 @@ export class SearchingVisualiserComponent implements OnInit {
     _anim=faTachometerAlt;
     _chosen=faSitemap;
     _search=faSearch;
-  
+
     //Icons end here
 
   arr:number[]=[];          //array
@@ -86,7 +86,7 @@ export class SearchingVisualiserComponent implements OnInit {
     else if(this.isChecked.includes(ind))
       return {"background-color":'#dc3545' , "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": 'white'};
     else
-      return {"background-color": '#343a40' , "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": 'white'};
+      return {"background-color": 'rgb(255,255,255,0.7)' , "width": String(Math.min(33,(650/this.arr.length)))+"px" , "color": 'black'};
   }
 
   createRandomArray()
@@ -162,7 +162,7 @@ export class SearchingVisualiserComponent implements OnInit {
     }
 
   //
-  
+
 
   //fun2
     async binarySearch(lo:number, hi:number)
@@ -208,10 +208,10 @@ export class SearchingVisualiserComponent implements OnInit {
         this.isChecking=[];
         this.isChecked.push(0);
         await new Promise(resolve => setTimeout(resolve, this.dur));
-        let i:number=1; 
+        let i:number=1;
         while(i<this.arr.length&&this.arr[i]<=this.num)
         {
-          
+
           this.isChecking=[];
           this.isChecking.push(i);
           await new Promise(resolve => setTimeout(resolve, this.dur));
@@ -226,9 +226,9 @@ export class SearchingVisualiserComponent implements OnInit {
         await new Promise(resolve => setTimeout(resolve, this.dur));
         this.isChecking=[];
         await new Promise(resolve => {setTimeout(() => {resolve(this.binarySearch(lo,hi));}, );});
-        
+
       }
-    }   
+    }
 
 
   //

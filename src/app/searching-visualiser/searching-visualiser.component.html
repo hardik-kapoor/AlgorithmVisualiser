@@ -3,7 +3,10 @@
 
 
 
-<div class="bg-light">
+<div style="background-image:url('https://assets.hongkiat.com/uploads/minimalist-dekstop-wallpapers/4k/original/09.jpg');
+background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;">
     <div id = "main" class="row">
         <div id="left-bt" class="col">
             <div class="row-2">
@@ -14,8 +17,8 @@
             <div class="row">
                 <div id="graph">
                 <div *ngFor="let number of arr;index as i;last as l;first as f">
-                    <div 
-                    class="bar" 
+                    <div
+                    class="bar"
                     [style.height]='(75*number)/max_val + "%"' [ngStyle]="currentColor(i)">
                     <div *ngIf = "this.size < 25" id="bar-txt">{{arr[i]}}</div>
                 </div>
@@ -34,7 +37,7 @@
                 <div class="row-2">
                     <button id="bt" class="btn btn-light mb-2 text-dark" (click)="createRandomArray()"><fa-icon id="icon" [icon]="_shuffle"></fa-icon> Shuffle </button>
                 </div>
-        
+
         </div>
     </div>
 </div>
@@ -50,18 +53,18 @@
 <!-- Footer Part -->
 <div id="footer" class="card bg-light">
 
-    
+
     <div class="row">
         <div class = "col text-dark"><button id="txt"  (click)='change("Linear Search")' class="btn btn-light">Linear Search</button></div>
         <div class = "col text-dark"><button id="txt"  (click)='change("Binary Search")' class="btn btn-light">Binary Search</button></div>
         <div class = "col text-dark"><button id="txt"  (click)='change("Jump Search")' class="btn btn-light">Jump Search</button></div>
         <div class = "col text-dark"><button id="txt"  (click)='change("Exponential Search")' class="btn btn-light">Exponential Search</button></div>
-          
+
       <div class="col-2 text-dark">
           <div id="txt">Animation Speed</div>
           <mat-slider class="ng-deep w-100 h-75" min="5" max="600" step="1"  (input)="setSpeed($event)" [value]="150"></mat-slider>
         </div>
-        
+
     <div class="col-2 text-dark">
         <div id="txt">Array Size</div>
         <mat-slider class="ng-deep w-100 h-75" min="10" max="80" step="1"  (input)="setSize($event)" [value]="20"></mat-slider>
