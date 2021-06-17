@@ -185,8 +185,12 @@ export class PathFinderComponent implements OnInit {
 
   resetGrid()
   {
-    this.isDone=false;
+    
+    this.isChangingSource=false;
+    this.isChangingDes=false;
+    this.isWorking=false;
     this.isFound=false;
+    this.isDone=false;
     this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctxGrid.shadowBlur=0;
     this.ctxGrid.shadowColor="#000000";
