@@ -84,6 +84,7 @@ export class PathFinderComponent implements OnInit {
     this.arr[this.des[0]][this.des[1]]=3;
     this.drawWalls(this.des);
     this.makeWalls();
+    this.resetGrid();
   }
 
   changeAlgo(which:string)
@@ -175,7 +176,7 @@ export class PathFinderComponent implements OnInit {
   chose(event){
     console.log(event);
   }
-  
+
   changeSrc(){
     this.isChangingSource=true;
   }
@@ -186,7 +187,7 @@ export class PathFinderComponent implements OnInit {
 
   resetGrid()
   {
-    
+
     this.isChangingSource=false;
     this.isChangingDes=false;
     this.isWorking=false;
@@ -844,7 +845,7 @@ export class PathFinderComponent implements OnInit {
         }
         let i:number = this.randomNumber(top,bottom);
         if(this.arr[i][clm]!==2 && this.arr[i][clm]!==3)
-        { 
+        {
           this.arr[i][clm]=0;
           this.drawWalls([i,clm]);
           await new Promise(resolve => setTimeout(resolve, 5*this.dur));
@@ -854,7 +855,7 @@ export class PathFinderComponent implements OnInit {
 
       }
     }
-    
+
 
   //
 
