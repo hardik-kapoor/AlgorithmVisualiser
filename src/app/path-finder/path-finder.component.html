@@ -10,7 +10,7 @@
               <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> BFS </button>
           </div>
           <div class="row-2">
-              <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> Dijktra </button>
+              <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> Dijkstra </button>
           </div>
           <div class="row-2">
               <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> A-star</button>
@@ -23,30 +23,30 @@
         <div class="col-2 container-fluid " id="sidebar">
             <br>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="astar()" > Start  </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="astar()" [disabled]="isdisabled() || isdisabledalt()" > Start  </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="resetGrid()" > Reset  </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="resetGrid()" [disabled]="isdisabled()"> Reset  </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="randomGrid()"> Random Grid </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="randomGrid()" [disabled]="isdisabled()"> Random Grid </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="primsMazeAlgorithm()"> Random Maze </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="primsMazeAlgorithm()" [disabled]="isdisabled()"> Random Maze </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="changeSrc()"> Change Start </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="changeSrc()" [disabled]="isdisabled() || isdisabledalt()"> Change Start </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="changeDes()">Change Destination</button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="changeDes()" [disabled]="isdisabled() || isdisabledalt()">Change Destination</button>
             </div>
             <div class="row-2">
-              <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> <mat-slide-toggle [checked]="wallchecked" (change)="walltoggle($event)"></mat-slide-toggle>  Walls</button>
+              <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> <mat-slide-toggle [disabled]="isdisabled() || isdisabledalt()" [checked]="wallchecked" (change)="walltoggle($event)"></mat-slide-toggle>  Walls</button>
           </div>
             <div class="row-2 bg-light" style="height:50px ; border-radius:5px" >
               <div style="font-weight: 400; padding:2px ; margin-left:5px"> Wall weight </div>
             <mat-slider class="ng-deep w-100 bg-light" style="border-radius:5px" (input)="changeWallWeight($event)" min="1" max="101" step="1" [value]="101"
-            [disabled]="this.walltype==0"
+            [disabled]="this.walltype==0 || isdisabled() || isdisabledalt()"
             ></mat-slider>
             </div>
         </div>

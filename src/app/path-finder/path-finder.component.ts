@@ -27,7 +27,9 @@ export class PathFinderComponent implements OnInit {
   dur=1;
   isChangingSource=false;
   isChangingDes=false;
+  isWorking=false;
   isFound=false;
+  isDone=false;
   walltype = 1;
   wallchecked = true;
   whichInd:number=4;
@@ -82,6 +84,20 @@ export class PathFinderComponent implements OnInit {
     this.makeWalls();
   }
 
+  isdisabled(){
+    if(this.isChangingDes||this.isChangingSource||this.isWorking)
+      return true;
+    else
+      return false;
+  }
+
+  isdisabledalt(){
+    if(this.isDone)
+      return true;
+    else
+      return false;
+  }
+
   changeWallWeight(event)
   {
     this.wt = event.value;
@@ -110,6 +126,8 @@ export class PathFinderComponent implements OnInit {
 
   resetGrid()
   {
+    this.isDone=false;
+    this.isFound=false;
     this.ctxGrid.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctxGrid.shadowBlur=0;
     this.ctxGrid.shadowColor="#000000";
@@ -120,7 +138,6 @@ export class PathFinderComponent implements OnInit {
         this.ctxGrid.strokeRect(i,j,this.sz1,this.sz1);
       }
     }
-    this.isFound=false;
     this.arr=[];
     for(let i=0;i<this.ys;i++){
       let temp=[];
@@ -212,7 +229,7 @@ export class PathFinderComponent implements OnInit {
   makeWalls()
   {
     document.body.onmousedown=()=>{
-      if(!this.isChangingSource && !this.isChangingDes)
+      if(!this.isChangingSource && !this.isChangingDes && !this.isWorking && !this.isDone)
         this.isDrawing=true;
     }
     this.canvas.addEventListener('mousemove', function (e) {
@@ -335,6 +352,7 @@ export class PathFinderComponent implements OnInit {
 
   //fun1
     async bfs(){
+      this.isWorking=true;
       let q=new Queue();
       q.push(this.src);
       let xs=this.xs,ys=this.ys;
@@ -382,9 +400,12 @@ export class PathFinderComponent implements OnInit {
           break;
       }
       await new Promise(resolve => {setTimeout(() => {resolve(this.backtrack());}, );});
+      this.isWorking=false;
+      this.isDone=true;
     }
 
     async dijkstra(){
+      this.isWorking=true;
       let dis=[],done=[];
       this.pararr=[];
       for(let i=0;i<this.ys;i++)
@@ -450,6 +471,8 @@ export class PathFinderComponent implements OnInit {
       }
       if(this.isFound)
         this.backtrack();
+      this.isWorking=false;
+      this.isDone=true;
     }
 
     //maze generation
@@ -493,6 +516,7 @@ export class PathFinderComponent implements OnInit {
     }
 
     async primsMazeAlgorithm(){
+      this.isWorking=true;
       this.resetGrid();
       let tempArr=[...this.arr];
       for(let i=0;i<this.ys;i++)
@@ -531,12 +555,14 @@ export class PathFinderComponent implements OnInit {
           await new Promise(resolve => setTimeout(resolve, this.dur/10));
         }
       }
+      this.isWorking=false;
     }
   //
 
   //fun2
     async dfs()
     {
+      this.isWorking=true;
       this.pararr=[];
       for(let i=0;i<this.ys;i++)
       {
@@ -550,6 +576,8 @@ export class PathFinderComponent implements OnInit {
       this.pararr[this.src[0]][this.src[1]]=[-2,-2];
       await new Promise(resolve => {setTimeout(() => {resolve(this._dfs(this.src));}, );});
       await new Promise(resolve => {setTimeout(() => {resolve(this.backtrack());}, );});
+      this.isWorking=false;
+      this.isDone=true;
     }
 
     async _dfs(root:number[])
@@ -584,6 +612,7 @@ export class PathFinderComponent implements OnInit {
 
     async astar()
     {
+      this.isWorking=true;
       let dis=[],done=[],gvalue=[];
       this.pararr=[];
       for(let i=0;i<this.ys;i++)
@@ -661,6 +690,8 @@ export class PathFinderComponent implements OnInit {
       }
       if(this.isFound)
         this.backtrack();
+      this.isWorking=false;
+      this.isDone=true;
     }
 
     randomNumber(min:number, max:number)
@@ -671,6 +702,7 @@ export class PathFinderComponent implements OnInit {
     async recursiveRandomMaze()
     {
       //ys=rows, xs=col
+      this.isWorking=true;
       this.done=[];
       this.resetGrid();
       for(let i=0; i<this.ys; i++)
@@ -683,7 +715,7 @@ export class PathFinderComponent implements OnInit {
         this.done.push(temp);
       }
       await new Promise(resolve => {setTimeout(() => {resolve(this._recursiveRandomMaze(0,this.xs-1,0,this.ys-1));}, );});
-
+      this.isWorking=false;
     }
 
     async _recursiveRandomMaze(left:number, right:number, top:number, bottom:number)
