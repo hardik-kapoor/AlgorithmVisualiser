@@ -611,7 +611,7 @@ export class PathFinderComponent implements OnInit {
       for(let i=0;i<this.ys;i++){
         for(let j=0;j<this.xs;j++){
           this.drawWalls([i,j]);
-          await new Promise(resolve => setTimeout(resolve, this.dur/10));
+          await new Promise(resolve => setTimeout(resolve, this.dur));
         }
       }
       this.isWorking=false;
