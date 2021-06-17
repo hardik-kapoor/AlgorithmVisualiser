@@ -88,6 +88,7 @@ export class PathFinderComponent implements OnInit {
 
   changeAlgo(which:string)
   {
+    this.resetGrid();
     this.whichAlgo=which;
   }
 
