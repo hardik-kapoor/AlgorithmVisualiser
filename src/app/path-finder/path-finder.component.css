@@ -1,7 +1,9 @@
 #myCanvas
 {
     display: block;
-    border:5px solid #808588;
+    border:15px solid;
+    border-color: rgb(255,255,255,0.2);
+    border-radius:5px;
 }
 
 #footer
