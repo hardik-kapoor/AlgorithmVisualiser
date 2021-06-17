@@ -29,16 +29,16 @@
                 <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="resetGrid()" > Reset  </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> Random Grid </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="randomGrid()"> Random Grid </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="recursiveRandomMaze()"> Random Maze </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="primsMazeAlgorithm()"> Random Maze </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> Change Start </button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="changeSrc()"> Change Start </button>
             </div>
             <div class="row-2">
-                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark">Change Destination</button>
+                <button id="bt" class="btn btn-light mb-1 pd-2 text-dark" (click)="changeDes()">Change Destination</button>
             </div>
             <div class="row-2">
               <button id="bt" class="btn btn-light mb-1 pd-2 text-dark"> <mat-slide-toggle [checked]="wallchecked" (change)="walltoggle($event)"></mat-slide-toggle>  Walls</button>

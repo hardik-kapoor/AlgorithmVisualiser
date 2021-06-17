@@ -25,6 +25,8 @@ export class PathFinderComponent implements OnInit {
   tempsrc;
   tempdes;
   dur=1;
+  isChangingSource=false;
+  isChangingDes=false;
   isFound=false;
   walltype = 1;
   wallchecked = true;
@@ -97,6 +99,14 @@ export class PathFinderComponent implements OnInit {
   chose(event){
     console.log(event);
   }
+  
+  changeSrc(){
+    this.isChangingSource=true;
+  }
+
+  changeDes(){
+    this.isChangingDes=true;
+  }
 
   resetGrid()
   {
@@ -131,6 +141,7 @@ export class PathFinderComponent implements OnInit {
 
   randomGrid()
   {
+    this.resetGrid();
     for(let i=0;i<this.canvas.width;i+=this.sz1)
     {
       for(let j=0;j<this.canvas.height;j+=this.sz1)
@@ -169,7 +180,7 @@ export class PathFinderComponent implements OnInit {
     else if(this.arr[ind[0]][ind[1]]===3)
     {
       this.ctxGrid.fillStyle = 'red';
-      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1,this.sz1);
+      this.ctxGrid.fillRect(cx+1,cy+1,this.sz1-2,this.sz1-2);
     }
     else if(this.arr[ind[0]][ind[1]]===4)
     {
@@ -201,7 +212,8 @@ export class PathFinderComponent implements OnInit {
   makeWalls()
   {
     document.body.onmousedown=()=>{
-      this.isDrawing=true;
+      if(!this.isChangingSource && !this.isChangingDes)
+        this.isDrawing=true;
     }
     this.canvas.addEventListener('mousemove', function (e) {
       if(this.isDrawing){
@@ -257,11 +269,53 @@ export class PathFinderComponent implements OnInit {
           }
         }
       }
+      else if(this.isChangingSource)
+      {
+        const rect = this.canvas.getBoundingClientRect();
+        let cx = e.clientX - rect.left;
+        let cy = e.clientY - rect.top;
+
+        cx=(Math.floor(cx/this.sz1))*this.sz1;
+        cy=(Math.floor(cy/this.sz1))*this.sz1;
+        let r=Math.floor(cy/this.sz1);
+        let c=Math.floor(cx/this.sz1);
+        if(this.arr[r][c]===0)
+        {
+          this.arr[this.src[0]][this.src[1]]=0;
+          this.drawWalls(this.src);
+          this.arr[r][c]=2;
+          this.src=[r,c];
+          this.tempsrc=[...this.src];
+          this.drawWalls(this.src);
+        }
+        this.isChangingSource=false;
+      }
+      else if(this.isChangingDes){
+        const rect = this.canvas.getBoundingClientRect();
+        let cx = e.clientX - rect.left;
+        let cy = e.clientY - rect.top;
+
+        cx=(Math.floor(cx/this.sz1))*this.sz1;
+        cy=(Math.floor(cy/this.sz1))*this.sz1;
+        let r=Math.floor(cy/this.sz1);
+        let c=Math.floor(cx/this.sz1);
+        if(this.arr[r][c]===0)
+        {
+          this.arr[this.des[0]][this.des[1]]=0;
+          this.drawWalls(this.des);
+          this.arr[r][c]=3;
+          this.des=[r,c];
+          this.tempdes=[...this.des];
+          this.drawWalls(this.des);
+        }
+        this.isChangingDes=false;
+      }
     }.bind(this))
 
     document.body.onmouseup=()=>{
       this.isDrawing=false;
     }
+
   }
 
   async backtrack()
