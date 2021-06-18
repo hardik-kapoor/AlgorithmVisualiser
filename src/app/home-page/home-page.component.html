@@ -4,33 +4,38 @@
        <link rel="preconnect" href="https://fonts.gstatic.com">
        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 </head>
-<body>
-       <div class="text-box">
-              <h1 style="font-size: 55px;">Welcome to Algorithm Visualiser</h1>
-       </div>
-       <div class="subtext">
-              <h3>What would you like to visualise?</h3>
-       </div>
+<body style="background-image:url('https://assets.hongkiat.com/uploads/minimalist-dekstop-wallpapers/4k/original/09.jpg');
+  background-attachment: fixed;
+  background-size: cover;">
       
-       <div class="row">
-              <div class="column">
-                <div class="card">
-                       <a routerLink="../sorting">
-                            Sorting
-                       </a></div>
+              <div class="text-box">
+                     <h1 style="font-size: 55px; color: aliceblue;">Welcome to Algorithm Visualiser</h1>
               </div>
-              <div class="column">
-                <div class="card">
-                       <a routerLink="../searching">
-                            Searching
-                       </a></div>
+              <div class="subtext">
+                     <h3 style="color: blanchedalmond;">What would you like to visualise?</h3>
               </div>
-              <div class="column">
-                <div class="card">
-                       <a routerLink="../pathfinding">Path Finding</a>
+             
+              <div class="row">
+                     <div class="column">
+                       <div class="card" >
+                              <a routerLink="../sorting">
+                                   Sorting
+                              </a></div>
                      </div>
-              </div>
-            </div>
+                     <div class="column">
+                       <div class="card">
+                              <a routerLink="../searching">
+                                   Searching
+                              </a></div>
+                     </div>
+                     <div class="column">
+                       <div class="card">
+                              <a routerLink="../pathfinding">Path Finding</a>
+                            </div>
+                     </div>
+                   </div>
+       
+       
             <router-outlet></router-outlet>
 </body>
 
