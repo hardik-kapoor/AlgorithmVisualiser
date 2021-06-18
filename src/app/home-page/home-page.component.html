@@ -4,15 +4,15 @@
        <link rel="preconnect" href="https://fonts.gstatic.com">
        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 </head>
-<body style="background-image:url('https://assets.hongkiat.com/uploads/minimalist-dekstop-wallpapers/4k/original/09.jpg');
-  background-attachment: fixed;
-  background-size: cover;">
+<body style=  "background-image: url('https://assets.hongkiat.com/uploads/minimalist-dekstop-wallpapers/4k/original/09.jpg');
+background-repeat: no-repeat;
+background-attachment: fixed;">
       
               <div class="text-box">
                      <h1 style="font-size: 55px; color: aliceblue;">Welcome to Algorithm Visualiser</h1>
               </div>
               <div class="subtext">
-                     <h3 style="color: blanchedalmond;">What would you like to visualise?</h3>
+                     <h3 style="color: white;">What would you like to visualise?</h3>
               </div>
              
               <div class="row">
@@ -34,6 +34,22 @@
                             </div>
                      </div>
                    </div>
+                   <hr style="color: blanchedalmond; height: 5px; margin-top: 50px;">
+                   <div class="theory">
+                         <h1 style="color: white; padding-left: 20px; padding-top: 30px;">
+                           Sorting Algorithms
+                         </h1> 
+                         <p style="color: blanchedalmond; padding-left: 20px;">A Sorting Algorithm is used to rearrange a given array or list elements according to a comparison operator on the elements. The comparison operator is used to decide the new order of element in the respective data structure.
+                         </p>
+                         <p style="color: blanchedalmond; padding-left: 20px;">The sorting algorithms we have visualised here along with their complexities are as follows:-</p>
+                         <li style="color: blanchedalmond; padding-left: 20px;">Quick Sort: O(n<sup>2</sup>) for worst case, O(nLogn) for best and average case</li>
+                         <li style="color: blanchedalmond; padding-left: 20px;">Heap Sort: O(nLogn)</li>
+                         <li style="color: blanchedalmond; padding-left: 20px;">Merge Sort: O(nLogn)</li>
+                         <li style="color: blanchedalmond; padding-left: 20px;">Bubble Sort: O(n<sup>2</sup>) for worst case, O(n) for best case</li>
+                         <li style="color: blanchedalmond; padding-left: 20px;">Selection Sort: O(n<sup>2</sup>)</li>
+                         <li style="color: blanchedalmond; padding-left: 20px;">Insertion Sort: O(n<sup>2</sup>)</li>
+                         <br>
+                     </div>
        
        
             <router-outlet></router-outlet>
