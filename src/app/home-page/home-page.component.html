@@ -39,22 +39,22 @@ background-attachment: fixed;">
                          <h1 style="color: white; padding-left: 20px; padding-top: 20px;">
                            Sorting Algorithms
                          </h1> 
-                         <p style="color: blanchedalmond; padding-left: 20px;">A Sorting Algorithm is used to rearrange a given array or list elements according to a comparison operator on the elements. The comparison operator is used to decide the new order of element in the respective data structure.
+                         <p style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">A Sorting Algorithm is used to rearrange a given array or list elements according to a comparison operator on the elements. The comparison operator is used to decide the new order of element in the respective data structure.
                          </p>
-                         <p style="color: blanchedalmond; padding-left: 20px;">The sorting algorithms we have visualised here along with their complexities are as follows:-</p>
-                         <li style="color: blanchedalmond; padding-left: 20px;">Quick Sort: O(n<sup>2</sup>) for worst case, O(nLogn) for best and average case</li>
-                         <li style="color: blanchedalmond; padding-left: 20px;">Heap Sort: O(nLogn)</li>
-                         <li style="color: blanchedalmond; padding-left: 20px;">Merge Sort: O(nLogn)</li>
-                         <li style="color: blanchedalmond; padding-left: 20px;">Bubble Sort: O(n<sup>2</sup>) for worst case, O(n) for best case</li>
-                         <li style="color: blanchedalmond; padding-left: 20px;">Selection Sort: O(n<sup>2</sup>)</li>
-                         <li style="color: blanchedalmond; padding-left: 20px;">Insertion Sort: O(n<sup>2</sup>)</li>
+                         <p style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">The sorting algorithms we have visualised here along with their complexities are as follows:-</p>
+                         <li style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">Quick Sort: O(n<sup>2</sup>) for worst case, O(nLogn) for best and average case</li>
+                         <li style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">Heap Sort: O(nLogn)</li>
+                         <li style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">Merge Sort: O(nLogn)</li>
+                         <li style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">Bubble Sort: O(n<sup>2</sup>) for worst case, O(n) for best case</li>
+                         <li style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">Selection Sort: O(n<sup>2</sup>)</li>
+                         <li style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">Insertion Sort: O(n<sup>2</sup>)</li>
                      </div>
                      <hr style="color: blanchedalmond; height: 5px; margin-top: 20px;">
                      <div class="searching-theory">
                             <h1 style="color: white; padding-left: 20px; padding-top: 20px;">
                                    Searching Algorithms
                                  </h1> 
-                                 <p style="color: blanchedalmond; padding-left: 20px;">
+                                 <p style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">
                                    Searching Algorithms are designed to check for an element or retrieve an element from any data structure where it is stored. Based on the type of
                                    search operation, these algorithms are generally classified into two categories:
                             </p>
@@ -63,14 +63,29 @@ background-attachment: fixed;">
                                        For example: Linear Search.</li>
                                    <li style="color: blanchedalmond; padding-top: 2px;"> <b>Interval Search:</b> These algorithms are specifically designed for searching in sorted data-structures. These type of searching algorithms are much more efficient than Linear Search as they repeatedly target the center of the search structure and divide the search space in half. For Example: Binary Search.</li>
                             </ol>
-                            <p style="color: blanchedalmond; padding-left: 20px;">The searching algorithms we have visualised here along with their complexities are as follows:-
+                            <p style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">The searching algorithms we have visualised here along with their complexities are as follows:-
                             </p>
-                            <li style="color: blanchedalmond; padding-left: 20px;">Linear Search: O(n)</li>
-                            <li style="color: blanchedalmond; padding-left: 20px;">Binary Search: O(Logn)</li>
-                            <li style="color: blanchedalmond; padding-left: 20px;">Jump Search: O(&radic;n)</li>
-                            <li style="color: blanchedalmond; padding-left: 20px;">Exponential Search: O(Logn)</li>
+                            <li style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">Linear Search: O(n)</li>
+                            <li style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">Binary Search: O(Logn)</li>
+                            <li style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">Jump Search: O(&radic;n)</li>
+                            <li style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">Exponential Search: O(Logn)</li>
                      </div>
                      <hr style="color: blanchedalmond; height: 5px; margin-top: 20px;">
+                     <div class="graph-algos">
+                            <h1 style="color: white; padding-left: 20px; padding-top: 20px;">
+                                   Path Finding
+                                 </h1>
+                                 <p style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">
+                                   Pathfinding means to search a graph by picking one vertex as it's starting point and then exploring adjacent nodes, until
+                                   the destination node is reached. Different path finding algorithm have different complexities, with each having an intent to find the cheapest
+                                   possible path.
+                            </p>
+                            <p style="color: blanchedalmond; padding-left: 20px; padding-right: 20px">
+                                   Algorithms such as BFS(breadth-first search) and DFS(depth-first search) usually iterate over all possible paths, until they find the destination node.
+                                   But, it is not necessary to look for all possible paths. Algorithms such as Dijkstra's Algorithm, and
+                            </p>
+                     </div>
+
                      <br>
             <router-outlet></router-outlet>
 </body>
